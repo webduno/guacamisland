@@ -83,6 +83,11 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_axis = event.relative
 		camera_rotation()
+		
+	if Input.is_action_pressed("zoom_in"):
+		cam_target.translation.z -= .1
+	if Input.is_action_pressed("zoom_out"):
+		cam_target.translation.z += .1
 
 
 func walk(delta: float) -> void:
@@ -233,4 +238,10 @@ func _on_goal_ring_body_shape_entered(body_id, body, body_shape, area_shape):
 	var current_goal = goals.get_node(goals.goal_list[goals.current_index])
 	current_goal.hide()
 	goals.current_index += 1
-	current_goal = goals.get_node(goals.goal_list[goals.current_index])
+	
+	print(goals.current_index)
+	print(len(goals.goal_list))
+	
+	if goals.current_index <= len(goals.goal_list):
+		current_goal = goals.get_node(goals.goal_list[goals.current_index])
+		current_goal.show()

@@ -1,7 +1,7 @@
 extends Spatial
 
 
-var goal_list = ["goal_ring 1", "goal_ring 2", "goal_ring 3", ];
+var goal_list = ["goal_ring 1", "goal_ring 2", "goal_ring 3"];
 var current_index = 0;
 
 

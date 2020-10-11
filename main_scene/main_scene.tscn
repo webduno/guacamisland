@@ -44,7 +44,10 @@ script = ExtResource( 6 )
 transform = Transform( 0.935918, -0.352217, 5.73836e-08, 0, -1.62921e-07, -1, 0.352217, 0.935918, -1.52481e-07, -10.0832, 4, 17.9815 )
 
 [node name="goal_ring 2" parent="Goals" instance=ExtResource( 3 )]
+transform = Transform( 0.276242, -0.961088, 1.56582e-07, 0, -1.62921e-07, -1, 0.961088, 0.276242, -4.50059e-08, -0.37, 2, 15.197 )
+
+[node name="goal_ring 3" parent="Goals" instance=ExtResource( 3 )]
 transform = Transform( 0.756025, -0.654542, 1.06639e-07, 0, -1.62921e-07, -1, 0.654542, 0.756025, -1.23173e-07, 7.36617, 2.80626, 10.3475 )
-visible = false
 [connection signal="body_shape_entered" from="Goals/goal_ring 1" to="Spawn/player" method="_on_goal_ring_body_shape_entered"]
 [connection signal="body_shape_entered" from="Goals/goal_ring 2" to="Spawn/player" method="_on_goal_ring_body_shape_entered"]
+[connection signal="body_shape_entered" from="Goals/goal_ring 3" to="Spawn/player" method="_on_goal_ring_body_shape_entered"]
