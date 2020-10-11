@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/clouds.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/water.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/solid_island.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/island_collision_polygon.tres" type="Shape" id=4]
+[ext_resource path="res://assets/island_container_collision_polygon.tres" type="Shape" id=5]
+
+[node name="Island" type="Spatial"]
+
+[node name="solid_island" parent="." instance=ExtResource( 3 )]
+
+[node name="StaticBody" type="StaticBody" parent="solid_island"]
+
+[node name="CollisionShape" type="CollisionShape" parent="solid_island/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0720353, 0 )
+shape = ExtResource( 4 )
+
+[node name="StaticBody2" type="StaticBody" parent="solid_island"]
+
+[node name="CollisionShape" type="CollisionShape" parent="solid_island/StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.62, 0 )
+shape = ExtResource( 5 )
+
+[node name="clouds" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.786386, 0.00346203, -0.617726, -0.012567, 0.999688, 0.0216009, 0.617608, 0.0247495, -0.786097, -4.49511, 0.91998, -1.22907 )
+
+[node name="clouds2" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.222973, 0.018257, -0.974654, -0.012567, 0.999688, 0.0216009, 0.974743, 0.0170648, -0.222674, 2.64348, 0.91998, -1.43417 )
+
+[node name="water" parent="." instance=ExtResource( 2 )]
