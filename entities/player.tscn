@@ -17,7 +17,7 @@ shape = SubResource( 1 )
 [node name="head_node" type="Spatial" parent="."]
 
 [node name="camera_target" type="Spatial" parent="head_node"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.1, 0.4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.05, 0.6 )
 
 [node name="guaca_blue" parent="head_node" instance=ExtResource( 2 )]
 

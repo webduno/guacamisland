@@ -14,7 +14,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func __process(delta):
 	rotate_x(deg2rad(.5))
 	camera.environment.background_sky_rotation.x += deg2rad(.5)
 	
@@ -23,10 +23,12 @@ func _process(delta):
 		sun.light_indirect_energy = clamp(1.5 - rotation.x, 0, 1.5)
 		
 		# camera.environment.ambient_light_energy = clamp(1.5 - rotation.x, 0, 1.5)
+		camera.environment.background_sky.sun_energy = clamp(rotation.x+1.5, 0, .9)
 		camera.environment.background_energy = clamp(1.5 - rotation.x, .1, .9)
 	else:
 		sun.light_energy = clamp(rotation.x+1.5, 0, 1.5)
 		sun.light_indirect_energy = clamp(rotation.x+1.5, 0, 1.5)
 		
 		# camera.environment.ambient_light_energy = clamp(rotation.x+1.5, 0, 1.5)
+		camera.environment.background_sky.sun_energy = clamp(rotation.x+1.5, 0, .9)
 		camera.environment.background_energy = clamp(rotation.x+1.5, .1, .9)

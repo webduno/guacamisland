@@ -52,8 +52,13 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	cam.fov = FOV
 	
+	for x in goals.get_children():
+		x.hide();
+		
 	var current_goal = goals.get_node(goals.goal_list[goals.current_index])
+	current_goal.show()
 	current_goal.connect("body_shape_entered", self, "_on_goal_ring_body_shape_entered")
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
