@@ -1,6 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://import/3d/DefaultMaterial.material" type="Material" id=1]
+
+[sub_resource type="CylinderShape" id=4]
+radius = 0.6
+height = 0.202546
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -17,7 +21,7 @@ surfaces/0 = {
 "vertex_count": 216
 }
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0, 1, 0, 1 )
 emission_enabled = true
 emission = Color( 0, 1, 0, 1 )
@@ -25,24 +29,51 @@ emission_energy = 0.5
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="ConcavePolygonShape" id=2]
-data = PoolVector3Array( 0.9, 0, 0, 0.85, 0.0866, 0, 0.425, 0.0866, -0.7361, 0.85, 0.0866, 0, 0, 0.0866, 0, 0.425, 0.0866, -0.7361, -0.45, 0, 0.7794, -0.425, 0.0866, 0.7361, 0.425, 0.0866, 0.7361, -0.425, 0.0866, 0.7361, 0, 0.0866, 0, 0.425, 0.0866, 0.7361, 0.85, -0.0866, 0, 0.425, -0.0866, -0.7361, 0, -0.0866, 0, 0.85, -0.0866, 0, 0.9, 0, 0, 0.45, 0, -0.7794, 0.45, 0, -0.7794, 0.425, 0.0866, -0.7361, -0.425, 0.0866, -0.7361, 0.425, 0.0866, -0.7361, 0, 0.0866, 0, -0.425, 0.0866, -0.7361, -0.425, -0.0866, 0.7361, 0.425, -0.0866, 0.7361, 0, -0.0866, 0, -0.425, -0.0866, 0.7361, -0.45, 0, 0.7794, 0.45, 0, 0.7794, 0.425, -0.0866, -0.7361, -0.425, -0.0866, -0.7361, 0, -0.0866, 0, 0.425, -0.0866, -0.7361, 0.45, 0, -0.7794, -0.45, 0, -0.7794, -0.45, 0, -0.7794, -0.425, 0.0866, -0.7361, -0.85, 0.0866, 0, -0.425, 0.0866, -0.7361, 0, 0.0866, 0, -0.85, 0.0866, 0, 0.45, 0, 0.7794, 0.425, 0.0866, 0.7361, 0.85, 0.0866, 0, 0.425, 0.0866, 0.7361, 0, 0.0866, 0, 0.85, 0.0866, 0, -0.425, -0.0866, -0.7361, -0.85, -0.0866, 0, 0, -0.0866, 0, -0.425, -0.0866, -0.7361, -0.45, 0, -0.7794, -0.9, 0, 0, -0.9, 0, 0, -0.85, 0.0866, 0, -0.425, 0.0866, 0.7361, -0.85, 0.0866, 0, 0, 0.0866, 0, -0.425, 0.0866, 0.7361, 0.425, -0.0866, 0.7361, 0.85, -0.0866, 0, 0, -0.0866, 0, 0.425, -0.0866, 0.7361, 0.45, 0, 0.7794, 0.9, 0, 0, -0.85, -0.0866, 0, -0.425, -0.0866, 0.7361, 0, -0.0866, 0, -0.85, -0.0866, 0, -0.9, 0, 0, -0.45, 0, 0.7794, 0.9, 0, 0, 0.425, 0.0866, -0.7361, 0.45, 0, -0.7794, -0.45, 0, 0.7794, 0.425, 0.0866, 0.7361, 0.45, 0, 0.7794, 0.85, -0.0866, 0, 0.45, 0, -0.7794, 0.425, -0.0866, -0.7361, 0.45, 0, -0.7794, -0.425, 0.0866, -0.7361, -0.45, 0, -0.7794, -0.425, -0.0866, 0.7361, 0.45, 0, 0.7794, 0.425, -0.0866, 0.7361, 0.425, -0.0866, -0.7361, -0.45, 0, -0.7794, -0.425, -0.0866, -0.7361, -0.45, 0, -0.7794, -0.85, 0.0866, 0, -0.9, 0, 0, 0.45, 0, 0.7794, 0.85, 0.0866, 0, 0.9, 0, 0, -0.425, -0.0866, -0.7361, -0.9, 0, 0, -0.85, -0.0866, 0, -0.9, 0, 0, -0.425, 0.0866, 0.7361, -0.45, 0, 0.7794, 0.425, -0.0866, 0.7361, 0.9, 0, 0, 0.85, -0.0866, 0, -0.85, -0.0866, 0, -0.45, 0, 0.7794, -0.425, -0.0866, 0.7361 )
+[sub_resource type="CylinderMesh" id=5]
+top_radius = 0.75
+bottom_radius = 0.75
+height = 0.05
+radial_segments = 6
+rings = 1
 
-[sub_resource type="CylinderShape" id=3]
-radius = 0.902979
-height = 0.202546
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+albedo_color = Color( 0, 1, 0, 0.486275 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Rotation"
+length = 10.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
+}
 
 [node name="goal_ring" type="Area"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
-
-[node name="ring_shape" type="MeshInstance" parent="."]
-mesh = SubResource( 1 )
-material/0 = SubResource( 4 )
-
-[node name="ring_collision" type="CollisionShape" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
-visible = false
-shape = SubResource( 2 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
+
+[node name="Spatial" type="Spatial" parent="."]
+transform = Transform( 1, 0, 6.51683e-07, 0, 1, 0, -6.51683e-07, 0, 1, 0, 0, 0 )
+
+[node name="ring_shape" type="MeshInstance" parent="Spatial"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial"]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Spatial"]
+anims/Rotation = SubResource( 7 )

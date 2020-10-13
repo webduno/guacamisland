@@ -9,7 +9,7 @@ onready var goals: Spatial = get_node("../../Goals")
 
 # Camera
 export(float) var mouse_sensitivity = 8.0
-export(float) var FOV = 120.0
+export(float) var FOV = 100.0
 var mouse_axis := Vector2()
 onready var head: Spatial = get_node("head_node")
 onready var cam: Camera = get_node("InterpolatedCamera")
@@ -51,6 +51,9 @@ var flying := false
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	cam.fov = FOV
+	
+	var current_goal = goals.get_node(goals.goal_list[goals.current_index])
+	current_goal.connect("body_shape_entered", self, "_on_goal_ring_body_shape_entered")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
@@ -236,12 +239,13 @@ func can_sprint() -> bool:
 
 func _on_goal_ring_body_shape_entered(body_id, body, body_shape, area_shape):
 	var current_goal = goals.get_node(goals.goal_list[goals.current_index])
+	print(current_goal.name)
 	current_goal.hide()
+	current_goal.disconnect("body_shape_entered", self, "_on_goal_ring_body_shape_entered")
+	
 	goals.current_index += 1
 	
-	print(goals.current_index)
-	print(len(goals.goal_list))
-	
-	if goals.current_index <= len(goals.goal_list):
+	if goals.current_index < len(goals.goal_list):
 		current_goal = goals.get_node(goals.goal_list[goals.current_index])
 		current_goal.show()
+		current_goal.connect("body_shape_entered", self, "_on_goal_ring_body_shape_entered")
