@@ -5,10 +5,11 @@ extends KinematicBody
 
 # Player
 onready var player_object: Spatial = get_node("head_node/guaca_blue")
-onready var goals: Spatial = get_node("../../Goals")
+onready var goals: Spatial = get_node("../../Level/Goals")
+onready var level_timer: Timer = get_node("../../Level/Foreground/Timer")
 
 # Camera
-export(float) var mouse_sensitivity = 8.0
+export(float) var mouse_sensitivity = 9.0
 export(float) var FOV = 100.0
 var mouse_axis := Vector2()
 onready var head: Spatial = get_node("head_node")
@@ -49,7 +50,6 @@ var flying := false
 
 # Called when the node enters the scene tree
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	cam.fov = FOV
 	
 	for x in goals.get_children():
@@ -243,6 +243,9 @@ func can_sprint() -> bool:
 
 
 func _on_goal_ring_body_shape_entered(body_id, body, body_shape, area_shape):
+	if	goals.current_index == 0:
+		level_timer.start()
+		
 	var current_goal = goals.get_node(goals.goal_list[goals.current_index])
 	print(current_goal.name)
 	current_goal.hide()
@@ -254,3 +257,6 @@ func _on_goal_ring_body_shape_entered(body_id, body, body_shape, area_shape):
 		current_goal = goals.get_node(goals.goal_list[goals.current_index])
 		current_goal.show()
 		current_goal.connect("body_shape_entered", self, "_on_goal_ring_body_shape_entered")
+	else:
+		level_timer.stop()
+		

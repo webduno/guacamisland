@@ -1,0 +1,231 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://entities/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/island.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/goal_ring.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/envoirment.gd" type="Script" id=4]
+[ext_resource path="res://scripts/timer_label.gd" type="Script" id=5]
+[ext_resource path="res://scripts/goals.gd" type="Script" id=6]
+[ext_resource path="res://scripts/level.gd" type="Script" id=7]
+[ext_resource path="res://assets/geometry/detail/umbrella.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/geometry/detail/palmtree.tscn" type="PackedScene" id=9]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 50, 1, 50 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Envoirment" type="Spatial" parent="."]
+script = ExtResource( 4 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Envoirment"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
+visible = false
+light_color = Color( 1, 0.780392, 0.129412, 1 )
+light_energy = 1.5
+shadow_enabled = true
+
+[node name="alt_DirectionalLight" type="DirectionalLight" parent="Envoirment"]
+transform = Transform( 0.965926, 0.107047, 0.235644, 0, -0.91046, 0.413597, 0.258819, -0.399504, -0.879437, 0, 10, 0 )
+light_color = Color( 1, 0.780392, 0.129412, 1 )
+light_energy = 1.5
+shadow_enabled = true
+
+[node name="Spawn" type="Spatial" parent="."]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -13, 10, 25 )
+
+[node name="player" parent="Spawn" instance=ExtResource( 1 )]
+
+[node name="Level" type="Spatial" parent="."]
+pause_mode = 2
+script = ExtResource( 7 )
+
+[node name="floor" type="StaticBody" parent="Level"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0 )
+
+[node name="floor" type="CollisionShape" parent="Level/floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33, 0 )
+shape = SubResource( 1 )
+
+[node name="pause_menu" type="Control" parent="Level"]
+margin_left = 496.079
+margin_top = 324.271
+margin_right = 536.079
+margin_bottom = 364.271
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pause_label" type="Label" parent="Level/pause_menu"]
+margin_left = 0.481537
+margin_top = -65.3123
+margin_right = 41.4816
+margin_bottom = -51.3123
+text = "PAUSE"
+
+[node name="resume_button" type="Button" parent="Level/pause_menu"]
+margin_right = 61.0
+margin_bottom = 20.0
+text = "resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quit_button" type="Button" parent="Level/pause_menu"]
+margin_left = 149.671
+margin_top = 17.818
+margin_right = 210.671
+margin_bottom = 37.818
+text = "quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Terrain" type="Spatial" parent="Level"]
+
+[node name="Island" parent="Level/Terrain" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.3, 0 )
+
+[node name="Goals" type="Spatial" parent="Level"]
+visible = false
+script = ExtResource( 6 )
+
+[node name="goal_ring 1" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( 0.701939, -0.264163, 1.15469e-08, 0, -3.27835e-08, -0.75, 0.264163, 0.701939, -3.06827e-08, -10.0832, 4, 17.9815 )
+
+[node name="goal_ring 2" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( 0.207182, -0.720816, 3.15079e-08, 0, -3.27835e-08, -0.75, 0.720816, 0.207182, -9.05619e-09, -0.37, 2, 15.197 )
+
+[node name="goal_ring 3" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( 0.567019, -0.490907, 2.14582e-08, 0, -3.27835e-08, -0.75, 0.490907, 0.567019, -2.47852e-08, 7.36617, 2.80626, 10.3475 )
+
+[node name="goal_ring 4" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( 0.749302, -0.0323478, 1.41397e-09, 0, -3.27835e-08, -0.75, 0.0323478, 0.749302, -3.2753e-08, 10.7358, 5.96216, -0.27931 )
+
+[node name="goal_ring 5" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( 0.749302, -0.0323478, 1.41397e-09, 0, -3.27835e-08, -0.75, 0.0323478, 0.749302, -3.2753e-08, 10.2126, 2.23814, -8.75981 )
+
+[node name="goal_ring 6" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( 0.46433, 0.58898, -2.57451e-08, 0, -3.27835e-08, -0.75, -0.58898, 0.46433, -2.02965e-08, 2.60411, 2.23814, -15.0997 )
+
+[node name="goal_ring 7" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( 0.206262, 0.72108, -3.15194e-08, 0, -3.27835e-08, -0.75, -0.72108, 0.206262, -9.01599e-09, -5.17267, 4.06089, -15.96 )
+
+[node name="goal_ring 8" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( -0.326695, 0.675108, -2.95099e-08, 0, -3.27835e-08, -0.75, -0.675108, -0.326695, 1.42803e-08, -13.6563, 7.17115, -13.3237 )
+
+[node name="goal_ring 9" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( -0.625538, 0.413767, -1.80863e-08, 0, -3.27835e-08, -0.75, -0.413767, -0.625538, 2.73431e-08, -18.325, 10.7914, -8.52391 )
+
+[node name="goal_ring 10" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( -0.553329, -0.506288, 2.21305e-08, 0, -3.27835e-08, -0.75, 0.506288, -0.553329, 2.41868e-08, -15.7841, 12.5583, -0.658334 )
+
+[node name="goal_ring 11" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( -0.132787, -0.738152, 3.22656e-08, 0, -3.27835e-08, -0.75, 0.738152, -0.132787, 5.8043e-09, -6.58563, 10.3455, 1.58569 )
+
+[node name="goal_ring 12" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( -0.0577867, -0.747771, 3.26861e-08, 0, -3.27835e-08, -0.75, 0.747771, -0.0577867, 2.52593e-09, 3.97661, 13.686, 1.58569 )
+
+[node name="goal_ring 13" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( -0.70571, -0.253919, 1.10991e-08, 0, -3.27835e-08, -0.75, 0.253919, -0.70571, 3.08475e-08, 12.6405, 9.79449, 4.17747 )
+
+[node name="goal_ring 14" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( -0.402059, 0.633127, -2.76748e-08, 0, -3.27835e-08, -0.75, -0.633127, -0.402059, 1.75745e-08, 8.77786, 1.88316, 12.9288 )
+
+[node name="goal_ring 15" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( -0.356556, -0.659824, 2.88418e-08, 0, -3.27835e-08, -0.75, 0.659824, -0.356556, 1.55856e-08, 0.88564, 1.47093, 15.197 )
+
+[node name="goal_ring 16" parent="Level/Goals" instance=ExtResource( 3 )]
+transform = Transform( -0.671719, -0.333606, 1.45824e-08, 0, -3.27835e-08, -0.75, 0.333606, -0.671719, 2.93618e-08, -6.72233, 1.47093, 4.75166 )
+
+[node name="Foreground" type="Spatial" parent="Level"]
+visible = false
+
+[node name="timer_label" type="Label" parent="Level/Foreground"]
+anchor_top = 0.00031215
+anchor_bottom = 0.00031215
+margin_left = 953.264
+margin_top = 10.2922
+margin_right = 999.264
+margin_bottom = 24.2922
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Level/Foreground"]
+wait_time = 0.1
+
+[node name="Detail" type="Spatial" parent="Level"]
+
+[node name="Umbrellas" type="Spatial" parent="Level/Detail"]
+
+[node name="West" type="Spatial" parent="Level/Detail/Umbrellas"]
+
+[node name="umbrella1" parent="Level/Detail/Umbrellas/West" instance=ExtResource( 8 )]
+transform = Transform( 0.984288, 0.176569, 0, -0.176569, 0.984288, 0, 0, 0, 1, -17.7102, 1.24859, 1.66532 )
+
+[node name="umbrella2" parent="Level/Detail/Umbrellas/West" instance=ExtResource( 8 )]
+transform = Transform( 0.996327, 0.0844374, -0.0142148, -0.0856256, 0.982502, -0.165402, 0, 0.166012, 0.986124, -7.89977, 1.00497, 5.29193 )
+
+[node name="East" type="Spatial" parent="Level/Detail/Umbrellas"]
+
+[node name="umbrella3" parent="Level/Detail/Umbrellas/East" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 0.923853, -0.382748, 0, 0.382748, 0.923853, 11.5817, 1.00986, 8.26761 )
+
+[node name="umbrella4" parent="Level/Detail/Umbrellas/East" instance=ExtResource( 8 )]
+transform = Transform( 0.802453, -0.596715, 0, 0.596715, 0.802453, 0, 0, 0, 1, 18.1374, 1.01152, 0.921397 )
+
+[node name="umbrella6" parent="Level/Detail/Umbrellas/East" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 0.930565, 0.366128, 0, -0.366128, 0.930565, 13.9994, 1.01712, -9.354 )
+
+[node name="umbrella7" parent="Level/Detail/Umbrellas/East" instance=ExtResource( 8 )]
+transform = Transform( 0.976758, 0.205182, 0.061995, -0.214343, 0.935011, 0.28251, 0, -0.289232, 0.957259, 6.04874, 1.30895, -1.49634 )
+
+[node name="umbrella8" parent="Level/Detail/Umbrellas/East" instance=ExtResource( 8 )]
+transform = Transform( 0.958457, -0.285237, 0, 0.275115, 0.924447, 0.264025, -0.0753095, -0.253056, 0.964516, 2.18965, 1.14502, 7.98864 )
+
+[node name="umbrella9" parent="Level/Detail/Umbrellas/East" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 0.708032, 0.706181, 0, -0.706181, 0.708032, 4.14244, 1.11496, 8.12813 )
+
+[node name="Trees" type="Spatial" parent="Level/Detail"]
+
+[node name="East" type="Spatial" parent="Level/Detail/Trees"]
+
+[node name="palmtree1" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 0.984451, -0.175659, 0, 0.175659, 0.984451, 0.769564, 1.48444, 4.13863 )
+
+[node name="palmtree sm1" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( 0.42996, -0.145684, -0.597002, 0.297379, 0.68695, 0.0465387, 0.537773, -0.263394, 0.451579, -0.815516, 1.23123, 3.42992 )
+
+[node name="West" type="Spatial" parent="Level/Detail/Trees"]
+
+[node name="palmtree1" parent="Level/Detail/Trees/West" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 0.984451, -0.175659, 0, 0.175659, 0.984451, -14.4904, 1.43628, 3.84492 )
+
+[node name="palmtree2" parent="Level/Detail/Trees/West" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1129, 1.42629, 1.84079 )
+
+[node name="palmtree3" parent="Level/Detail/Trees/West" instance=ExtResource( 9 )]
+transform = Transform( 0.109786, 0, -0.993955, 0.552976, 0.830955, 0.0610784, 0.825932, -0.556339, 0.0912274, -13.4651, 1.08556, -2.83786 )
+
+[node name="palmtree4" parent="Level/Detail/Trees/West" instance=ExtResource( 9 )]
+transform = Transform( 0.933717, 0.0820324, -0.348488, -0.107667, 0.992675, -0.0548045, 0.34144, 0.0886925, 0.93571, -6.36362, 1.57757, 3.16141 )
+
+[node name="palmtree sm1" parent="Level/Detail/Trees/West" instance=ExtResource( 9 )]
+transform = Transform( 0.710332, -0.240683, 0, 0.240683, 0.710332, 0, 0, 0, 0.75, -8.51287, 1.01415, 4.4094 )
+
+[node name="palmtree sm2" parent="Level/Detail/Trees/West" instance=ExtResource( 9 )]
+transform = Transform( 0.139546, 0, 0.736904, -0.169862, 0.729803, 0.0321665, -0.717059, -0.172881, 0.135788, -11.9202, 1.09643, 4.4094 )
+
+[node name="palmtree sm3" parent="Level/Detail/Trees/West" instance=ExtResource( 9 )]
+transform = Transform( 0.411333, -0.101543, 0.618865, 0.339837, 0.658113, -0.117892, -0.527082, 0.345075, 0.406949, -17.2861, 1.13854, 3.83404 )
+
+[node name="palmtree sm4" parent="Level/Detail/Trees/West" instance=ExtResource( 9 )]
+transform = Transform( -0.203001, 0, -0.722005, 0.173152, 0.728113, -0.0486839, 0.700934, -0.179866, -0.197077, -7.9889, 1.21732, -2.26076 )
+
+[node name="palmtree sm5" parent="Level/Detail/Trees/West" instance=ExtResource( 9 )]
+transform = Transform( 0.73982, 0.123153, 0, -0.122373, 0.735136, 0.0842651, 0.0138367, -0.0831213, 0.745251, -6.15681, 1.66793, 0.498111 )
+[connection signal="pressed" from="Level/pause_menu/resume_button" to="Level" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Level/pause_menu/quit_button" to="Level" method="_on_quit_button_pressed"]
+[connection signal="timeout" from="Level/Foreground/Timer" to="Level/Foreground/timer_label" method="_on_Timer_timeout"]
