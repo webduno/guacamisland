@@ -13,10 +13,10 @@ func _ready():
 
 
 func _on_Button_New_Game_pressed():
-	get_tree().change_scene("res://scenes/tutorial_test.tscn")
+	return get_tree().change_scene("res://scenes/tutorial_test.tscn")
 
 func _on_Button_Tutorial_pressed():
-	get_tree().change_scene("res://scenes/tutorial_test.tscn")
+	return get_tree().change_scene("res://scenes/tutorial_test.tscn")
 
 func _on_Button_Exit_pressed():
 	get_tree().quit() # Quits the game

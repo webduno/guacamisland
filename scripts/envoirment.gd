@@ -14,7 +14,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func __process(delta):
+func __process(_delta):
 	rotate_x(deg2rad(.5))
 	camera.environment.background_sky_rotation.x += deg2rad(.5)
 	

@@ -19,14 +19,7 @@ func _ready():
 	pause_menu.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
-func _input(delta):
+func _input(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if	!get_tree().paused:
 			pause_menu.show()
@@ -37,11 +30,21 @@ func _input(delta):
 			get_tree().paused = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+
+
+# PAUSE SCREEN
 func _on_resume_button_pressed():
 	pause_menu.hide()
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+func _on_button_reset_level_pressed():
+	get_tree().paused = false
+	return get_tree().change_scene("res://scenes/tutorial_test.tscn")
 
-func _on_quit_button_pressed():
+func _on_button_quit_to_menu_pressed():
+	get_tree().paused = false
+	return get_tree().change_scene("res://scenes/title_screen.tscn")
+
+func _on_button_quit_game_pressed():
 	get_tree().quit() # Quits the game

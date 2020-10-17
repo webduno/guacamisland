@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/materials/clouds_spatial_shader.tres" type="Material" id=1]
-[ext_resource path="res://assets/materials/water_spatial_shader.tres" type="Material" id=2]
+[ext_resource path="res://assets/materials/water_animated_shader.tres" type="Material" id=2]
 [ext_resource path="res://assets/geometry/margarita/island.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/geometry/margarita/water.tres" type="ArrayMesh" id=6]
 [ext_resource path="res://assets/geometry/margarita/clouds.tres" type="ArrayMesh" id=7]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background_clay.png-ae7afd3fb4a85f070f2deb078aaf0273.stex"
+path="res://.import/background_clay.png-c3c9d0c269c7ff903c1a10951b72b2d3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://import/2d/main_menu/background_clay.png"
-dest_files=[ "res://.import/background_clay.png-ae7afd3fb4a85f070f2deb078aaf0273.stex" ]
+source_file="res://import/2d/title_screen/background_clay.png"
+dest_files=[ "res://.import/background_clay.png-c3c9d0c269c7ff903c1a10951b72b2d3.stex" ]
 
 [params]
 

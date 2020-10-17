@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/island.tscn" type="PackedScene" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://scripts/level.gd" type="Script" id=7]
 [ext_resource path="res://assets/geometry/detail/umbrella.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/geometry/detail/palmtree.tscn" type="PackedScene" id=9]
+[ext_resource path="res://import/2d/pause_screen/button_resume.png" type="Texture" id=10]
+[ext_resource path="res://import/2d/pause_screen/button_quit_game.png" type="Texture" id=11]
+[ext_resource path="res://import/2d/pause_screen/button_reset_level.png" type="Texture" id=12]
+[ext_resource path="res://import/2d/pause_screen/button_quit_to_menu.png" type="Texture" id=13]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 50, 1, 50 )
@@ -48,35 +52,87 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33, 0 )
 shape = SubResource( 1 )
 
 [node name="pause_menu" type="Control" parent="Level"]
-margin_left = 496.079
-margin_top = 324.271
-margin_right = 536.079
-margin_bottom = 364.271
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="pause_label" type="Label" parent="Level/pause_menu"]
-margin_left = 0.481537
-margin_top = -65.3123
-margin_right = 41.4816
-margin_bottom = -51.3123
-text = "PAUSE"
-
-[node name="resume_button" type="Button" parent="Level/pause_menu"]
-margin_right = 61.0
-margin_bottom = 20.0
-text = "resume"
+[node name="Opaque Panel" type="Panel" parent="Level/pause_menu"]
+modulate = Color( 1, 1, 1, 0.505882 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="quit_button" type="Button" parent="Level/pause_menu"]
-margin_left = 149.671
-margin_top = 17.818
-margin_right = 210.671
-margin_bottom = 37.818
-text = "quit"
+[node name="MarginContainer" type="MarginContainer" parent="Level/pause_menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 100
+custom_constants/margin_top = 100
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 100
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Level/pause_menu/MarginContainer"]
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 924.0
+margin_bottom = 500.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Level/pause_menu/MarginContainer/HBoxContainer"]
+margin_right = 180.0
+margin_bottom = 400.0
+custom_constants/separation = 15
+
+[node name="button_reset_level" type="TextureButton" parent="Level/pause_menu/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 180.0
+margin_bottom = 27.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 12 )
+
+[node name="VSeparator" type="Control" parent="Level/pause_menu/MarginContainer/HBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 184.0
+margin_right = 574.0
+margin_bottom = 400.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Level/pause_menu/MarginContainer/HBoxContainer"]
+margin_left = 578.0
+margin_right = 824.0
+margin_bottom = 400.0
+custom_constants/separation = 15
+alignment = 2
+
+[node name="button_quit_to_menu" type="TextureButton" parent="Level/pause_menu/MarginContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 345.0
+margin_right = 246.0
+margin_bottom = 369.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 13 )
+
+[node name="button_quit_game" type="TextureButton" parent="Level/pause_menu/MarginContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 384.0
+margin_right = 246.0
+margin_bottom = 400.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 11 )
+
+[node name="button_resume" type="TextureButton" parent="Level/pause_menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -73.0
+margin_top = -15.0
+margin_right = 73.0
+margin_bottom = 15.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -226,6 +282,8 @@ transform = Transform( -0.203001, 0, -0.722005, 0.173152, 0.728113, -0.0486839, 
 
 [node name="palmtree sm5" parent="Level/Detail/Trees/West" instance=ExtResource( 9 )]
 transform = Transform( 0.73982, 0.123153, 0, -0.122373, 0.735136, 0.0842651, 0.0138367, -0.0831213, 0.745251, -6.15681, 1.66793, 0.498111 )
-[connection signal="pressed" from="Level/pause_menu/resume_button" to="Level" method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Level/pause_menu/quit_button" to="Level" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Level/pause_menu/MarginContainer/HBoxContainer/VBoxContainer/button_reset_level" to="Level" method="_on_button_reset_level_pressed"]
+[connection signal="pressed" from="Level/pause_menu/MarginContainer/HBoxContainer/VBoxContainer2/button_quit_to_menu" to="Level" method="_on_button_quit_to_menu_pressed"]
+[connection signal="pressed" from="Level/pause_menu/MarginContainer/HBoxContainer/VBoxContainer2/button_quit_game" to="Level" method="_on_button_quit_game_pressed"]
+[connection signal="pressed" from="Level/pause_menu/button_resume" to="Level" method="_on_resume_button_pressed"]
 [connection signal="timeout" from="Level/Foreground/Timer" to="Level/Foreground/timer_label" method="_on_Timer_timeout"]

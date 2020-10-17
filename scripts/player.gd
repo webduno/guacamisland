@@ -242,7 +242,7 @@ func can_sprint() -> bool:
 
 
 
-func _on_goal_ring_body_shape_entered(body_id, body, body_shape, area_shape):
+func _on_goal_ring_body_shape_entered(_body_id, _body, _body_shape, _area_shape):
 	if	goals.current_index == 0:
 		level_timer.start()
 		
