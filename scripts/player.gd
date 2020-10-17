@@ -24,7 +24,7 @@ var sprinting := false
 # Walk
 const FLOOR_NORMAL := Vector3(0, 1, 0)
 const FLOOR_MAX_ANGLE: float = deg2rad(46.0)
-export(float) var GRAVITY_CONSTANT = 30.0
+export(float) var GRAVITY_CONSTANT = 20.0
 export(float) var HOVER_GRAVITY_CONSTANT = 3.0
 var gravity = HOVER_GRAVITY_CONSTANT
 

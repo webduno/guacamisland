@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/island.tscn" type="PackedScene" id=2]
@@ -13,6 +13,10 @@
 [ext_resource path="res://import/2d/pause_screen/button_quit_game.png" type="Texture" id=11]
 [ext_resource path="res://import/2d/pause_screen/button_reset_level.png" type="Texture" id=12]
 [ext_resource path="res://import/2d/pause_screen/button_quit_to_menu.png" type="Texture" id=13]
+[ext_resource path="res://assets/geometry/detail/yatch_sm.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/geometry/detail/yatch_white_sm.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/geometry/detail/yatch.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/geometry/detail/ferry.tscn" type="PackedScene" id=17]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 50, 1, 50 )
@@ -30,13 +34,15 @@ light_energy = 1.5
 shadow_enabled = true
 
 [node name="alt_DirectionalLight" type="DirectionalLight" parent="Envoirment"]
-transform = Transform( 0.965926, 0.107047, 0.235644, 0, -0.91046, 0.413597, 0.258819, -0.399504, -0.879437, 0, 10, 0 )
-light_color = Color( 1, 0.780392, 0.129412, 1 )
+transform = Transform( -0.413549, 0.221921, -0.883022, -0.24321, 0.907673, 0.34202, 0.877397, 0.356202, -0.321394, 0, 10, 0 )
+light_color = Color( 1, 0.866667, 0.470588, 1 )
 light_energy = 1.5
 shadow_enabled = true
+shadow_bias = -0.02
+directional_shadow_split_1 = 0.075
 
 [node name="Spawn" type="Spatial" parent="."]
-transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -13, 10, 25 )
+transform = Transform( 0.173648, 0, -0.984807, 0, 1, 0, 0.984807, 0, 0.173648, -20, 10, 20 )
 
 [node name="player" parent="Spawn" instance=ExtResource( 1 )]
 
@@ -143,11 +149,10 @@ __meta__ = {
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.3, 0 )
 
 [node name="Goals" type="Spatial" parent="Level"]
-visible = false
 script = ExtResource( 6 )
 
 [node name="goal_ring 1" parent="Level/Goals" instance=ExtResource( 3 )]
-transform = Transform( 0.701939, -0.264163, 1.15469e-08, 0, -3.27835e-08, -0.75, 0.264163, 0.701939, -3.06827e-08, -10.0832, 4, 17.9815 )
+transform = Transform( 0.343138, -0.666901, 2.91511e-08, 0, -3.27835e-08, -0.75, 0.666901, 0.343138, -1.4999e-08, -10.558, 3.65247, 17.1729 )
 
 [node name="goal_ring 2" parent="Level/Goals" instance=ExtResource( 3 )]
 transform = Transform( 0.207182, -0.720816, 3.15079e-08, 0, -3.27835e-08, -0.75, 0.720816, 0.207182, -9.05619e-09, -0.37, 2, 15.197 )
@@ -162,7 +167,7 @@ transform = Transform( 0.749302, -0.0323478, 1.41397e-09, 0, -3.27835e-08, -0.75
 transform = Transform( 0.749302, -0.0323478, 1.41397e-09, 0, -3.27835e-08, -0.75, 0.0323478, 0.749302, -3.2753e-08, 10.2126, 2.23814, -8.75981 )
 
 [node name="goal_ring 6" parent="Level/Goals" instance=ExtResource( 3 )]
-transform = Transform( 0.46433, 0.58898, -2.57451e-08, 0, -3.27835e-08, -0.75, -0.58898, 0.46433, -2.02965e-08, 2.60411, 2.23814, -15.0997 )
+transform = Transform( 0.46433, 0.58898, -2.57451e-08, 0, -3.27835e-08, -0.75, -0.58898, 0.46433, -2.02965e-08, 2.60411, 1.56792, -15.0997 )
 
 [node name="goal_ring 7" parent="Level/Goals" instance=ExtResource( 3 )]
 transform = Transform( 0.206262, 0.72108, -3.15194e-08, 0, -3.27835e-08, -0.75, -0.72108, 0.206262, -9.01599e-09, -5.17267, 4.06089, -15.96 )
@@ -251,8 +256,41 @@ transform = Transform( 1, 0, 0, 0, 0.708032, 0.706181, 0, -0.706181, 0.708032, 4
 [node name="palmtree1" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 0.984451, -0.175659, 0, 0.175659, 0.984451, 0.769564, 1.48444, 4.13863 )
 
+[node name="palmtree2" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( 0.0683112, -0.175249, -0.982151, 0.504581, 0.855328, -0.117524, 0.860657, -0.487547, 0.146856, 12.4746, 1.16826, 7.32529 )
+
+[node name="palmtree5" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( -0.848125, 0.516524, 0.11784, 0.504581, 0.855328, -0.117524, -0.161496, -0.0402155, -0.986054, 8.58547, 1.37139, 6.06405 )
+
+[node name="palmtree3" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( -0.598674, -0.140702, -0.788538, 0, 0.984451, -0.175659, 0.800993, -0.105163, -0.589365, 17.4011, 1.41405, 0.0229063 )
+
+[node name="palmtree4" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( 0.596169, -0.285441, 0.750404, 0.119266, 0.95578, 0.268811, -0.793951, -0.0707588, 0.60385, 6.66645, 1.62377, -2.99826 )
+
 [node name="palmtree sm1" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
 transform = Transform( 0.42996, -0.145684, -0.597002, 0.297379, 0.68695, 0.0465387, 0.537773, -0.263394, 0.451579, -0.815516, 1.23123, 3.42992 )
+
+[node name="palmtree sm2" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( 0.747709, 0.028644, -0.0510988, -0.0234117, 0.745823, 0.0755048, 0.0536973, -0.0736787, 0.744439, 3.33705, 1.39596, 7.60868 )
+
+[node name="palmtree sm3" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( 0.0233568, 0.0405998, -0.748537, 0.297379, 0.68695, 0.0465387, 0.688128, -0.298248, 0.00529465, 6.63119, 1.05575, 8.7495 )
+
+[node name="palmtree sm4" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( -0.615566, 0.28797, -0.317256, 0.297379, 0.68695, 0.0465387, 0.308454, -0.087597, -0.678, 11.8745, 1.0447, 5.81916 )
+
+[node name="palmtree sm5" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( -0.7474, -0.0500709, -0.0372268, -0.0438055, 0.739757, -0.115505, 0.04443, -0.112931, -0.740117, 10.649, 1.06266, 8.60508 )
+
+[node name="palmtree sm6" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( 0.00785347, 0.11615, 0.740911, -0.0438055, 0.739757, -0.115505, -0.748678, -0.0420652, 0.0145308, 16.099, 1.41969, 2.04804 )
+
+[node name="palmtree sm7" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( -0.719681, 0.197917, -0.0734019, 0.206361, 0.714546, -0.0966406, 0.04443, -0.112931, -0.740117, 13.4256, 1.32849, -8.01081 )
+
+[node name="palmtree sm8" parent="Level/Detail/Trees/East" instance=ExtResource( 9 )]
+transform = Transform( -0.614967, -0.101548, -0.417137, -0.0438055, 0.739757, -0.115505, 0.427079, -0.0703453, -0.6125, 5.06004, 1.21758, 0.423295 )
 
 [node name="West" type="Spatial" parent="Level/Detail/Trees"]
 
@@ -282,6 +320,23 @@ transform = Transform( -0.203001, 0, -0.722005, 0.173152, 0.728113, -0.0486839, 
 
 [node name="palmtree sm5" parent="Level/Detail/Trees/West" instance=ExtResource( 9 )]
 transform = Transform( 0.73982, 0.123153, 0, -0.122373, 0.735136, 0.0842651, 0.0138367, -0.0831213, 0.745251, -6.15681, 1.66793, 0.498111 )
+
+[node name="Yatchs" type="Spatial" parent="Level/Detail"]
+
+[node name="yatch_sm" parent="Level/Detail/Yatchs" instance=ExtResource( 14 )]
+transform = Transform( 0.479443, 0, -0.877573, 0, 1, 0, 0.877573, 0, 0.479443, 6.72012, 1, 11.5612 )
+
+[node name="yatch_sm2" parent="Level/Detail/Yatchs" instance=ExtResource( 14 )]
+transform = Transform( 0.404359, 0, 0.9146, 0, 1, 0, -0.9146, 0, 0.404359, 16.582, 0.999999, 10.7589 )
+
+[node name="yatch_sm3" parent="Level/Detail/Yatchs" instance=ExtResource( 15 )]
+transform = Transform( 0.92045, 0, -0.39086, 0, 1, 0, 0.39086, 0, 0.92045, -11.3525, 1, -11.6374 )
+
+[node name="yatch" parent="Level/Detail/Yatchs" instance=ExtResource( 16 )]
+transform = Transform( 0.465923, 0, 0.884825, 0, 1, 0, -0.884825, 0, 0.465923, 0.0368357, 1, -15.7157 )
+
+[node name="Ferry" parent="Level/Detail" instance=ExtResource( 17 )]
+transform = Transform( -0.720829, 0, -0.693113, 0, 1, 0, 0.693113, 0, -0.720829, -11.6843, 1.59737, 17.8398 )
 [connection signal="pressed" from="Level/pause_menu/MarginContainer/HBoxContainer/VBoxContainer/button_reset_level" to="Level" method="_on_button_reset_level_pressed"]
 [connection signal="pressed" from="Level/pause_menu/MarginContainer/HBoxContainer/VBoxContainer2/button_quit_to_menu" to="Level" method="_on_button_quit_to_menu_pressed"]
 [connection signal="pressed" from="Level/pause_menu/MarginContainer/HBoxContainer/VBoxContainer2/button_quit_game" to="Level" method="_on_button_quit_game_pressed"]
