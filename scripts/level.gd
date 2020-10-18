@@ -26,6 +26,8 @@ var goal_list = [
 onready var level_timer: Timer = get_node("Foreground/Timer")
 
 onready var player = get_node("../Spawn/Player")
+export (PackedScene) var coconut_item = preload("res://assets/entities/coconut_item.tscn")
+onready var entities_container = get_node("Entities")
 
 func _ready():
 	player.level = self
@@ -57,3 +59,10 @@ func goal_hit():
 		current_goal.connect("body_shape_entered", player, "_on_goal_ring_body_shape_entered")
 	else:
 		level_timer.stop()
+
+func _fire_coconut(global_transform):
+	var a = coconut_item.instance()
+	a.global_transform.origin = global_transform.origin
+	entities_container.add_child(a)
+	print(entities_container.get_children())
+	
