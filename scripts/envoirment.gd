@@ -6,12 +6,11 @@ extends Spatial
 # var b = "text"
 
 var env_clear_day = preload("res://assets/env_clear_day.tres")
-onready var camera = get_node("../Spawn/player/InterpolatedCamera")
+onready var camera = get_node("../Spawn/Player/InterpolatedCamera")
 onready var sun = get_node("DirectionalLight")
 
 func _ready():
 	camera.environment = env_clear_day
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func __process(_delta):

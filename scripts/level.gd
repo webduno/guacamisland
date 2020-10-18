@@ -1,50 +1,59 @@
 extends Spatial
 
+onready var pause_screen = get_node("../pause_screen")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-onready var pause_menu = get_node("pause_menu")
+onready var goals = get_node("Goals")
+var current_goal_index = 0;
+var goal_list = [
+	"goal_ring 1",
+	"goal_ring 2",
+	"goal_ring 3",
+	"goal_ring 4",
+	"goal_ring 5",
+	"goal_ring 6",
+	"goal_ring 7",
+	"goal_ring 8",
+	"goal_ring 9",
+	"goal_ring 10",
+	"goal_ring 11",
+	"goal_ring 12",
+	"goal_ring 13",
+	"goal_ring 14",
+	"goal_ring 15",
+	"goal_ring 16",
+];
 
+onready var level_timer: Timer = get_node("Foreground/Timer")
 
-# Called when there is an input event
-# func _input(event: InputEvent) -> void:
-		
-			
-			
-	# get_tree().quit() # Quits the game
-		
-# Called when the node enters the scene tree for the first time.
+onready var player = get_node("../Spawn/Player")
+
 func _ready():
-	pause_menu.hide()
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	player.level = self
+	pause_screen.current_scene = "res://scenes/tutorial_test.tscn"
 	
-func _input(_delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		if	!get_tree().paused:
-			pause_menu.show()
-			get_tree().paused = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			pause_menu.hide()
-			get_tree().paused = false
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	goals.show()
+	for x in goals.get_children():
+		x.hide()
+		
+	var current_goal = goals.get_node(goal_list[current_goal_index])
+	current_goal.show()
+	current_goal.connect("body_shape_entered", player, "_on_goal_ring_body_shape_entered")
 
 
-
-# PAUSE SCREEN
-func _on_resume_button_pressed():
-	pause_menu.hide()
-	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-func _on_button_reset_level_pressed():
-	get_tree().paused = false
-	return get_tree().change_scene("res://scenes/tutorial_test.tscn")
-
-func _on_button_quit_to_menu_pressed():
-	get_tree().paused = false
-	return get_tree().change_scene("res://scenes/title_screen.tscn")
-
-func _on_button_quit_game_pressed():
-	get_tree().quit() # Quits the game
+func goal_hit():
+	if	current_goal_index == 0:
+		level_timer.start()
+		
+	var current_goal = goals.get_node(goal_list[current_goal_index])
+	print(current_goal.name)
+	current_goal.hide()
+	current_goal.disconnect("body_shape_entered", player, "_on_goal_ring_body_shape_entered")
+	
+	current_goal_index += 1
+	
+	if current_goal_index < len(goal_list):
+		current_goal = goals.get_node(goal_list[current_goal_index])
+		current_goal.show()
+		current_goal.connect("body_shape_entered", player, "_on_goal_ring_body_shape_entered")
+	else:
+		level_timer.stop()

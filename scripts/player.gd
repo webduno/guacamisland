@@ -4,9 +4,8 @@ extends KinematicBody
 
 
 # Player
+var level;
 onready var player_object: Spatial = get_node("head_node/guaca_blue")
-onready var goals: Spatial = get_node("../../Level/Goals")
-onready var level_timer: Timer = get_node("../../Level/Foreground/Timer")
 
 # Camera
 export(float) var mouse_sensitivity = 9.0
@@ -38,7 +37,7 @@ export(int) var acceleration = 5
 export(int) var deacceleration = 5
 export(float, 0.0, 1.0, 0.05) var air_control = 0.3
 
-export(int) var JUMP_HEIGHT_CONSTANT = 4
+export(int) var JUMP_HEIGHT_CONSTANT = 3
 export(int) var SPRINT_JUMP_HEIGHT_CONSTANT = 5
 var jump_height = JUMP_HEIGHT_CONSTANT
 # Fly
@@ -51,15 +50,6 @@ var flying := false
 # Called when the node enters the scene tree
 func _ready() -> void:
 	cam.fov = FOV
-	
-	for x in goals.get_children():
-		x.hide();
-		
-	var current_goal = goals.get_node(goals.goal_list[goals.current_index])
-	current_goal.show()
-	current_goal.connect("body_shape_entered", self, "_on_goal_ring_body_shape_entered")
-	
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta: float) -> void:
@@ -243,20 +233,5 @@ func can_sprint() -> bool:
 
 
 func _on_goal_ring_body_shape_entered(_body_id, _body, _body_shape, _area_shape):
-	if	goals.current_index == 0:
-		level_timer.start()
-		
-	var current_goal = goals.get_node(goals.goal_list[goals.current_index])
-	print(current_goal.name)
-	current_goal.hide()
-	current_goal.disconnect("body_shape_entered", self, "_on_goal_ring_body_shape_entered")
-	
-	goals.current_index += 1
-	
-	if goals.current_index < len(goals.goal_list):
-		current_goal = goals.get_node(goals.goal_list[goals.current_index])
-		current_goal.show()
-		current_goal.connect("body_shape_entered", self, "_on_goal_ring_body_shape_entered")
-	else:
-		level_timer.stop()
+	level.goal_hit()
 		

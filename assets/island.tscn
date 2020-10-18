@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/materials/clouds_spatial_shader.tres" type="Material" id=1]
 [ext_resource path="res://assets/materials/water_animated_shader.tres" type="Material" id=2]
 [ext_resource path="res://assets/geometry/margarita/island.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/geometry/margarita/water.tres" type="ArrayMesh" id=6]
-[ext_resource path="res://assets/geometry/margarita/clouds.tres" type="ArrayMesh" id=7]
 [ext_resource path="res://assets/geometry/margarita/rocks.tscn" type="PackedScene" id=8]
 
 [node name="Island" type="Spatial"]
@@ -12,16 +10,6 @@
 [node name="water" type="MeshInstance" parent="."]
 mesh = ExtResource( 6 )
 material/0 = ExtResource( 2 )
-
-[node name="clouds 1" type="MeshInstance" parent="."]
-transform = Transform( -0.772645, 0, -0.634838, 0, 1, 0, 0.634838, 0, -0.772645, -4.49032, 0.955142, -1.21557 )
-mesh = ExtResource( 7 )
-material/0 = ExtResource( 1 )
-
-[node name="clouds 2" type="MeshInstance" parent="."]
-transform = Transform( -0.231527, 0, -0.972828, 0, 1, 0, 0.972828, 0, -0.231527, 2.70383, 0.856508, -1.41717 )
-mesh = ExtResource( 7 )
-material/0 = ExtResource( 1 )
 
 [node name="rocks" parent="." instance=ExtResource( 8 )]
 
