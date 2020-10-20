@@ -38,7 +38,7 @@ export(int) var deacceleration = 5
 export(float, 0.0, 1.0, 0.05) var air_control = 0.3
 
 export(int) var JUMP_HEIGHT_CONSTANT = 3
-export(int) var SPRINT_JUMP_HEIGHT_CONSTANT = 5
+export(int) var SPRINT_JUMP_HEIGHT_CONSTANT = 4
 var jump_height = JUMP_HEIGHT_CONSTANT
 # Fly
 var fly_speed = 3

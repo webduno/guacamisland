@@ -1,10 +1,5 @@
 extends Spatial
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var env_clear_day = preload("res://assets/env_clear_day.tres")
 onready var camera = get_node("../Spawn/Player/InterpolatedCamera")
 onready var sun = get_node("DirectionalLight")

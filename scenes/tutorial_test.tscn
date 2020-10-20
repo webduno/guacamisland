@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/island.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/geometry/detail/umbrella.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/geometry/detail/palmtree.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/geometry/detail/boat.tscn" type="PackedScene" id=10]
+[ext_resource path="res://import/2d/stats_icons/coconut_icon.png" type="Texture" id=11]
 [ext_resource path="res://assets/geometry/detail/yatch_sm.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/geometry/detail/yatch.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/geometry/detail/ferry.tscn" type="PackedScene" id=17]
@@ -127,22 +128,75 @@ transform = Transform( 0.173648, 0, -0.984807, 0, 1, 0, 0.984807, 0, 0.173648, -
 ]]
 script = ExtResource( 7 )
 
-[node name="Foreground" type="Spatial" parent="Level"]
-visible = false
+[node name="Foreground" type="Control" parent="Level"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="timer_label" type="Label" parent="Level/Foreground"]
-anchor_top = 0.00031215
-anchor_bottom = 0.00031215
-margin_left = 953.264
-margin_top = 10.2922
-margin_right = 999.264
-margin_bottom = 24.2922
+[node name="MarginContainer" type="MarginContainer" parent="Level/Foreground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Level/Foreground/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+
+[node name="Control" type="Control" parent="Level/Foreground/MarginContainer/HBoxContainer"]
+margin_right = 490.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Level/Foreground/MarginContainer/HBoxContainer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="HBoxContainer" parent="Level/Foreground/MarginContainer/HBoxContainer/Control/VBoxContainer"]
+margin_right = 490.0
+margin_bottom = 64.0
+
+[node name="coconut_icon" type="TextureRect" parent="Level/Foreground/MarginContainer/HBoxContainer/Control/VBoxContainer/Control"]
+margin_right = 64.0
+margin_bottom = 64.0
+size_flags_horizontal = 0
+texture = ExtResource( 11 )
+
+[node name="coconut_count" type="Label" parent="Level/Foreground/MarginContainer/HBoxContainer/Control/VBoxContainer/Control"]
+margin_left = 68.0
+margin_top = 25.0
+margin_right = 68.0
+margin_bottom = 39.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Level/Foreground/MarginContainer/HBoxContainer"]
+margin_left = 494.0
+margin_right = 984.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="timer_label" type="Label" parent="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 490.0
+margin_bottom = 14.0
+align = 2
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="Timer" parent="Level/Foreground"]
+[node name="general_timer" type="Timer" parent="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer/timer_label"]
 wait_time = 0.1
 
 [node name="Terrain" type="Spatial" parent="Level"]
@@ -385,4 +439,5 @@ transform = Transform( -0.0292656, -0.249012, 0.726044, -0.348124, 0.910379, 0.1
 [node name="Entities" type="Spatial" parent="Level"]
 
 [node name="pause_screen" parent="." instance=ExtResource( 6 )]
-[connection signal="timeout" from="Level/Foreground/Timer" to="Level/Foreground/timer_label" method="_on_Timer_timeout"]
+visible = false
+[connection signal="timeout" from="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer/timer_label/general_timer" to="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer/timer_label" method="_on_Timer_timeout"]

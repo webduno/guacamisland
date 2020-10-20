@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://import/3d/detail/DefaultMaterial.material" type="Material" id=1]
 [ext_resource path="res://scripts/palmtree.gd" type="Script" id=2]
+[ext_resource path="res://assets/geometry/detail/coconut.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/materials/coconut_spatial_shader.tres" type="Material" id=4]
 
 [sub_resource type="CylinderShape" id=1]
 radius = 0.503806
@@ -58,9 +60,6 @@ surfaces/0 = {
 "vertex_count": 234
 }
 
-[sub_resource type="SpatialMaterial" id=7]
-albedo_color = Color( 0.588235, 0.345098, 0.192157, 1 )
-
 [sub_resource type="CylinderShape" id=8]
 radius = 0.090978
 height = 1.08898
@@ -82,7 +81,7 @@ material/0 = SubResource( 5 )
 
 [node name="coconuts" type="MeshInstance" parent="."]
 mesh = SubResource( 6 )
-material/0 = SubResource( 7 )
+material/0 = ExtResource( 4 )
 
 [node name="tree_trunk" type="StaticBody" parent="."]
 
@@ -91,7 +90,15 @@ transform = Transform( 0.99759, 0.0693908, 0, -0.0693908, 0.99759, 0, 0, 0, 1, 0
 shape = SubResource( 8 )
 
 [node name="coconut_spawner" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142436, 0.729886, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142436, 0.712363, 0 )
 
 [node name="coconut_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="ready_to_shoot_coconut" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152139, 0.564183, 0 )
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 4 )
 [connection signal="body_entered" from="." to="." method="_on_palmtree_body_entered"]
+[connection signal="timeout" from="coconut_timer" to="." method="_on_coconut_timer_timeout"]

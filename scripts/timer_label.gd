@@ -1,19 +1,6 @@
 extends Label
 
-
-# Declare member variables here. Examples:
 var elapsedTime = 0
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func asd():
 	
@@ -27,10 +14,13 @@ func asd():
 		add_color_override("font_color", Color(1, 0, 0, 1))
 	else:
 		add_color_override("font_color", Color(1, 1, 0, 1))
-		
-
 
 func _on_Timer_timeout():
 	elapsedTime += .1;
 	
-	text = ""+str(elapsedTime)
+	var minutes = elapsedTime / 60
+	var seconds = int(elapsedTime) % 60
+	var mseconds = int(elapsedTime * 10) % 10
+	var str_elapsed = "%02d : %02d : %02d" % [minutes, seconds, mseconds]
+	
+	text = ""+str(str_elapsed)
