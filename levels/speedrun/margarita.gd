@@ -2,8 +2,12 @@ extends Spatial
 
 onready var pause_screen = get_node("../pause_screen")
 
+var lap_count = GLOBAL.difficulty
+var remaining_laps = GLOBAL.difficulty
+onready var lap_label = find_node("lap_label")
+
 onready var goals = get_node("Goals")
-var current_goal_index = 0;
+var current_goal_index = 0
 var goal_list = [
 	"goal_ring 1",
 	"goal_ring 2",
@@ -24,25 +28,25 @@ var goal_list = [
 	"goal_ring 17",
 	"goal_ring 18",
 	"goal_ring 19",
-];
+]
 
 onready var level_timer: Timer = find_node("general_timer")
 
 onready var player = get_node("../Spawn/Player")
-export (PackedScene) var coconut_item = preload("res://assets/entities/coconut_item.tscn")
 onready var entities_container = get_node("Entities")
-
-var coconut_count = 0
-onready var coconut_count_label = find_node("coconut_count")
 
 func _ready():
 	player.level = self
-	pause_screen.current_scene = "res://scenes/tutorial_test.tscn"
+	pause_screen.current_scene = "res://levels/speedrun/margarita.tscn"
 	
 	goals.show()
 	for x in goals.get_children():
 		x.hide()
 		
+	init_lap()
+		
+func init_lap():
+	lap_label.text = "Lap: " + str(lap_count - remaining_laps) + "/" + str(lap_count)
 	var current_goal = goals.get_node(goal_list[current_goal_index])
 	current_goal.show()
 	current_goal.connect("body_shape_entered", player, "_on_goal_ring_body_shape_entered")
@@ -53,7 +57,6 @@ func goal_hit():
 		level_timer.start()
 		
 	var current_goal = goals.get_node(goal_list[current_goal_index])
-	print(current_goal.name)
 	current_goal.hide()
 	current_goal.disconnect("body_shape_entered", player, "_on_goal_ring_body_shape_entered")
 	
@@ -64,14 +67,10 @@ func goal_hit():
 		current_goal.show()
 		current_goal.connect("body_shape_entered", player, "_on_goal_ring_body_shape_entered")
 	else:
-		level_timer.stop()
-
-func _fire_coconut(global_transform):
-	var a = coconut_item.instance()
-	a.transform.origin = global_transform.origin
-	entities_container.add_child(a)
-	print(entities_container.get_children())
-	
-func _add_coconut_to_player():
-	coconut_count += 1
-	coconut_count_label.text = str(coconut_count)
+		remaining_laps -= 1
+		
+		if	bool(remaining_laps):
+			current_goal_index = 0
+			init_lap()
+		else:
+			level_timer.stop()

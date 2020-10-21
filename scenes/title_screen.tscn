@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://import/2d/title_screen/button_exit.png" type="Texture" id=1]
 [ext_resource path="res://import/2d/title_screen/background_clay.png" type="Texture" id=2]
 [ext_resource path="res://import/2d/title_screen/button_tutorial.png" type="Texture" id=3]
 [ext_resource path="res://import/2d/title_screen/button_new_game.png" type="Texture" id=4]
 [ext_resource path="res://scripts/title_screen.gd" type="Script" id=5]
+
+[sub_resource type="ButtonGroup" id=1]
+resource_name = "gametype"
+
+[sub_resource type="ButtonGroup" id=2]
+resource_name = "world"
 
 [node name="Title Screen" type="Control"]
 anchor_right = 1.0
@@ -25,67 +31,72 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Global Margin"]
+[node name="panel container" type="HBoxContainer" parent="Global Margin"]
 margin_left = 100.0
 margin_top = 100.0
 margin_right = 924.0
 margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Button Container" type="MarginContainer" parent="Global Margin/HBoxContainer"]
-margin_right = 340.0
+[node name="panel 1" type="MarginContainer" parent="Global Margin/panel container"]
+margin_right = 410.0
 margin_bottom = 500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/margin_bottom = 120
 
-[node name="Button List" type="VBoxContainer" parent="Global Margin/HBoxContainer/Button Container"]
-margin_right = 340.0
+[node name="Button List" type="VBoxContainer" parent="Global Margin/panel container/panel 1"]
+margin_right = 410.0
 margin_bottom = 380.0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Global Margin/HBoxContainer/Button Container/Button List"]
-margin_right = 340.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Global Margin/panel container/panel 1/Button List"]
+margin_right = 410.0
 margin_bottom = 351.0
 size_flags_vertical = 3
 custom_constants/separation = 20
 alignment = 1
 
-[node name="Button New Game" type="TextureButton" parent="Global Margin/HBoxContainer/Button Container/Button List/VBoxContainer"]
+[node name="Button New Game" type="TextureButton" parent="Global Margin/panel container/panel 1/Button List/VBoxContainer"]
+margin_left = 35.0
 margin_top = 124.0
-margin_right = 340.0
+margin_right = 375.0
 margin_bottom = 172.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 4 )
 
-[node name="Button Tutorial" type="TextureButton" parent="Global Margin/HBoxContainer/Button Container/Button List/VBoxContainer"]
-margin_left = 96.0
+[node name="Button Tutorial" type="TextureButton" parent="Global Margin/panel container/panel 1/Button List/VBoxContainer"]
+margin_left = 131.0
 margin_top = 192.0
-margin_right = 244.0
+margin_right = 279.0
 margin_bottom = 227.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 3 )
 
-[node name="Button Exit" type="TextureButton" parent="Global Margin/HBoxContainer/Button Container/Button List"]
-margin_left = 146.0
+[node name="Button Exit" type="TextureButton" parent="Global Margin/panel container/panel 1/Button List"]
+margin_left = 181.0
 margin_top = 355.0
-margin_right = 193.0
+margin_right = 228.0
 margin_bottom = 380.0
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 1 )
 
-[node name="Thumbnail" type="Control" parent="Global Margin/HBoxContainer"]
-margin_left = 344.0
+[node name="panel 2" type="Control" parent="Global Margin/panel container"]
+margin_left = 414.0
 margin_right = 824.0
 margin_bottom = 500.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Island" type="TextureRect" parent="Global Margin/HBoxContainer/Thumbnail"]
+[node name="Island" type="TextureRect" parent="Global Margin/panel container/panel 2"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -97,6 +108,184 @@ texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Global Margin/HBoxContainer/Button Container/Button List/VBoxContainer/Button New Game" to="." method="_on_Button_New_Game_pressed"]
-[connection signal="pressed" from="Global Margin/HBoxContainer/Button Container/Button List/VBoxContainer/Button Tutorial" to="." method="_on_Button_Tutorial_pressed"]
-[connection signal="pressed" from="Global Margin/HBoxContainer/Button Container/Button List/Button Exit" to="." method="_on_Button_Exit_pressed"]
+
+[node name="newgame_panel" type="Panel" parent="Global Margin/panel container/panel 2"]
+modulate = Color( 1, 1, 1, 0.945098 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="setting_list" type="VBoxContainer" parent="Global Margin/panel container/panel 2/newgame_panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label_gametype" type="Label" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list"]
+margin_top = 13.0
+margin_right = 410.0
+margin_bottom = 27.0
+text = "Game Type"
+align = 1
+
+[node name="inputgroup_gametype" type="HBoxContainer" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list"]
+margin_top = 47.0
+margin_right = 410.0
+margin_bottom = 71.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="input_speedrun" type="CheckBox" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list/inputgroup_gametype"]
+margin_left = 88.0
+margin_right = 183.0
+margin_bottom = 24.0
+pressed = true
+group = SubResource( 1 )
+text = "Speed Run"
+
+[node name="input_coconutstash" type="CheckBox" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list/inputgroup_gametype"]
+margin_left = 203.0
+margin_right = 321.0
+margin_bottom = 24.0
+group = SubResource( 1 )
+text = "Coconut Stash"
+
+[node name="input_multiplayer" type="CheckBox" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list/inputgroup_gametype"]
+visible = false
+margin_left = 281.0
+margin_right = 381.0
+margin_bottom = 24.0
+group = SubResource( 1 )
+text = "Multiplayer"
+
+[node name="label_difficulty" type="Label" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list"]
+margin_top = 91.0
+margin_right = 410.0
+margin_bottom = 105.0
+text = "Laps: 1"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list"]
+margin_top = 125.0
+margin_right = 410.0
+margin_bottom = 141.0
+custom_constants/margin_right = 50
+custom_constants/margin_left = 50
+
+[node name="input_difficulty" type="HSlider" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list/MarginContainer"]
+margin_left = 50.0
+margin_right = 360.0
+margin_bottom = 16.0
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+
+[node name="-------------------1" type="HSeparator" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list"]
+modulate = Color( 1, 1, 1, 0.141176 )
+margin_top = 161.0
+margin_right = 410.0
+margin_bottom = 211.0
+custom_constants/separation = 50
+
+[node name="label_world" type="Label" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list"]
+margin_top = 231.0
+margin_right = 410.0
+margin_bottom = 245.0
+text = "Island"
+align = 1
+
+[node name="Control" type="CenterContainer" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list"]
+margin_top = 265.0
+margin_right = 410.0
+margin_bottom = 377.0
+size_flags_horizontal = 3
+
+[node name="inputgroup_world" type="VBoxContainer" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list/Control"]
+margin_left = 161.0
+margin_right = 248.0
+margin_bottom = 112.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="input_margarita" type="CheckBox" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list/Control/inputgroup_world"]
+margin_right = 87.0
+margin_bottom = 24.0
+pressed = true
+group = SubResource( 2 )
+text = "Margarita"
+align = 1
+
+[node name="input_coche" type="CheckBox" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list/Control/inputgroup_world"]
+margin_top = 44.0
+margin_right = 87.0
+margin_bottom = 68.0
+group = SubResource( 2 )
+text = "Coche"
+align = 1
+
+[node name="input_cubagua" type="CheckBox" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list/Control/inputgroup_world"]
+margin_top = 88.0
+margin_right = 87.0
+margin_bottom = 112.0
+group = SubResource( 2 )
+text = "Cubagüa"
+align = 1
+
+[node name="-------------------2" type="HSeparator" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list"]
+modulate = Color( 1, 1, 1, 0.141176 )
+margin_top = 397.0
+margin_right = 410.0
+margin_bottom = 447.0
+custom_constants/separation = 50
+
+[node name="CenterContainer" type="CenterContainer" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list"]
+margin_top = 467.0
+margin_right = 410.0
+margin_bottom = 487.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list/CenterContainer"]
+margin_left = 149.0
+margin_right = 261.0
+margin_bottom = 20.0
+custom_constants/separation = 20
+
+[node name="button_cancel" type="Button" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list/CenterContainer/HBoxContainer"]
+margin_right = 54.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/hseparation = 0
+text = "Cancel"
+
+[node name="button_play" type="Button" parent="Global Margin/panel container/panel 2/newgame_panel/setting_list/CenterContainer/HBoxContainer"]
+margin_left = 74.0
+margin_right = 112.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Play"
+[connection signal="pressed" from="Global Margin/panel container/panel 1/Button List/VBoxContainer/Button New Game" to="." method="_on_Button_New_Game_pressed"]
+[connection signal="pressed" from="Global Margin/panel container/panel 1/Button List/VBoxContainer/Button Tutorial" to="." method="_on_Button_Tutorial_pressed"]
+[connection signal="pressed" from="Global Margin/panel container/panel 1/Button List/Button Exit" to="." method="_on_Button_Exit_pressed"]
+[connection signal="toggled" from="Global Margin/panel container/panel 2/newgame_panel/setting_list/inputgroup_gametype/input_speedrun" to="." method="_on_input_speedrun_toggled"]
+[connection signal="toggled" from="Global Margin/panel container/panel 2/newgame_panel/setting_list/inputgroup_gametype/input_coconutstash" to="." method="_on_input_coconutstash_toggled"]
+[connection signal="toggled" from="Global Margin/panel container/panel 2/newgame_panel/setting_list/inputgroup_gametype/input_multiplayer" to="." method="_on_input_multiplayer_toggled"]
+[connection signal="value_changed" from="Global Margin/panel container/panel 2/newgame_panel/setting_list/MarginContainer/input_difficulty" to="." method="_on_input_difficulty_value_changed"]
+[connection signal="toggled" from="Global Margin/panel container/panel 2/newgame_panel/setting_list/Control/inputgroup_world/input_margarita" to="." method="_on_input_margarita_toggled"]
+[connection signal="toggled" from="Global Margin/panel container/panel 2/newgame_panel/setting_list/Control/inputgroup_world/input_coche" to="." method="_on_input_coche_toggled"]
+[connection signal="toggled" from="Global Margin/panel container/panel 2/newgame_panel/setting_list/Control/inputgroup_world/input_cubagua" to="." method="_on_input_cubagua_toggled"]
+[connection signal="pressed" from="Global Margin/panel container/panel 2/newgame_panel/setting_list/CenterContainer/HBoxContainer/button_cancel" to="." method="_on_button_cancel_pressed"]
+[connection signal="pressed" from="Global Margin/panel container/panel 2/newgame_panel/setting_list/CenterContainer/HBoxContainer/button_play" to="." method="_on_button_play_pressed"]

@@ -1,24 +1,60 @@
 extends Control
 
+onready var newgame_panel = get_node("Global Margin/panel container/panel 2/newgame_panel")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var inputgroup_gametype = find_node("inputgroup_gametype")
+var gametype = "speedrun"
+onready var inputgroup_world = find_node("inputgroup_world")
+var world = "margarita"
 
+var difficulty = 1
+onready var label_difficulty = find_node("label_difficulty")
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	newgame_panel.hide()
+
+func _on_Button_New_Game_pressed():	newgame_panel.show()
+func _on_button_cancel_pressed():	newgame_panel.hide()
+	
+func _on_button_play_pressed():
+	print("")
+	print("start_game")
+	print("game type: "+gametype)
+	print("world: "+world)
+	
+	GLOBAL.difficulty = difficulty
+	
+#	return
+	return get_tree().change_scene("res://levels/"+gametype+"/"+world+".tscn")
+
+func _on_Button_Tutorial_pressed():	return get_tree().change_scene("res://scenes/tutorial_test.tscn")
 
 
+func _on_input_gametype_pressed(buttonName, isPressed):
+	gametype = buttonName
+	change_difficulty_label()
 
-func _on_Button_New_Game_pressed():
-	return get_tree().change_scene("res://scenes/tutorial_test.tscn")
+func _on_input_speedrun_toggled(button_pressed): _on_input_gametype_pressed("speedrun", button_pressed)
+func _on_input_coconutstash_toggled(button_pressed): _on_input_gametype_pressed("coconutstash", button_pressed)
+func _on_input_multiplayer_toggled(button_pressed): _on_input_gametype_pressed("multiplayer", button_pressed)
 
-func _on_Button_Tutorial_pressed():
-	return get_tree().change_scene("res://scenes/tutorial_test.tscn")
+func _on_input_world_pressed(buttonName, isPressed):
+	world = buttonName
+	
+func _on_input_margarita_toggled(button_pressed): _on_input_world_pressed("margarita", button_pressed)
+func _on_input_coche_toggled(button_pressed): _on_input_world_pressed("coche", button_pressed)
+func _on_input_cubagua_toggled(button_pressed): _on_input_world_pressed("cubagua", button_pressed)
 
-func _on_Button_Exit_pressed():
-	get_tree().quit() # Quits the game
+func _on_input_difficulty_value_changed(value):
+	difficulty = value
+	change_difficulty_label()
+	
+func change_difficulty_label():
+	if	gametype == "speedrun":		label_difficulty.text = "Laps: "+str(difficulty)
+	if	gametype == "coconutstash":		label_difficulty.text = "Stash size: "+str(difficulty)
+		
+
+func _on_Button_Exit_pressed():	return get_tree().quit()
+
 
 

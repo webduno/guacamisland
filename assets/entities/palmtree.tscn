@@ -1,7 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://import/3d/detail/DefaultMaterial.material" type="Material" id=1]
-[ext_resource path="res://assets/materials/coconut_spatial_shader.tres" type="Material" id=4]
+[ext_resource path="res://scripts/palmtree.gd" type="Script" id=1]
+[ext_resource path="res://import/3d/detail/DefaultMaterial.material" type="Material" id=2]
+[ext_resource path="res://assets/materials/coconut_spatial_shader.tres" type="Material" id=3]
+[ext_resource path="res://assets/geometry/detail/coconut.tres" type="ArrayMesh" id=4]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.503806
+height = 0.433605
 
 [sub_resource type="ArrayMesh" id=2]
 surfaces/0 = {
@@ -11,7 +17,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97539,
 "index_count": 1437,
-"material": ExtResource( 1 ),
+"material": ExtResource( 2 ),
 "name": "palms",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -29,7 +35,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97539,
 "index_count": 228,
-"material": ExtResource( 1 ),
+"material": ExtResource( 2 ),
 "name": "tree",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -47,7 +53,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97539,
 "index_count": 234,
-"material": ExtResource( 1 ),
+"material": ExtResource( 2 ),
 "name": "coconuts",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -58,7 +64,12 @@ surfaces/0 = {
 radius = 0.090978
 height = 1.08898
 
-[node name="palmtree" type="Spatial"]
+[node name="palmtree" type="Area"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.976563, 0.21523, 0, -0.21523, 0.976563, 0, 0, 0, 1, 0.134511, 0.430938, 0 )
+shape = SubResource( 1 )
 
 [node name="palms" type="MeshInstance" parent="."]
 mesh = SubResource( 2 )
@@ -70,10 +81,24 @@ material/0 = SubResource( 5 )
 
 [node name="coconuts" type="MeshInstance" parent="."]
 mesh = SubResource( 6 )
-material/0 = ExtResource( 4 )
+material/0 = ExtResource( 3 )
 
 [node name="tree_trunk" type="StaticBody" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="tree_trunk"]
 transform = Transform( 0.99759, 0.0693908, 0, -0.0693908, 0.99759, 0, 0, 0, 1, 0.043161, -0.0353085, 0.0149781 )
 shape = SubResource( 7 )
+
+[node name="coconut_spawner" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142436, 0.712363, 0 )
+
+[node name="coconut_timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="ready_to_shoot_coconut" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.152139, 0.564183, 0 )
+mesh = ExtResource( 4 )
+material/0 = ExtResource( 3 )
+[connection signal="body_entered" from="." to="." method="_on_palmtree_body_entered"]
+[connection signal="timeout" from="coconut_timer" to="." method="_on_coconut_timer_timeout"]

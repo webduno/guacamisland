@@ -23,4 +23,4 @@ func _on_Timer_timeout():
 	var mseconds = int(elapsedTime * 10) % 10
 	var str_elapsed = "%02d : %02d : %02d" % [minutes, seconds, mseconds]
 	
-	text = ""+str(str_elapsed)
+	text = "Time: "+str(str_elapsed)
