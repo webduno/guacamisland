@@ -1,6 +1,7 @@
 extends Control
 
-onready var newgame_panel = get_node("Global Margin/panel container/panel 2/newgame_panel")
+onready var newgame_panel = get_node("panel container/panel 2/newgame_panel")
+onready var newgame_animation = newgame_panel.get_node("setting_animation")
 
 onready var inputgroup_gametype = find_node("inputgroup_gametype")
 var gametype = "speedrun"
@@ -13,8 +14,11 @@ onready var label_difficulty = find_node("label_difficulty")
 func _ready():
 	newgame_panel.hide()
 
-func _on_Button_New_Game_pressed():	newgame_panel.show()
-func _on_button_cancel_pressed():	newgame_panel.hide()
+func _on_Button_New_Game_pressed():
+	newgame_panel.show()
+	newgame_animation.play("Slide In")
+func _on_button_cancel_pressed():
+	newgame_panel.hide()
 	
 func _on_button_play_pressed():
 	print("")

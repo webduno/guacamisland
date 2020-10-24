@@ -2,10 +2,10 @@ extends KinematicBody
 
 ###################-VARIABLES-####################
 
-
 # Player
 var level;
-onready var player_object: Spatial = get_node("head_node/guaca_blue")
+onready var player_object: Spatial = get_node("head_node/guacamaya_redblue")
+onready var player_animation = player_object.get_node("AnimationPlayer")
 
 # Camera
 export(float) var mouse_sensitivity = 9.0
@@ -47,28 +47,22 @@ var flying := false
 
 ##################################################
 
-# Called when the node enters the scene tree
 func _ready() -> void:
 	cam.fov = FOV
+	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(_delta: float) -> void:
 	move_axis.x = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
-	move_axis.y = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	
-	
 	var lateral_movement = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	move_axis.y = lateral_movement
+	
 	if	!is_on_floor():
 		player_object.rotate_z(deg2rad(lateral_movement) * -4)
 		cam_target.rotate_z(deg2rad(lateral_movement) * -2)
 	player_object.rotation_degrees.z *= .98;
 	cam_target.rotation_degrees.z *= .85;
-	# player_object.rotation_degrees.x *= .9;
-	# player_object.rotation_degrees.y *= .9;
-	# player_object.rotation_degrees.z *= .9;
 
 
-# Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
 	if flying:
 		fly(delta)
@@ -76,16 +70,15 @@ func _physics_process(delta: float) -> void:
 		walk(delta)
 
 
-# Called when there is an input event
 func _input(event: InputEvent) -> void:		
 	if event is InputEventMouseMotion:
 		mouse_axis = event.relative
 		camera_rotation()
 		
 	if Input.is_action_pressed("zoom_in"):
-		cam_target.translation.z -= .1
+		cam_target.translation.z = clamp(cam_target.translation.z - 0.1, 0.3, 1)
 	if Input.is_action_pressed("zoom_out"):
-		cam_target.translation.z += .1
+		cam_target.translation.z = clamp(cam_target.translation.z + 0.1, 0.3, 1)
 
 
 func walk(delta: float) -> void:
@@ -104,7 +97,7 @@ func walk(delta: float) -> void:
 	direction = direction.normalized()
 	
 	if	is_on_floor():
-		player_object.get_node("AnimationPlayer").play("ArmatureAction 3")
+		player_animation.play("On_Ground")
 	
 	# Jump
 	var _snap: Vector3
@@ -113,20 +106,21 @@ func walk(delta: float) -> void:
 	
 	# WINGS RETRACTING
 	if Input.is_action_just_pressed("move_jump"):
-		player_object.get_node("AnimationPlayer").stop()
-		player_object.get_node("AnimationPlayer").play("ArmatureAction")
+		player_animation.clear_queue() 
+		player_animation.stop()
+		player_animation.play("Flap_Wings")
 		_snap = Vector3(0, 0, 0)
 		velocity.y = jump_height
 		gravity = GRAVITY_CONSTANT;
 		
 	# WINGS RETRACTED
 	if Input.is_action_pressed("move_jump"):
-		if (!player_object.get_node("AnimationPlayer").current_animation):
-			player_object.get_node("AnimationPlayer").play("ArmatureAction 2")
+		if (!player_animation.current_animation):
+			player_animation.play("Retract_Wings")
 		
 	# WINGS TO REST
 	if Input.is_action_just_released("move_jump"):
-		player_object.get_node("AnimationPlayer").play("ArmatureAction")
+		player_animation.animation_set_next("Flap_Wings", "Hover_State")
 		gravity = HOVER_GRAVITY_CONSTANT;
 		
 	
@@ -218,19 +212,16 @@ func camera_rotation() -> void:
 		
 		if	!is_on_floor():
 			player_object.rotate_z(deg2rad(horizontal))
-			cam_target.rotate_z(deg2rad(horizontal/2))
+			cam_target.rotate_z(deg2rad(horizontal))
 		
 		# Clamp mouse rotation
 		var temp_rot: Vector3 = head.rotation_degrees
-		temp_rot.x = clamp(temp_rot.x, -60, 60)
+		temp_rot.x = clamp(temp_rot.x, -80, 80)
 		head.rotation_degrees = temp_rot
 
 func can_sprint() -> bool:
 	return (sprint_enabled and true)
 	# return (sprint_enabled and is_on_floor())
-
-
-
 
 func _on_goal_ring_body_shape_entered(_body_id, _body, _body_shape, _area_shape):
 	level.goal_hit()

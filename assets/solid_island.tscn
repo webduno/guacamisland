@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://import/3d/solid_island.fbx" type="PackedScene" id=1]
-
-[node name="solid_island" instance=ExtResource( 1 )]
