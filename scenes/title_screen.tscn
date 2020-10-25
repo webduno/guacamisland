@@ -6,17 +6,14 @@
 [ext_resource path="res://import/2d/title_screen/button_new_game.png" type="Texture" id=4]
 [ext_resource path="res://scripts/title_screen.gd" type="Script" id=5]
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.364706, 0.729412, 0.854902, 1 )
 
-[sub_resource type="ButtonGroup" id=1]
-resource_name = "gametype"
-
 [sub_resource type="ButtonGroup" id=2]
-resource_name = "world"
 
-[sub_resource type="Animation" id=3]
-resource_name = "Slide In"
+[sub_resource type="ButtonGroup" id=3]
+
+[sub_resource type="Animation" id=4]
 length = 0.5
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("setting_list:rect_position:x")
@@ -40,7 +37,7 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -165,7 +162,7 @@ margin_left = 138.0
 margin_right = 233.0
 margin_bottom = 24.0
 pressed = true
-group = SubResource( 1 )
+group = SubResource( 2 )
 text = "Speed Run"
 
 [node name="input_coconutstash" type="CheckBox" parent="panel container/panel 2/newgame_panel/setting_list/inputgroup_gametype"]
@@ -174,7 +171,7 @@ margin_right = 371.0
 margin_bottom = 24.0
 mouse_default_cursor_shape = 8
 disabled = true
-group = SubResource( 1 )
+group = SubResource( 2 )
 text = "Coconut Stash"
 
 [node name="input_multiplayer" type="CheckBox" parent="panel container/panel 2/newgame_panel/setting_list/inputgroup_gametype"]
@@ -182,7 +179,7 @@ visible = false
 margin_left = 281.0
 margin_right = 381.0
 margin_bottom = 24.0
-group = SubResource( 1 )
+group = SubResource( 2 )
 text = "Multiplayer"
 
 [node name="label_difficulty" type="Label" parent="panel container/panel 2/newgame_panel/setting_list"]
@@ -243,7 +240,7 @@ __meta__ = {
 margin_right = 87.0
 margin_bottom = 24.0
 pressed = true
-group = SubResource( 2 )
+group = SubResource( 3 )
 text = "Margarita"
 align = 1
 
@@ -253,7 +250,7 @@ margin_right = 87.0
 margin_bottom = 68.0
 mouse_default_cursor_shape = 8
 disabled = true
-group = SubResource( 2 )
+group = SubResource( 3 )
 text = "Coche"
 align = 1
 
@@ -263,7 +260,7 @@ margin_right = 87.0
 margin_bottom = 112.0
 mouse_default_cursor_shape = 8
 disabled = true
-group = SubResource( 2 )
+group = SubResource( 3 )
 text = "Cubagüa"
 align = 1
 
@@ -302,7 +299,7 @@ size_flags_vertical = 0
 text = "Play"
 
 [node name="setting_animation" type="AnimationPlayer" parent="panel container/panel 2/newgame_panel"]
-"anims/Slide In" = SubResource( 3 )
+"anims/Slide In" = SubResource( 4 )
 [connection signal="pressed" from="panel container/panel 1/Button List/VBoxContainer/Button New Game" to="." method="_on_Button_New_Game_pressed"]
 [connection signal="pressed" from="panel container/panel 1/Button List/VBoxContainer/Button Tutorial" to="." method="_on_Button_Tutorial_pressed"]
 [connection signal="pressed" from="panel container/panel 1/Button List/Button Exit" to="." method="_on_Button_Exit_pressed"]

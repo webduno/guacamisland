@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GLOBAL="*res://scripts/global.gd"
+AUDIO_MANAGER="*res://scenes/audio_manager.tscn"
 
 [input]
 

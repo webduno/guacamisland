@@ -2,6 +2,8 @@ extends Spatial
 
 onready var pause_screen = get_node("../pause_screen")
 
+onready var goal_success_sound_clip = load("res://import/audio/success_sound_1.wav")
+
 var lap_count = GLOBAL.difficulty
 var remaining_laps = GLOBAL.difficulty
 onready var lap_label = find_node("lap_label")
@@ -53,6 +55,8 @@ func init_lap():
 
 
 func goal_hit():
+	AUDIO_MANAGER.play_sfx(goal_success_sound_clip, 0)
+	
 	if	current_goal_index == 0:
 		level_timer.start()
 		

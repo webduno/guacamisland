@@ -13,7 +13,7 @@
 [ext_resource path="res://scenes/pause_screen.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/geometry/detail/umbrella.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/geometry/detail/palmtree.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/geometry/detail/cloud_blub.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scripts/clouds_animation.gd" type="Script" id=17]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Yatch Idle"
@@ -365,7 +365,7 @@ transform = Transform( 0.40436, 0, 0.9146, 0, 1, 0, -0.9146, 0, 0.40436, 16.582,
 curve = SubResource( 2 )
 
 [node name="PathFollow" type="PathFollow" parent="Level/Detail/Yatchs/Path_yatch_sm_2"]
-transform = Transform( -0.0370857, -2.79249e-07, 0.999197, 4.91679e-07, 1, 2.97654e-07, -0.999312, 5.02381e-07, -0.0370814, 4.22107, -0.999999, -0.56657 )
+transform = Transform( -0.0370857, -2.79249e-07, 0.999196, 4.91679e-07, 1, 2.97653e-07, -0.999312, 5.02381e-07, -0.0370814, 4.22107, -0.999999, -0.56657 )
 offset = 1.18823
 rotation_mode = 4
 
@@ -385,7 +385,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0 )
 curve = SubResource( 4 )
 
 [node name="PathFollow" type="PathFollow" parent="Level/Detail/Yatchs/Path_yatch_sm_3"]
-transform = Transform( 0.00373674, 0, 0.99984, 0, 1, 0, -0.999993, 0, 0.00373617, -11.349, 0, -11.1025 )
+transform = Transform( 0.00373674, 0, 0.999839, 0, 1, 0, -0.999993, 0, 0.00373616, -11.349, 0, -11.1025 )
 offset = 1.00028
 rotation_mode = 4
 
@@ -401,12 +401,7 @@ playback_speed = 0.5
 transform = Transform( -0.720829, 0, -0.693113, 0, 1, 0, 0.693113, 0, -0.720829, -11.6843, 1.59737, 17.8398 )
 
 [node name="Clouds" type="Spatial" parent="Level/Detail"]
-
-[node name="cloud_blub 1" parent="Level/Detail/Clouds" instance=ExtResource( 15 )]
-transform = Transform( -3.83022, 0, -3.21394, 0, 5, 0, 3.21394, 0, -3.83022, -22, 6.05, -6 )
-
-[node name="cloud_blub 2" parent="Level/Detail/Clouds" instance=ExtResource( 15 )]
-transform = Transform( -1.16723, 0, -4.86185, 0, 5, 0, 4.86185, 0, -1.16723, 13.5, 5.55, -7.05 )
+script = ExtResource( 17 )
 
 [node name="Boats" type="Spatial" parent="Level/Detail"]
 

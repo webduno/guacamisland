@@ -48,7 +48,7 @@ func _ready():
 	current_goal.connect("body_shape_entered", player, "_on_goal_ring_body_shape_entered")
 
 
-func goal_hit():
+func goal_hit():	
 	if	current_goal_index == 0:
 		level_timer.start()
 		
