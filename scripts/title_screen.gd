@@ -3,6 +3,8 @@ extends Control
 onready var newgame_panel = get_node("panel container/panel 2/newgame_panel")
 onready var newgame_animation = newgame_panel.get_node("setting_animation")
 
+onready var menu_select_click_1 = load("res://import/audio/menu_select_click_1.wav")
+
 onready var inputgroup_gametype = find_node("inputgroup_gametype")
 var gametype = "speedrun"
 onready var inputgroup_world = find_node("inputgroup_world")
@@ -13,6 +15,18 @@ onready var label_difficulty = find_node("label_difficulty")
 
 func _ready():
 	newgame_panel.hide()
+	
+	var button_list = get_tree().get_nodes_in_group("regular_button")
+	
+	for x in button_list:
+		print(x.name)
+		x.connect("mouse_entered", self, "_mouse_entered")
+		
+func _mouse_entered():
+	AUDIO_MANAGER.play_sfx(menu_select_click_1, 1)
+	
+#func _proccess():
+	
 
 func _on_Button_New_Game_pressed():
 	newgame_panel.show()

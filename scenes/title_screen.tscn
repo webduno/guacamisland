@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://import/2d/title_screen/button_exit.png" type="Texture" id=1]
 [ext_resource path="res://import/2d/title_screen/background_clay.png" type="Texture" id=2]
 [ext_resource path="res://import/2d/title_screen/button_tutorial.png" type="Texture" id=3]
 [ext_resource path="res://import/2d/title_screen/button_new_game.png" type="Texture" id=4]
 [ext_resource path="res://scripts/title_screen.gd" type="Script" id=5]
+[ext_resource path="res://import/audio/calm_background_theme_1.ogg" type="AudioStream" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.364706, 0.729412, 0.854902, 1 )
@@ -33,6 +34,11 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -20.0
+autoplay = true
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -71,7 +77,9 @@ size_flags_vertical = 3
 custom_constants/separation = 20
 alignment = 1
 
-[node name="Button New Game" type="TextureButton" parent="panel container/panel 1/Button List/VBoxContainer"]
+[node name="Button New Game" type="TextureButton" parent="panel container/panel 1/Button List/VBoxContainer" groups=[
+"regular_button",
+]]
 margin_left = 85.0
 margin_top = 174.0
 margin_right = 425.0
@@ -81,7 +89,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 4 )
 
-[node name="Button Tutorial" type="TextureButton" parent="panel container/panel 1/Button List/VBoxContainer"]
+[node name="Button Tutorial" type="TextureButton" parent="panel container/panel 1/Button List/VBoxContainer" groups=[
+"regular_button",
+]]
 margin_left = 181.0
 margin_top = 242.0
 margin_right = 329.0
@@ -91,7 +101,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource( 3 )
 
-[node name="Button Exit" type="TextureButton" parent="panel container/panel 1/Button List"]
+[node name="Button Exit" type="TextureButton" parent="panel container/panel 1/Button List" groups=[
+"regular_button",
+]]
 margin_left = 231.0
 margin_top = 455.0
 margin_right = 278.0
@@ -122,7 +134,6 @@ __meta__ = {
 }
 
 [node name="newgame_panel" type="Panel" parent="panel container/panel 2"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -134,8 +145,7 @@ __meta__ = {
 [node name="setting_list" type="VBoxContainer" parent="panel container/panel 2/newgame_panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 510.0
-margin_right = 510.0
+margin_right = -3.05176e-05
 size_flags_vertical = 3
 custom_constants/separation = 20
 alignment = 1
@@ -157,7 +167,9 @@ margin_bottom = 121.0
 custom_constants/separation = 20
 alignment = 1
 
-[node name="input_speedrun" type="CheckBox" parent="panel container/panel 2/newgame_panel/setting_list/inputgroup_gametype"]
+[node name="input_speedrun" type="CheckBox" parent="panel container/panel 2/newgame_panel/setting_list/inputgroup_gametype" groups=[
+"regular_button",
+]]
 margin_left = 138.0
 margin_right = 233.0
 margin_bottom = 24.0
@@ -165,7 +177,9 @@ pressed = true
 group = SubResource( 2 )
 text = "Speed Run"
 
-[node name="input_coconutstash" type="CheckBox" parent="panel container/panel 2/newgame_panel/setting_list/inputgroup_gametype"]
+[node name="input_coconutstash" type="CheckBox" parent="panel container/panel 2/newgame_panel/setting_list/inputgroup_gametype" groups=[
+"regular_button",
+]]
 margin_left = 253.0
 margin_right = 371.0
 margin_bottom = 24.0
@@ -236,7 +250,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="input_margarita" type="CheckBox" parent="panel container/panel 2/newgame_panel/setting_list/Control/inputgroup_world"]
+[node name="input_margarita" type="CheckBox" parent="panel container/panel 2/newgame_panel/setting_list/Control/inputgroup_world" groups=[
+"regular_button",
+]]
 margin_right = 87.0
 margin_bottom = 24.0
 pressed = true
@@ -244,7 +260,9 @@ group = SubResource( 3 )
 text = "Margarita"
 align = 1
 
-[node name="input_coche" type="CheckBox" parent="panel container/panel 2/newgame_panel/setting_list/Control/inputgroup_world"]
+[node name="input_coche" type="CheckBox" parent="panel container/panel 2/newgame_panel/setting_list/Control/inputgroup_world" groups=[
+"regular_button",
+]]
 margin_top = 44.0
 margin_right = 87.0
 margin_bottom = 68.0
@@ -254,7 +272,9 @@ group = SubResource( 3 )
 text = "Coche"
 align = 1
 
-[node name="input_cubagua" type="CheckBox" parent="panel container/panel 2/newgame_panel/setting_list/Control/inputgroup_world"]
+[node name="input_cubagua" type="CheckBox" parent="panel container/panel 2/newgame_panel/setting_list/Control/inputgroup_world" groups=[
+"regular_button",
+]]
 margin_top = 88.0
 margin_right = 87.0
 margin_bottom = 112.0
@@ -282,7 +302,9 @@ margin_right = 310.0
 margin_bottom = 20.0
 custom_constants/separation = 20
 
-[node name="button_cancel" type="Button" parent="panel container/panel 2/newgame_panel/setting_list/CenterContainer/HBoxContainer"]
+[node name="button_cancel" type="Button" parent="panel container/panel 2/newgame_panel/setting_list/CenterContainer/HBoxContainer" groups=[
+"regular_button",
+]]
 margin_right = 54.0
 margin_bottom = 20.0
 size_flags_horizontal = 0
@@ -290,7 +312,9 @@ size_flags_vertical = 0
 custom_constants/hseparation = 0
 text = "Cancel"
 
-[node name="button_play" type="Button" parent="panel container/panel 2/newgame_panel/setting_list/CenterContainer/HBoxContainer"]
+[node name="button_play" type="Button" parent="panel container/panel 2/newgame_panel/setting_list/CenterContainer/HBoxContainer" groups=[
+"regular_button",
+]]
 margin_left = 74.0
 margin_right = 112.0
 margin_bottom = 20.0
