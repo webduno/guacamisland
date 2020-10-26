@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/solo-clap.wav-97f3ddc19de6125e1ec3310c7a5ea248.sample"
+
+[deps]
+
+source_file="res://import/audio/result/solo-clap.wav"
+dest_files=[ "res://.import/solo-clap.wav-97f3ddc19de6125e1ec3310c7a5ea248.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,7 +1,7 @@
 extends Spatial
 
-var env_clear_day = preload("res://assets/env_clear_day.tres")
-onready var camera = get_node("../Spawn/Player/InterpolatedCamera")
+onready var env_clear_day = load("res://assets/env_clear_day.tres")
+onready var camera = get_node("../Spawn/Player/InterpolatedsCamera")
 onready var sun = get_node("DirectionalLight")
 
 func _ready():

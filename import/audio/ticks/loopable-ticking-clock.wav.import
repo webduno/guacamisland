@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/loopable-ticking-clock.wav-a08948ac3726a8eef2ed66a67f1b86d4.sample"
+
+[deps]
+
+source_file="res://import/audio/ticks/loopable-ticking-clock.wav"
+dest_files=[ "res://.import/loopable-ticking-clock.wav-a08948ac3726a8eef2ed66a67f1b86d4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rain_indoors_2.wav-bd43ea43e1e7fd87012c1f66507972be.sample"
+
+[deps]
+
+source_file="res://import/audio/ambience/weather/rain_indoors_2.wav"
+dest_files=[ "res://.import/rain_indoors_2.wav-bd43ea43e1e7fd87012c1f66507972be.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

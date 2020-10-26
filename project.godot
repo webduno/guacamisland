@@ -24,6 +24,10 @@ config/icon="res://icon.png"
 GLOBAL="*res://scripts/global.gd"
 AUDIO_MANAGER="*res://scenes/audio_manager.tscn"
 
+[display]
+
+window/size/resizable=false
+
 [input]
 
 move_forward={

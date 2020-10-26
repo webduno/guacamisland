@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gmae.wav-30fcd1910d5e837c7fd1e9a0ced3bbbd.sample"
+
+[deps]
+
+source_file="res://import/audio/action/gmae.wav"
+dest_files=[ "res://.import/gmae.wav-30fcd1910d5e837c7fd1e9a0ced3bbbd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

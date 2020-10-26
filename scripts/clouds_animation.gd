@@ -9,6 +9,5 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _process(delta):
+#func _process(delta):
 #	cloud_pattern.translate(Vector3(.1,0,0))
-	pass

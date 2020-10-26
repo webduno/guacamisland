@@ -1,9 +1,11 @@
 extends Control
 
+onready var buttons_panel = get_node("panel container/panel 1")
+onready var buttons_animation = buttons_panel.get_node("buttons_animation")
 onready var newgame_panel = get_node("panel container/panel 2/newgame_panel")
 onready var newgame_animation = newgame_panel.get_node("setting_animation")
 
-onready var menu_select_click_1 = load("res://import/audio/menu_select_click_1.wav")
+onready var button_click = load("res://import/audio/interface/Menu Selection Click.wav")
 
 onready var inputgroup_gametype = find_node("inputgroup_gametype")
 var gametype = "speedrun"
@@ -14,16 +16,17 @@ var difficulty = 1
 onready var label_difficulty = find_node("label_difficulty")
 
 func _ready():
+	
 	newgame_panel.hide()
+	buttons_animation.play("Fade_In")
 	
 	var button_list = get_tree().get_nodes_in_group("regular_button")
 	
 	for x in button_list:
-		print(x.name)
-		x.connect("mouse_entered", self, "_mouse_entered")
+		x.connect("mouse_entered", self, "_mouse_entered_button")
 		
-func _mouse_entered():
-	AUDIO_MANAGER.play_sfx(menu_select_click_1, 1)
+func _mouse_entered_button():
+	AUDIO_MANAGER.play_sfx(button_click, 0)
 	
 #func _proccess():
 	
@@ -45,10 +48,10 @@ func _on_button_play_pressed():
 #	return
 	return get_tree().change_scene("res://levels/"+gametype+"/"+world+".tscn")
 
-func _on_Button_Tutorial_pressed():	return get_tree().change_scene("res://scenes/tutorial_test.tscn")
+func _on_Button_Tutorial_pressed():	return get_tree().change_scene("res://levels/"+gametype+"/"+world+".tscn")
 
 
-func _on_input_gametype_pressed(buttonName, isPressed):
+func _on_input_gametype_pressed(buttonName, _isPressed):
 	gametype = buttonName
 	change_difficulty_label()
 
@@ -56,7 +59,7 @@ func _on_input_speedrun_toggled(button_pressed): _on_input_gametype_pressed("spe
 func _on_input_coconutstash_toggled(button_pressed): _on_input_gametype_pressed("coconutstash", button_pressed)
 func _on_input_multiplayer_toggled(button_pressed): _on_input_gametype_pressed("multiplayer", button_pressed)
 
-func _on_input_world_pressed(buttonName, isPressed):
+func _on_input_world_pressed(buttonName, _isPressed):
 	world = buttonName
 	
 func _on_input_margarita_toggled(button_pressed): _on_input_world_pressed("margarita", button_pressed)

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/thunder_6_far.wav-4904a712654188e2668a630a11b03ffa.sample"
+
+[deps]
+
+source_file="res://import/audio/ambience/weather/thunder_6_far.wav"
+dest_files=[ "res://.import/thunder_6_far.wav-4904a712654188e2668a630a11b03ffa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
