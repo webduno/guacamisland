@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://levels/speedrun/margarita.gd" type="Script" id=1]
 [ext_resource path="res://scripts/level_timer.gd" type="Script" id=3]
@@ -18,6 +18,12 @@ font_data = ExtResource( 16 )
 [sub_resource type="CubeMesh" id=2]
 
 [sub_resource type="BoxShape" id=3]
+
+[sub_resource type="PrismMesh" id=4]
+size = Vector3( 1, 1, 0.5 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0, 1, 0, 1 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -123,6 +129,16 @@ material/0 = null
 [node name="CollisionShape" type="CollisionShape" parent="Level/Terrain/Spawn Pole/StaticBody"]
 shape = SubResource( 3 )
 
+[node name="Spawn Pole2" type="MeshInstance" parent="Level/Terrain"]
+transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 1.734, -1.5 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Level/Terrain/Spawn Pole2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Terrain/Spawn Pole2/StaticBody"]
+shape = SubResource( 3 )
+
 [node name="First Base" type="MeshInstance" parent="Level/Terrain"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 2 )
 mesh = SubResource( 2 )
@@ -134,7 +150,7 @@ material/0 = null
 shape = SubResource( 3 )
 
 [node name="Island" type="MeshInstance" parent="Level/Terrain"]
-transform = Transform( 9, 0, 0, 0, 1, 0, 0, 0, 11, 0, -2, -10 )
+transform = Transform( 9, 0, 0, 0, 1, 0, 0, 0, 9, 0, -2, -10.5 )
 mesh = SubResource( 2 )
 material/0 = null
 
@@ -177,6 +193,21 @@ transform = Transform( 0.5, 0, 0, 0, -4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 
 [node name="goal_ring 4" parent="Level/Goals" instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 11, -22 )
 
+[node name="Arrow" type="MeshInstance" parent="Level/Goals/goal_ring 4"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0.775234, 6.76268 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="Arrow2" type="MeshInstance" parent="Level/Goals/goal_ring 4"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0.775232, 4.76268 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="Arrow3" type="MeshInstance" parent="Level/Goals/goal_ring 4"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0.775232, 2.76268 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
 [node name="goal_ring 5" parent="Level/Goals" instance=ExtResource( 10 )]
 transform = Transform( 0.748412, -0.663234, 1.08055e-07, 0, -1.62921e-07, -1, 0.663234, 0.748412, -1.21932e-07, -6.80444, 8.13705, -16.5717 )
 
@@ -187,7 +218,10 @@ transform = Transform( 0.971924, 0.235295, -3.83344e-08, 0, -1.62921e-07, -1, -0
 transform = Transform( 0.211239, 0.977434, -1.59244e-07, 0, -1.62921e-07, -1, -0.977434, 0.211239, -3.44153e-08, 0.532362, 2.20508, 5.51609 )
 
 [node name="goal_ring 8" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( -0.8789, 0.477005, -7.7714e-08, 0, -1.62921e-07, -1, -0.477005, -0.8789, 1.43191e-07, 7.19244, 0.187032, -2.34753 )
+transform = Transform( -0.8789, 0.477005, -7.7714e-08, 0, -1.62921e-07, -1, -0.477005, -0.8789, 1.43191e-07, 7.19244, -4.51374, -2.34753 )
+
+[node name="goal_ring 9" parent="Level/Goals" instance=ExtResource( 10 )]
+transform = Transform( -0.924739, -0.380603, 6.2008e-08, 0, -1.62921e-07, -1, 0.380603, -0.924739, 1.50659e-07, 11.5636, -2.496, -13.0039 )
 
 [node name="Detail" type="Spatial" parent="Level"]
 
