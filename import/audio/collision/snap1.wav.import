@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/snap1.wav-deb09d732697d147abb78cd23119fcd8.sample"
+
+[deps]
+
+source_file="res://import/audio/collision/snap1.wav"
+dest_files=[ "res://.import/snap1.wav-deb09d732697d147abb78cd23119fcd8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

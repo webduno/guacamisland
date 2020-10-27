@@ -4,6 +4,7 @@ onready var pause_screen = get_node("../pause_screen")
 onready var endscreen = get_node("../end_screen")
 
 onready var goal_success_sound_clip = load("res://import/audio/action/goal_ring.wav")
+onready var lap_complete_sound_clip = load("res://import/audio/action/lap_complete.wav")
 
 var lap_count = GLOBAL.difficulty
 var remaining_laps = GLOBAL.difficulty
@@ -15,34 +16,24 @@ var goal_list = [
 	"goal_ring 1",
 	"goal_ring 2",
 	"goal_ring 3",
+	"goal_ring 4",
+	"goal_ring 5",
+	"goal_ring 6",
+	"goal_ring 7",
+	"goal_ring 8",
 ]
 
-#	"goal_ring 4",
-#	"goal_ring 5",
-#	"goal_ring 6",
-#	"goal_ring 7",
-#	"goal_ring 8",
-#	"goal_ring 9",
-#	"goal_ring 10",
-#	"goal_ring 11",
-#	"goal_ring 12",
-#	"goal_ring 13",
-#	"goal_ring 14",
-#	"goal_ring 15",
-#	"goal_ring 16",
-#	"goal_ring 17",
-#	"goal_ring 18",
-#	"goal_ring 19",
-	
-onready var level_timer: Timer = find_node("general_timer")
-onready var level_timer_audioplayer = find_node("audioplayer_timer")
+onready var level_timer = find_node("timer_label")
+onready var level_timer_stopwatch: Timer = level_timer.get_node("general_timer")
+onready var level_timer_audioplayer = level_timer.get_node("audioplayer_timer")
 
 onready var player = get_node("../Spawn/Player")
 onready var entities_container = get_node("Entities")
 
 func _ready():
+	AUDIO_MANAGER.set_regular_button_sfx()
 	player.level = self
-	pause_screen.current_scene = "res://levels/speedrun/margarita.tscn"
+	pause_screen.current_scene = "res://scenes/tutorial.tscn"
 	
 	goals.show()
 	for x in goals.get_children():
@@ -53,16 +44,23 @@ func _ready():
 	
 func init_speedrun():
 	print("init_speedrun")
-	level_timer.start()
+	level_timer_stopwatch.start()
 	
 func end_speedrun():
-	print("end_speedrun")
-	level_timer.stop()
-	endscreen.start_endscreen({
+	pause_screen.queue_free()
+	get_node("Foreground").queue_free()
+	
+	var result_data : Dictionary = {}
+	result_data.laps = lap_count
+	result_data.time = level_timer.elapsedTime
+	
+	endscreen.start_endscreen(result_data)	
 		
-	})	
 		
 func init_lap():
+	if	remaining_laps < lap_count:
+		AUDIO_MANAGER.play_sfx(lap_complete_sound_clip, 0)
+		
 	lap_label.text = "Lap: " + str(lap_count - remaining_laps) + "/" + str(lap_count)
 	var current_goal = goals.get_node(goal_list[current_goal_index])
 	current_goal.show()
@@ -94,4 +92,3 @@ func goal_hit():
 			init_lap()
 		else:
 			end_speedrun()
-			

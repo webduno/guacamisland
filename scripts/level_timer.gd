@@ -23,7 +23,7 @@ func _on_Timer_timeout():
 	elapsedTime += .1;
 	
 	if str(elapsedTime).is_valid_integer():
-		AUDIO_MANAGER.play_sfx(tick_sound_clip_1, 0)
+		AUDIO_MANAGER.play_sfx(tick_sound_clip_1, 0, -15)
 	
 	var minutes = elapsedTime / 60
 	var seconds = int(elapsedTime) % 60

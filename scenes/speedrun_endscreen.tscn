@@ -1,14 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/speedrun_end_screen.gd" type="Script" id=1]
 [ext_resource path="res://import/2d/speedrun_endscreen/bg_scroll.png" type="Texture" id=2]
-[ext_resource path="res://import/2d/text_sprites/quit_main_manu.png" type="Texture" id=3]
-[ext_resource path="res://import/2d/text_sprites/quit_main_manu-hover.png" type="Texture" id=4]
-[ext_resource path="res://import/fonts/SyneMono-Regular.ttf" type="DynamicFontData" id=5]
-
-[sub_resource type="DynamicFont" id=1]
-size = 32
-font_data = ExtResource( 5 )
+[ext_resource path="res://import/2d/text_sprites/quit_main_menu.png" type="Texture" id=3]
+[ext_resource path="res://import/2d/text_sprites/quit_main_menu-hover.png" type="Texture" id=4]
+[ext_resource path="res://import/audio/background/island_0.wav" type="AudioStream" id=5]
+[ext_resource path="res://import/2d/text_sprites/congratulations.png" type="Texture" id=6]
+[ext_resource path="res://import/2d/text_sprites/next.png" type="Texture" id=7]
+[ext_resource path="res://import/2d/text_sprites/next-hover.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/syne_mono_font.tres" type="DynamicFont" id=9]
 
 [node name="endscreen" type="Control"]
 anchor_right = 1.0
@@ -22,39 +22,159 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0.745098 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="CenterContainer" type="CenterContainer" parent="Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Panel/CenterContainer"]
-margin_left = 189.0
-margin_top = 100.0
-margin_right = 835.0
-margin_bottom = 499.0
+[node name="BG_Scroll" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -425.0
+margin_top = -225.0
+margin_right = 425.0
+margin_bottom = 225.0
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
-margin_left = 340.0
-margin_top = 233.0
-margin_right = 684.0
-margin_bottom = 366.0
-custom_constants/separation = 50
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 100
+custom_constants/margin_top = 60
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 60
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Congratulations!" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
-margin_right = 344.0
+[node name="Container" type="Control" parent="MarginContainer"]
+margin_left = 100.0
+margin_top = 60.0
+margin_right = 924.0
+margin_bottom = 540.0
+mouse_filter = 2
+
+[node name="Congratulations!" type="TextureRect" parent="MarginContainer/Container"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -210.5
+margin_right = 210.5
+margin_bottom = 52.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Container"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 150
+custom_constants/margin_top = 120
+custom_constants/margin_left = 150
+custom_constants/margin_bottom = 120
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Results" type="VBoxContainer" parent="MarginContainer/Container/MarginContainer"]
+margin_left = 150.0
+margin_top = 120.0
+margin_right = 674.0
+margin_bottom = 360.0
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Container/MarginContainer/Results"]
+margin_right = 524.0
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Congratulations!"
+
+[node name="Laps_Label2" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer"]
+margin_right = 90.0
+margin_bottom = 39.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 0.392157 )
+text = "Laps:"
 align = 1
 
-[node name="TextureButton" type="TextureButton" parent="Panel/CenterContainer/VBoxContainer"]
-margin_top = 89.0
-margin_right = 344.0
-margin_bottom = 133.0
+[node name="Laps_Label" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer"]
+margin_left = 94.0
+margin_right = 94.0
+margin_bottom = 39.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Container/MarginContainer/Results"]
+margin_top = 39.0
+margin_right = 524.0
+margin_bottom = 78.0
+
+[node name="Time_Label2" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer2"]
+margin_right = 90.0
+margin_bottom = 39.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 0.392157 )
+text = "Time:"
+align = 1
+
+[node name="Time_Label" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer2"]
+margin_left = 94.0
+margin_right = 94.0
+margin_bottom = 39.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Container/MarginContainer/Results"]
+modulate = Color( 0, 0, 0, 0 )
+margin_top = 78.0
+margin_right = 524.0
+margin_bottom = 207.0
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="Button_Next" type="TextureButton" parent="MarginContainer/Container/MarginContainer/Results" groups=[
+"regular_button",
+]]
+margin_left = 225.0
+margin_top = 207.0
+margin_right = 299.0
+margin_bottom = 240.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 8 )
+
+[node name="Button_Quit_Main_Menu" type="TextureButton" parent="MarginContainer/Container" groups=[
+"regular_button",
+]]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -171.5
+margin_top = -44.0
+margin_right = 171.5
+size_flags_horizontal = 4
+size_flags_vertical = 0
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="endscreen_audio_loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+[connection signal="pressed" from="MarginContainer/Container/MarginContainer/Results/Button_Next" to="." method="_on_Button_Next_pressed"]
+[connection signal="pressed" from="MarginContainer/Container/Button_Quit_Main_Menu" to="." method="_on_Button_Quit_Main_Menu_pressed"]

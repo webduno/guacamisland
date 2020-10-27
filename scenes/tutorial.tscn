@@ -1,0 +1,214 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://levels/speedrun/margarita.gd" type="Script" id=1]
+[ext_resource path="res://scripts/level_timer.gd" type="Script" id=3]
+[ext_resource path="res://import/audio/background/jump and run - tropics.wav" type="AudioStream" id=4]
+[ext_resource path="res://entities/player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://import/audio/ticks/loopable-ticking-clock.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/goal_ring.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/pause_screen.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/geometry/detail/palmtree.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/speedrun_endscreen.tscn" type="PackedScene" id=15]
+[ext_resource path="res://import/fonts/SyneMono-Regular.ttf" type="DynamicFontData" id=16]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 16 )
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="BoxShape" id=3]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Envoirment" type="Spatial" parent="."]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Envoirment"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
+visible = false
+light_color = Color( 1, 0.780392, 0.129412, 1 )
+light_energy = 1.5
+shadow_enabled = true
+
+[node name="alt_DirectionalLight" type="DirectionalLight" parent="Envoirment"]
+transform = Transform( -0.413549, 0.221921, -0.883022, -0.24321, 0.907673, 0.34202, 0.877397, 0.356202, -0.321394, 0, 10, 0 )
+light_color = Color( 1, 0.866667, 0.470588, 1 )
+light_energy = 1.5
+shadow_enabled = true
+shadow_bias = -0.02
+directional_shadow_split_1 = 0.075
+
+[node name="Spawn" type="Spatial" parent="."]
+transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 3, 5 )
+
+[node name="Player" parent="Spawn" instance=ExtResource( 6 )]
+
+[node name="Level" type="Spatial" parent="." groups=[
+"current_level",
+]]
+script = ExtResource( 1 )
+
+[node name="Foreground" type="Control" parent="Level"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Level/Foreground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Level/Foreground/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+
+[node name="Control" type="Control" parent="Level/Foreground/MarginContainer/HBoxContainer"]
+margin_right = 980.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Level/Foreground/MarginContainer/HBoxContainer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Level/Foreground/MarginContainer/HBoxContainer"]
+margin_left = 984.0
+margin_right = 984.0
+margin_bottom = 560.0
+size_flags_vertical = 3
+
+[node name="lap_label" type="Label" parent="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+
+[node name="timer_label" type="Label" parent="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 29.0
+margin_bottom = 54.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="general_timer" type="Timer" parent="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer/timer_label"]
+wait_time = 0.1
+
+[node name="audioplayer_timer" type="AudioStreamPlayer" parent="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer/timer_label"]
+stream = ExtResource( 7 )
+
+[node name="Terrain" type="Spatial" parent="Level"]
+
+[node name="Spawn Pole" type="MeshInstance" parent="Level/Terrain"]
+transform = Transform( 0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 0, 1.73355, 5.00428 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Level/Terrain/Spawn Pole"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Terrain/Spawn Pole/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="First Base" type="MeshInstance" parent="Level/Terrain"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 2 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Level/Terrain/First Base"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Terrain/First Base/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Island" type="MeshInstance" parent="Level/Terrain"]
+transform = Transform( 9, 0, 0, 0, 1, 0, 0, 0, 11, 0, -2, -10 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Level/Terrain/Island"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Terrain/Island/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Island2" type="MeshInstance" parent="Level/Terrain"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Level/Terrain/Island2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Terrain/Island2/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Big Pole" type="MeshInstance" parent="Level/Terrain"]
+transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 4, -22 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Level/Terrain/Big Pole"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Terrain/Big Pole/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Goals" type="Spatial" parent="Level"]
+
+[node name="goal_ring 1" parent="Level/Goals" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 2, 1 )
+
+[node name="goal_ring 2" parent="Level/Goals" instance=ExtResource( 10 )]
+transform = Transform( 0.5, 0, 0, 0, -4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 0, -10 )
+
+[node name="goal_ring 3" parent="Level/Goals" instance=ExtResource( 10 )]
+transform = Transform( 0.5, 0, 0, 0, -4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, 3, -20 )
+
+[node name="goal_ring 4" parent="Level/Goals" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 11, -22 )
+
+[node name="goal_ring 5" parent="Level/Goals" instance=ExtResource( 10 )]
+transform = Transform( 0.748412, -0.663234, 1.08055e-07, 0, -1.62921e-07, -1, 0.663234, 0.748412, -1.21932e-07, -6.80444, 8.13705, -16.5717 )
+
+[node name="goal_ring 6" parent="Level/Goals" instance=ExtResource( 10 )]
+transform = Transform( 0.971924, 0.235295, -3.83344e-08, 0, -1.62921e-07, -1, -0.235295, 0.971924, -1.58347e-07, -7.28234, 2.20508, -5.69189 )
+
+[node name="goal_ring 7" parent="Level/Goals" instance=ExtResource( 10 )]
+transform = Transform( 0.211239, 0.977434, -1.59244e-07, 0, -1.62921e-07, -1, -0.977434, 0.211239, -3.44153e-08, 0.532362, 2.20508, 5.51609 )
+
+[node name="goal_ring 8" parent="Level/Goals" instance=ExtResource( 10 )]
+transform = Transform( -0.8789, 0.477005, -7.7714e-08, 0, -1.62921e-07, -1, -0.477005, -0.8789, 1.43191e-07, 7.19244, 0.187032, -2.34753 )
+
+[node name="Detail" type="Spatial" parent="Level"]
+
+[node name="Trees" type="Spatial" parent="Level/Detail"]
+
+[node name="palmtree2" parent="Level/Detail/Trees" instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.511, -20 )
+
+[node name="Entities" type="Spatial" parent="Level"]
+
+[node name="Audio" type="Node" parent="Level"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Level/Audio"]
+stream = ExtResource( 4 )
+volume_db = -10.0
+autoplay = true
+
+[node name="end_screen" parent="." instance=ExtResource( 15 )]
+pause_mode = 2
+visible = false
+
+[node name="pause_screen" parent="." instance=ExtResource( 12 )]
+visible = false
+[connection signal="timeout" from="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer/timer_label/general_timer" to="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer/timer_label" method="_on_Timer_timeout"]

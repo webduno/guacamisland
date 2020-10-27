@@ -1,11 +1,31 @@
 extends Node
 
+onready var button_hover = load("res://import/audio/interface/Menu Selection Click.wav")
+onready var button_click = load("res://import/audio/interface/click4.wav")
+
 var dic : Dictionary = {}
 
-func play_sfx(audio_clip : AudioStream, priority : int = 0):
+func _ready():
+	set_regular_button_sfx()
+	
+func set_regular_button_sfx():
+	var button_list = get_tree().get_nodes_in_group("regular_button")
+	
+	for x in button_list:
+		if !(x.is_connected("mouse_entered", self, "_mouse_entered_button")):
+			x.connect("mouse_entered", self, "_mouse_entered_button")
+			x.connect("pressed", self, "_mouse_pressed_button")
+
+func _mouse_entered_button():
+	AUDIO_MANAGER.play_sfx(button_hover, 0)
+func _mouse_pressed_button():
+	AUDIO_MANAGER.play_sfx(button_click, 0)
+	
+func play_sfx(audio_clip : AudioStream, priority : int = 0, volume : int = 0):
 	for child in $sfx.get_children():
 		if child.playing == false:
 			child.stream = audio_clip
+			child.volume_db = volume
 			child.play()
 			dic[child.name] = priority
 			break

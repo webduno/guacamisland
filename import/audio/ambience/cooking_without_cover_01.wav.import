@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cooking_without_cover_01.wav-963360588e2c8d927038e91cb86d179a.sample"
+
+[deps]
+
+source_file="res://import/audio/ambience/cooking_without_cover_01.wav"
+dest_files=[ "res://.import/cooking_without_cover_01.wav-963360588e2c8d927038e91cb86d179a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

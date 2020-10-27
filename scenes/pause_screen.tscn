@@ -1,13 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://import/2d/text_sprites/reset_level.png" type="Texture" id=1]
 [ext_resource path="res://import/2d/text_sprites/resume.png" type="Texture" id=2]
-[ext_resource path="res://import/2d/text_sprites/quit_game.png" type="Texture" id=3]
-[ext_resource path="res://import/2d/text_sprites/quit_main_manu.png" type="Texture" id=4]
+[ext_resource path="res://import/2d/text_sprites/quit_main_menu.png" type="Texture" id=4]
 [ext_resource path="res://scripts/pause_screen.gd" type="Script" id=5]
 [ext_resource path="res://import/2d/text_sprites/resume-hover.png" type="Texture" id=6]
-[ext_resource path="res://import/2d/text_sprites/quit_game-hover.png" type="Texture" id=7]
-[ext_resource path="res://import/2d/text_sprites/quit_main_manu-hover.png" type="Texture" id=8]
+[ext_resource path="res://import/2d/text_sprites/quit_main_menu-hover.png" type="Texture" id=8]
 [ext_resource path="res://import/2d/text_sprites/reset_level-hover.png" type="Texture" id=9]
 
 [node name="pause_screen" type="Control"]
@@ -45,28 +43,28 @@ margin_right = 974.0
 margin_bottom = 550.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_right = 300.0
+margin_right = 299.0
 margin_bottom = 500.0
 custom_constants/separation = 15
 
 [node name="button_reset_level" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer" groups=[
 "regular_button",
 ]]
-margin_right = 300.0
-margin_bottom = 50.0
+margin_right = 299.0
+margin_bottom = 49.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 1 )
 texture_hover = ExtResource( 9 )
 
 [node name="VSeparator" type="Control" parent="MarginContainer/HBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 304.0
-margin_right = 576.0
+margin_left = 303.0
+margin_right = 577.0
 margin_bottom = 500.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_left = 580.0
+margin_left = 581.0
 margin_right = 924.0
 margin_bottom = 500.0
 custom_constants/separation = 15
@@ -75,22 +73,12 @@ alignment = 2
 [node name="button_quit_to_menu" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer2" groups=[
 "regular_button",
 ]]
-margin_top = 403.0
-margin_right = 344.0
-margin_bottom = 447.0
+margin_top = 456.0
+margin_right = 343.0
+margin_bottom = 500.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 8 )
-
-[node name="button_quit_game" type="TextureButton" parent="MarginContainer/HBoxContainer/VBoxContainer2" groups=[
-"regular_button",
-]]
-margin_top = 462.0
-margin_right = 344.0
-margin_bottom = 500.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 3 )
-texture_hover = ExtResource( 7 )
 
 [node name="button_resume" type="TextureButton" parent="." groups=[
 "regular_button",
@@ -111,5 +99,4 @@ __meta__ = {
 }
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/button_reset_level" to="." method="_on_button_reset_level_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer2/button_quit_to_menu" to="." method="_on_button_quit_to_menu_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer2/button_quit_game" to="." method="_on_button_quit_game_pressed"]
 [connection signal="pressed" from="button_resume" to="." method="_on_button_resume_pressed"]

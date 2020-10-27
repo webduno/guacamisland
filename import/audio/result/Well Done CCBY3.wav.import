@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Well Done CCBY3.wav-2ef38acabb8f50f31f18f78c8f7b734e.sample"
+
+[deps]
+
+source_file="res://import/audio/result/Well Done CCBY3.wav"
+dest_files=[ "res://.import/Well Done CCBY3.wav-2ef38acabb8f50f31f18f78c8f7b734e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,11 +1,11 @@
 extends Control
 
+onready var input_change = load("res://import/audio/ticks/ticking clock - tick4.wav")
+
 onready var buttons_panel = get_node("panel container/panel 1")
 onready var buttons_animation = buttons_panel.get_node("buttons_animation")
 onready var newgame_panel = get_node("panel container/panel 2/newgame_panel")
 onready var newgame_animation = newgame_panel.get_node("setting_animation")
-
-onready var button_click = load("res://import/audio/interface/Menu Selection Click.wav")
 
 onready var inputgroup_gametype = find_node("inputgroup_gametype")
 var gametype = "speedrun"
@@ -16,20 +16,10 @@ var difficulty = 1
 onready var label_difficulty = find_node("label_difficulty")
 
 func _ready():
-	
+	AUDIO_MANAGER.set_regular_button_sfx()
 	newgame_panel.hide()
 	buttons_animation.play("Fade_In")
-	
-	var button_list = get_tree().get_nodes_in_group("regular_button")
-	
-	for x in button_list:
-		x.connect("mouse_entered", self, "_mouse_entered_button")
 		
-func _mouse_entered_button():
-	AUDIO_MANAGER.play_sfx(button_click, 0)
-	
-#func _proccess():
-	
 
 func _on_Button_New_Game_pressed():
 	newgame_panel.show()
@@ -48,7 +38,7 @@ func _on_button_play_pressed():
 #	return
 	return get_tree().change_scene("res://levels/"+gametype+"/"+world+".tscn")
 
-func _on_Button_Tutorial_pressed():	return get_tree().change_scene("res://levels/"+gametype+"/"+world+".tscn")
+func _on_Button_Tutorial_pressed():	return get_tree().change_scene("res://scenes/tutorial.tscn")
 
 
 func _on_input_gametype_pressed(buttonName, _isPressed):
@@ -67,6 +57,7 @@ func _on_input_coche_toggled(button_pressed): _on_input_world_pressed("coche", b
 func _on_input_cubagua_toggled(button_pressed): _on_input_world_pressed("cubagua", button_pressed)
 
 func _on_input_difficulty_value_changed(value):
+	AUDIO_MANAGER.play_sfx(input_change, 0, -15)
 	difficulty = value
 	change_difficulty_label()
 	

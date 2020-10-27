@@ -1,10 +1,38 @@
 extends Control
 
+onready var full_success_sound_clip = load("res://import/audio/result/applause.wav")
+onready var half_success_sound_clip = load("res://import/audio/result/solo-clap.wav")
+
+onready var endscreen_audio_loop = get_node("endscreen_audio_loop")
+
+onready var laps_label = find_node("Laps_Label")
+onready var time_label = find_node("Time_Label")
+
 func _ready():
 	pass # Replace with function body.
 	
-func start_endscreen(data):
+func start_endscreen(result_data):
+	AUDIO_MANAGER.play_sfx(half_success_sound_clip, 0)
+	endscreen_audio_loop.play()
 	show()
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	print(data)
+	print(result_data)
+	
+	var minutes = result_data.time / 60
+	var seconds = int(result_data.time) % 60
+	var mseconds = int(result_data.time * 10) % 10
+	var str_elapsed = "%02d:%02d:%02d" % [minutes, seconds, mseconds]
+	
+	laps_label.text = str(result_data.laps)
+	time_label.text = str(str_elapsed)
+
+
+func _on_Button_Quit_Main_Menu_pressed():
+	get_tree().paused = false
+	return get_tree().change_scene("res://scenes/title_screen.tscn")
+
+
+func _on_Button_Next_pressed():
+	get_tree().paused = false
+	return get_tree().change_scene("res://scenes/title_screen.tscn")

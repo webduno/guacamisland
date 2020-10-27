@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Wind2.wav-d95a11e891ef2041aa95bd770fa689fa.sample"
+
+[deps]
+
+source_file="res://import/audio/ambience/wind/Wind2.wav"
+dest_files=[ "res://.import/Wind2.wav-d95a11e891ef2041aa95bd770fa689fa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
