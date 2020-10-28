@@ -28,6 +28,6 @@ func _on_Timer_timeout():
 	var minutes = elapsedTime / 60
 	var seconds = int(elapsedTime) % 60
 	var mseconds = int(elapsedTime * 10) % 10
-	var str_elapsed = "%02d : %02d : %02d" % [minutes, seconds, mseconds]
+	var str_elapsed = "%02d:%02d:%02d" % [minutes, seconds, mseconds]
 	
 	text = "Time: "+str(str_elapsed)

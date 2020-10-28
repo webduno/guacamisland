@@ -95,7 +95,37 @@ custom_constants/separation = 0
 margin_right = 524.0
 margin_bottom = 39.0
 
-[node name="Laps_Label2" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer"]
+[node name="Level_Label2" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer"]
+margin_right = 108.0
+margin_bottom = 39.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 0.392157 )
+text = "Level:"
+align = 1
+
+[node name="Level_Label" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer"]
+margin_left = 112.0
+margin_right = 112.0
+margin_bottom = 39.0
+size_flags_horizontal = 0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/Container/MarginContainer/Results"]
+modulate = Color( 0, 0, 0, 0.0980392 )
+margin_top = 39.0
+margin_right = 524.0
+margin_bottom = 59.0
+custom_constants/separation = 20
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Container/MarginContainer/Results"]
+margin_top = 59.0
+margin_right = 524.0
+margin_bottom = 98.0
+
+[node name="Laps_Label2" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer3"]
 margin_right = 90.0
 margin_bottom = 39.0
 size_flags_horizontal = 0
@@ -104,7 +134,7 @@ custom_colors/font_color = Color( 0, 0, 0, 0.392157 )
 text = "Laps:"
 align = 1
 
-[node name="Laps_Label" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer"]
+[node name="Laps_Label" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer3"]
 margin_left = 94.0
 margin_right = 94.0
 margin_bottom = 39.0
@@ -114,9 +144,9 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Container/MarginContainer/Results"]
-margin_top = 39.0
+margin_top = 98.0
 margin_right = 524.0
-margin_bottom = 78.0
+margin_bottom = 137.0
 
 [node name="Time_Label2" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer2"]
 margin_right = 90.0
@@ -138,7 +168,7 @@ align = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/Container/MarginContainer/Results"]
 modulate = Color( 0, 0, 0, 0 )
-margin_top = 78.0
+margin_top = 137.0
 margin_right = 524.0
 margin_bottom = 207.0
 size_flags_vertical = 3

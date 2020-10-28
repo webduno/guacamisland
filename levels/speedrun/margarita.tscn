@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://levels/speedrun/margarita.gd" type="Script" id=1]
 [ext_resource path="res://assets/geometry/margarita/island.tscn" type="PackedScene" id=2]
@@ -16,7 +16,103 @@
 [ext_resource path="res://assets/geometry/detail/palmtree.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/speedrun_endscreen.tscn" type="PackedScene" id=15]
 [ext_resource path="res://import/fonts/SyneMono-Regular.ttf" type="DynamicFontData" id=16]
-[ext_resource path="res://scripts/clouds_animation.gd" type="Script" id=17]
+[ext_resource path="res://import/audio/ambience/wind/Wind2.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/materials/clouds_spatial_shader.tres" type="Material" id=18]
+[ext_resource path="res://assets/geometry/detail/clouds.tres" type="ArrayMesh" id=19]
+[ext_resource path="res://scripts/envoirment.gd" type="Script" id=20]
+[ext_resource path="res://import/audio/ambience/wind/Wind.wav" type="AudioStream" id=21]
+
+[sub_resource type="DynamicFont" id=7]
+size = 64
+font_data = ExtResource( 16 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "Fade Out"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("lap_popup_label:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("lap_popup_label:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("lap_popup_label:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 2 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("lap_popup_label:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1, 2 )
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Invisible"
+length = 0.1
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("lap_popup_label:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("lap_popup_label:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("lap_popup_label:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("lap_popup_label:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -106,6 +202,7 @@ tracks/0/keys = {
 [node name="Spatial" type="Spatial"]
 
 [node name="Envoirment" type="Spatial" parent="."]
+script = ExtResource( 20 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Envoirment"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
@@ -121,6 +218,10 @@ light_energy = 1.5
 shadow_enabled = true
 shadow_bias = -0.02
 directional_shadow_split_1 = 0.075
+
+[node name="RemoteClouds" type="RemoteTransform" parent="Envoirment"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 0 )
+remote_path = NodePath("../../Level/Detail/Clouds/CloudsInstance")
 
 [node name="Spawn" type="Spatial" parent="."]
 transform = Transform( 0.173648, 0, -0.984807, 0, 1, 0, 0.984807, 0, 0.173648, -20, 10, 20 )
@@ -168,6 +269,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="lap_popup_label" type="Label" parent="Level/Foreground/MarginContainer/HBoxContainer/Control/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 980.0
+margin_bottom = 78.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+
+[node name="lap_popup_animation" type="AnimationPlayer" parent="Level/Foreground/MarginContainer/HBoxContainer/Control/VBoxContainer"]
+autoplay = "Invisible"
+"anims/Fade Out" = SubResource( 8 )
+anims/Invisible = SubResource( 9 )
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Level/Foreground/MarginContainer/HBoxContainer"]
 margin_left = 984.0
 margin_right = 984.0
@@ -177,12 +290,13 @@ size_flags_vertical = 3
 [node name="lap_label" type="Label" parent="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer"]
 margin_bottom = 30.0
 custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 
 [node name="timer_label" type="Label" parent="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 34.0
 margin_bottom = 64.0
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -376,7 +490,7 @@ transform = Transform( 0.40436, 0, 0.9146, 0, 1, 0, -0.9146, 0, 0.40436, 16.582,
 curve = SubResource( 3 )
 
 [node name="PathFollow" type="PathFollow" parent="Level/Detail/Yatchs/Path_yatch_sm_2"]
-transform = Transform( -0.0370857, -2.79249e-07, 0.999195, 4.91679e-07, 1, 2.97653e-07, -0.999312, 5.02381e-07, -0.0370813, 4.22107, -0.999999, -0.56657 )
+transform = Transform( -0.0370857, -2.79249e-07, 0.999194, 4.91679e-07, 1, 2.97653e-07, -0.999312, 5.02381e-07, -0.0370813, 4.22107, -0.999999, -0.56657 )
 offset = 1.18823
 rotation_mode = 4
 
@@ -396,7 +510,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0 )
 curve = SubResource( 5 )
 
 [node name="PathFollow" type="PathFollow" parent="Level/Detail/Yatchs/Path_yatch_sm_3"]
-transform = Transform( 0.00373674, 0, 0.999838, 0, 1, 0, -0.999993, 0, 0.00373616, -11.349, 0, -11.1025 )
+transform = Transform( 0.00373674, 0, 0.999837, 0, 1, 0, -0.999993, 0, 0.00373615, -11.349, 0, -11.1025 )
 offset = 1.00028
 rotation_mode = 4
 
@@ -412,7 +526,11 @@ playback_speed = 0.5
 transform = Transform( -0.720829, 0, -0.693113, 0, 1, 0, 0.693113, 0, -0.720829, -11.6843, 1.59737, 17.8398 )
 
 [node name="Clouds" type="Spatial" parent="Level/Detail"]
-script = ExtResource( 17 )
+
+[node name="CloudsInstance" type="MeshInstance" parent="Level/Detail/Clouds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 0 )
+mesh = ExtResource( 19 )
+material/0 = ExtResource( 18 )
 
 [node name="Boats" type="Spatial" parent="Level/Detail"]
 
@@ -442,6 +560,48 @@ transform = Transform( -0.0292656, -0.249012, 0.726044, -0.348124, 0.910379, 0.1
 stream = ExtResource( 4 )
 volume_db = -10.0
 autoplay = true
+
+[node name="Cloud Wind 1" type="AudioStreamPlayer3D" parent="Level/Audio"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.69703, 20.2094, -20.1636 )
+stream = ExtResource( 17 )
+attenuation_model = 3
+unit_db = 50.0
+autoplay = true
+max_distance = 20.0
+out_of_range_mode = 1
+
+[node name="Cloud Wind 5" type="AudioStreamPlayer3D" parent="Level/Audio"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.2097, 0 )
+stream = ExtResource( 17 )
+attenuation_model = 3
+unit_db = 50.0
+autoplay = true
+max_distance = 20.0
+out_of_range_mode = 1
+
+[node name="Cloud Wind 3" type="AudioStreamPlayer3D" parent="Level/Audio"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.76178, 20.2094, 21.1473 )
+stream = ExtResource( 17 )
+unit_db = 50.0
+autoplay = true
+max_distance = 20.0
+out_of_range_mode = 1
+
+[node name="Cloud Wind 2" type="AudioStreamPlayer3D" parent="Level/Audio"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4596, 19.4104, 5.65371 )
+stream = ExtResource( 21 )
+unit_db = 50.0
+autoplay = true
+max_distance = 20.0
+out_of_range_mode = 1
+
+[node name="Cloud Wind 4" type="AudioStreamPlayer3D" parent="Level/Audio"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5467, 19.4104, -8.37024 )
+stream = ExtResource( 21 )
+unit_db = 50.0
+autoplay = true
+max_distance = 20.0
+out_of_range_mode = 1
 
 [node name="end_screen" parent="." instance=ExtResource( 15 )]
 pause_mode = 2
