@@ -18,6 +18,7 @@ onready var cam_target: Spatial = get_node("head_node/camera_target")
 var velocity := Vector3()
 var direction := Vector3()
 var move_axis := Vector2()
+var walk_enabled := true
 var sprint_enabled := true
 var sprinting := false
 # Walk
@@ -52,9 +53,10 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	move_axis.x = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
 	var lateral_movement = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	move_axis.y = lateral_movement
+	if	walk_enabled:
+		move_axis.x = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
+		move_axis.y = lateral_movement
 	
 	if	!is_on_floor():
 		player_object.rotate_z(deg2rad(lateral_movement) * -4)
@@ -220,7 +222,7 @@ func camera_rotation() -> void:
 		head.rotation_degrees = temp_rot
 
 func can_sprint() -> bool:
-	return (sprint_enabled and true)
+	return (sprint_enabled)
 	# return (sprint_enabled and is_on_floor())
 
 func _on_goal_ring_body_shape_entered(_body_id, _body, _body_shape, _area_shape):

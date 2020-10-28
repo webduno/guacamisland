@@ -6,14 +6,17 @@ onready var endscreen = get_node("../end_screen")
 onready var goal_success_sound_clip = load("res://import/audio/action/goal_ring.wav")
 onready var lap_complete_sound_clip = load("res://import/audio/action/lap_complete.wav")
 
-var lap_count = GLOBAL.difficulty
-var remaining_laps = GLOBAL.difficulty
+var lap_count = 2
+var remaining_laps = 2
 onready var lap_label = find_node("lap_label")
+onready var lap_popup_label = find_node("lap_popup_label")
+onready var lap_popup_animation = find_node("lap_popup_animation")
 
 onready var goals = get_node("Goals")
 var current_goal_index = 0
 var goal_list = [
-	"goal_ring 1",
+	"goal_ring 0",
+#	"goal_ring 1",
 	"goal_ring 2",
 	"goal_ring 3",
 	"goal_ring 4",
@@ -24,14 +27,6 @@ var goal_list = [
 	"goal_ring 9",
 	"goal_ring 10",
 	"goal_ring 11",
-	"goal_ring 12",
-	"goal_ring 13",
-	"goal_ring 14",
-	"goal_ring 15",
-	"goal_ring 16",
-	"goal_ring 17",
-	"goal_ring 18",
-	"goal_ring 19",
 ]
 
 onready var level_timer = find_node("timer_label")
@@ -44,11 +39,14 @@ onready var entities_container = get_node("Entities")
 func _ready():
 	AUDIO_MANAGER.set_regular_button_sfx()
 	player.level = self
+	player.walk_enabled = false
 	pause_screen.current_scene = "res://scenes/tutorial.tscn"
 	
 	goals.show()
 	for x in goals.get_children():
 		x.hide()
+		if x.has_node("Help"):
+			x.get_node("Help").hide()
 		
 	init_lap()
 	
@@ -67,14 +65,17 @@ func end_speedrun():
 	
 	endscreen.start_endscreen(result_data)	
 		
-func init_lap():
-	if	remaining_laps < lap_count:
-		AUDIO_MANAGER.play_sfx(lap_complete_sound_clip, 0)
 		
+func init_lap():
 	lap_label.text = "Lap: " + str(lap_count - remaining_laps) + "/" + str(lap_count)
 	
+	if	remaining_laps < lap_count:
+		AUDIO_MANAGER.play_sfx(lap_complete_sound_clip, 0)
+		lap_popup_label.text = "Lap: " + str(lap_count - remaining_laps) + "/" + str(lap_count)
+		lap_popup_animation.play("Fade Out")
+		
 	show_goal(current_goal_index)
-	
+
 func show_goal(goal_index):
 	var current_goal = goals.get_node(goal_list[goal_index])
 	current_goal.show()
