@@ -1,19 +1,23 @@
-extends KinematicBody
+extends Spatial
 
-###################-VARIABLES-####################
+onready var wing_flap_sound_clip = load("res://import/audio/action/flap1.wav")
+
+var level;
 
 # Player
-var level;
-onready var player_object: Spatial = get_node("head_node/guacamaya_redblue")
-onready var player_animation = player_object.get_node("AnimationPlayer")
+onready var kine_body: KinematicBody = get_node("KineBody")
+onready var player_object: Spatial = get_node("KineBody/Head/guacamaya_redblue")
+onready var player_animation: AnimationPlayer = player_object.get_node("AnimationPlayer")
 
 # Camera
 export(float) var mouse_sensitivity = 9.0
 export(float) var FOV = 100.0
 var mouse_axis := Vector2()
-onready var head: Spatial = get_node("head_node")
-onready var cam: Camera = get_node("InterpolatedCamera")
-onready var cam_target: Spatial = get_node("head_node/camera_target")
+onready var head: Spatial = get_node("KineBody/Head")
+onready var cam_target: Spatial = get_node("KineBody/Head/CameraTarget")
+#onready var cam_body: Spatial = get_node("CamBody")
+onready var cam_node: Camera = get_node("KineBody/Head/CameraRoot/ClippedCamera")
+
 # Move
 var velocity := Vector3()
 var direction := Vector3()
@@ -41,6 +45,7 @@ export(float, 0.0, 1.0, 0.05) var air_control = 0.3
 export(int) var JUMP_HEIGHT_CONSTANT = 3
 export(int) var SPRINT_JUMP_HEIGHT_CONSTANT = 4
 var jump_height = JUMP_HEIGHT_CONSTANT
+
 # Fly
 var fly_speed = 3
 var fly_accel = 1
@@ -49,20 +54,24 @@ var flying := false
 ##################################################
 
 func _ready() -> void:
-	cam.fov = FOV
+	cam_node.fov = FOV
+	cam_node.add_exception(kine_body)
 	
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	cam_node.global_transform = cam_node.global_transform.interpolate_with(cam_target.global_transform, delta * 5)
+	
 	var lateral_movement = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if	walk_enabled:
 		move_axis.x = Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward")
 		move_axis.y = lateral_movement
 	
-	if	!is_on_floor():
+	if	!kine_body.is_on_floor():
 		player_object.rotate_z(deg2rad(lateral_movement) * -4)
 		cam_target.rotate_z(deg2rad(lateral_movement) * -2)
-	player_object.rotation_degrees.z *= .98;
-	cam_target.rotation_degrees.z *= .85;
+		
+	if player_object.rotation_degrees.z != 0: player_object.rotation_degrees.z *= .98;
+	if cam_target.rotation_degrees.z != 0: cam_target.rotation_degrees.z *= .85;
 
 
 func _physics_process(delta: float) -> void:
@@ -78,15 +87,15 @@ func _input(event: InputEvent) -> void:
 		camera_rotation()
 		
 	if Input.is_action_pressed("zoom_in"):
-		cam_target.translation.z = clamp(cam_target.translation.z - 0.1, 0.3, 1)
+		cam_target.translation.z = clamp(cam_target.translation.z - 0.1, 0.5, 1)
 	if Input.is_action_pressed("zoom_out"):
-		cam_target.translation.z = clamp(cam_target.translation.z + 0.1, 0.3, 1)
+		cam_target.translation.z = clamp(cam_target.translation.z + 0.1, 0.5, 1)
 
 
 func walk(delta: float) -> void:
 	# Input
 	direction = Vector3()
-	var aim: Basis = get_global_transform().basis
+	var aim = kine_body.get_global_transform().basis
 	if move_axis.x >= 0.5:
 		direction -= aim.z
 	if move_axis.x <= -0.5:
@@ -98,7 +107,7 @@ func walk(delta: float) -> void:
 	direction.y = 0
 	direction = direction.normalized()
 	
-	if	is_on_floor():
+	if	kine_body.is_on_floor():
 		player_animation.play("On_Ground")
 	
 	# Jump
@@ -108,6 +117,7 @@ func walk(delta: float) -> void:
 	
 	# WINGS RETRACTING
 	if Input.is_action_just_pressed("move_jump"):
+		AUDIO_MANAGER.play_sfx(wing_flap_sound_clip, 0, -15)
 		player_animation.clear_queue() 
 		player_animation.stop()
 		player_animation.play("Flap_Wings")
@@ -135,15 +145,15 @@ func walk(delta: float) -> void:
 	if (Input.is_action_pressed("move_sprint") and can_sprint() and true):
 		jump_height = SPRINT_JUMP_HEIGHT_CONSTANT
 		speed = SPRINT_FLY_SPEED_CONTSTANT
-		cam.set_fov(lerp(cam.fov, FOV * 1.1, delta * 8))
+		cam_node.set_fov(lerp(cam_node.fov, FOV * 1.1, delta * 8))
 		sprinting = true
 	else:
 		jump_height = JUMP_HEIGHT_CONSTANT
 		speed = FLY_SPEED_CONTSTANT
-		cam.set_fov(lerp(cam.fov, FOV, delta * 8))
+		cam_node.set_fov(lerp(cam_node.fov, FOV, delta * 8))
 		sprinting = false;
 		
-	if	is_on_floor():
+	if	kine_body.is_on_floor():
 		speed = WALK_SPEED_CONTSTANT
 	
 	# Acceleration and Deacceleration
@@ -156,7 +166,7 @@ func walk(delta: float) -> void:
 		_temp_accel = acceleration
 	else:
 		_temp_accel = deacceleration
-	if not is_on_floor():
+	if !kine_body.is_on_floor():
 		_temp_accel *= air_control
 	# interpolation
 	_temp_vel = _temp_vel.linear_interpolate(_target, _temp_accel * delta)
@@ -171,8 +181,8 @@ func walk(delta: float) -> void:
 			velocity.z = 0
 	
 	# Move
-	var moving = move_and_slide_with_snap(velocity, _snap, FLOOR_NORMAL, true, 4, FLOOR_MAX_ANGLE)
-	if is_on_wall():
+	var moving = kine_body.move_and_slide_with_snap(velocity, _snap, FLOOR_NORMAL, true, 4, FLOOR_MAX_ANGLE)
+	if kine_body.is_on_wall():
 		velocity = moving
 	else:
 		velocity.y = moving.y
@@ -197,7 +207,7 @@ func fly(delta: float) -> void:
 	velocity = velocity.linear_interpolate(target, fly_accel * delta)
 	
 	# Move
-	velocity = move_and_slide(velocity)
+	velocity = kine_body.move_and_slide(velocity)
 
 
 func camera_rotation() -> void:
@@ -209,10 +219,10 @@ func camera_rotation() -> void:
 		
 		mouse_axis = Vector2()
 		
-		rotate_y(deg2rad(horizontal))
+		kine_body.rotate_y(deg2rad(horizontal))
 		head.rotate_x(deg2rad(vertical))
 		
-		if	!is_on_floor():
+		if	!kine_body.is_on_floor():
 			player_object.rotate_z(deg2rad(horizontal))
 			cam_target.rotate_z(deg2rad(horizontal))
 		

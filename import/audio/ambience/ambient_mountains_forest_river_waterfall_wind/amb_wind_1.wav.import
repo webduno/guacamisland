@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/amb_wind_1.wav-ebc4d49d222c81632c5d90a2eaa3823a.sample"
+
+[deps]
+
+source_file="res://import/audio/ambience/ambient_mountains_forest_river_waterfall_wind/amb_wind_1.wav"
+dest_files=[ "res://.import/amb_wind_1.wav-ebc4d49d222c81632c5d90a2eaa3823a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -26,7 +26,7 @@ onready var level_timer_stopwatch: Timer = level_timer.get_node("general_timer")
 onready var level_timer_audioplayer = level_timer.get_node("audioplayer_timer")
 
 onready var player = get_node("../Spawn/Player")
-onready var entities_container = get_node("Entities")
+onready var player_kine_body = get_node("../Spawn/Player/KineBody")
 
 func _ready():
 	AUDIO_MANAGER.set_regular_button_sfx()

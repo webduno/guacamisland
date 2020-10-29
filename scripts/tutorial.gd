@@ -1,10 +1,10 @@
 extends Spatial
 
-onready var pause_screen = get_node("../pause_screen")
-onready var endscreen = get_node("../end_screen")
-
 onready var goal_success_sound_clip = load("res://import/audio/action/goal_ring.wav")
 onready var lap_complete_sound_clip = load("res://import/audio/action/lap_complete.wav")
+
+onready var pause_screen = get_node("../pause_screen")
+onready var endscreen = get_node("../end_screen")
 
 onready var goals = get_node("Goals")
 var current_goal_index = 0

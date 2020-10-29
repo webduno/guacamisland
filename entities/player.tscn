@@ -1,28 +1,43 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://assets/env_clear_day.tres" type="Environment" id=3]
 [ext_resource path="res://assets/characters/guacamaya_redblue.tscn" type="PackedScene" id=4]
+
+[sub_resource type="SphereMesh" id=3]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+albedo_color = Color( 1, 1, 1, 0.196078 )
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.1, 0.03, 0.1 )
 
-[node name="player" type="KinematicBody"]
+[node name="Player" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0.037491 )
-shape = SubResource( 1 )
+[node name="KineBody" type="KinematicBody" parent="."]
 
-[node name="head_node" type="Spatial" parent="."]
+[node name="Head" type="Spatial" parent="KineBody"]
 
-[node name="camera_target" type="Spatial" parent="head_node"]
+[node name="CameraRoot" type="Spatial" parent="KineBody/Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.249798 )
+
+[node name="ClippedCamera" type="ClippedCamera" parent="KineBody/Head/CameraRoot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1 )
+margin = 0.5
+
+[node name="CameraTarget" type="Spatial" parent="KineBody/Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.02, 0.6 )
 
-[node name="guacamaya_redblue" parent="head_node" instance=ExtResource( 4 )]
+[node name="CameraTargetZone" type="MeshInstance" parent="KineBody/Head/CameraTarget"]
+visible = false
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
 
-[node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
-environment = ExtResource( 3 )
-target = NodePath("../head_node/camera_target")
-speed = 3.0
-enabled = true
+[node name="guacamaya_redblue" parent="KineBody/Head" instance=ExtResource( 4 )]
+
+[node name="BodyCollision" type="CollisionShape" parent="KineBody"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0.037491 )
+shape = SubResource( 1 )

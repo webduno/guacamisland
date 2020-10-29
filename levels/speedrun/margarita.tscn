@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://levels/speedrun/margarita.gd" type="Script" id=1]
 [ext_resource path="res://assets/geometry/margarita/island.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/geometry/detail/clouds.tres" type="ArrayMesh" id=19]
 [ext_resource path="res://scripts/envoirment.gd" type="Script" id=20]
 [ext_resource path="res://import/audio/ambience/wind/Wind.wav" type="AudioStream" id=21]
+[ext_resource path="res://import/audio/ambience/ambient_mountains_forest_river_waterfall_wind/waves_shore_loop.wav" type="AudioStream" id=22]
 
 [sub_resource type="DynamicFont" id=7]
 size = 64
@@ -490,8 +491,7 @@ transform = Transform( 0.40436, 0, 0.9146, 0, 1, 0, -0.9146, 0, 0.40436, 16.582,
 curve = SubResource( 3 )
 
 [node name="PathFollow" type="PathFollow" parent="Level/Detail/Yatchs/Path_yatch_sm_2"]
-transform = Transform( -0.0370857, -2.79249e-07, 0.999194, 4.91679e-07, 1, 2.97653e-07, -0.999312, 5.02381e-07, -0.0370813, 4.22107, -0.999999, -0.56657 )
-offset = 1.18823
+transform = Transform( -0.143615, 8.85617e-07, 0.989517, -1.42109e-14, 1, -8.94788e-07, -0.989633, -1.28521e-07, -0.143598, 3.03935, -0.999998, -0.448397 )
 rotation_mode = 4
 
 [node name="yatch_sm2" parent="Level/Detail/Yatchs/Path_yatch_sm_2/PathFollow" instance=ExtResource( 8 )]
@@ -499,7 +499,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22579, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Detail/Yatchs/Path_yatch_sm_2/PathFollow"]
 autoplay = "Sailling Loop"
-playback_speed = 0.5
+playback_speed = 0.75
 "anims/Sailling Loop" = SubResource( 4 )
 
 [node name="yatch" parent="Level/Detail/Yatchs" instance=ExtResource( 5 )]
@@ -510,8 +510,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0 )
 curve = SubResource( 5 )
 
 [node name="PathFollow" type="PathFollow" parent="Level/Detail/Yatchs/Path_yatch_sm_3"]
-transform = Transform( 0.00373674, 0, 0.999837, 0, 1, 0, -0.999993, 0, 0.00373615, -11.349, 0, -11.1025 )
-offset = 1.00028
+transform = Transform( -0.102662, 0, 0.994561, 0, 1, 0, -0.994716, 0, -0.102646, -12.3474, 0, -11.0459 )
 rotation_mode = 4
 
 [node name="yatch_sm2" parent="Level/Detail/Yatchs/Path_yatch_sm_3/PathFollow" instance=ExtResource( 8 )]
@@ -519,7 +518,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22579, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Detail/Yatchs/Path_yatch_sm_3/PathFollow"]
 autoplay = "Sailling Loop"
-playback_speed = 0.5
+playback_speed = 0.75
 "anims/Sailling Loop" = SubResource( 6 )
 
 [node name="Ferry" parent="Level/Detail" instance=ExtResource( 9 )]
@@ -556,52 +555,77 @@ transform = Transform( -0.0292656, -0.249012, 0.726044, -0.348124, 0.910379, 0.1
 
 [node name="Audio" type="Node" parent="Level"]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Level/Audio"]
+[node name="Background Theme" type="AudioStreamPlayer" parent="Level/Audio"]
 stream = ExtResource( 4 )
-volume_db = -10.0
+volume_db = -15.0
 autoplay = true
 
-[node name="Cloud Wind 1" type="AudioStreamPlayer3D" parent="Level/Audio"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.69703, 20.2094, -20.1636 )
+[node name="Cloud Winds" type="Node" parent="Level/Audio"]
+
+[node name="Cloud Wind 1" type="AudioStreamPlayer3D" parent="Level/Audio/Cloud Winds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.69703, 19, -20.1636 )
 stream = ExtResource( 17 )
 attenuation_model = 3
 unit_db = 50.0
 autoplay = true
-max_distance = 20.0
+max_distance = 15.0
 out_of_range_mode = 1
 
-[node name="Cloud Wind 5" type="AudioStreamPlayer3D" parent="Level/Audio"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.2097, 0 )
+[node name="Cloud Wind 5" type="AudioStreamPlayer3D" parent="Level/Audio/Cloud Winds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, 0 )
 stream = ExtResource( 17 )
 attenuation_model = 3
 unit_db = 50.0
 autoplay = true
-max_distance = 20.0
+max_distance = 15.0
 out_of_range_mode = 1
 
-[node name="Cloud Wind 3" type="AudioStreamPlayer3D" parent="Level/Audio"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.76178, 20.2094, 21.1473 )
+[node name="Cloud Wind 3" type="AudioStreamPlayer3D" parent="Level/Audio/Cloud Winds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.76178, 19, 21.1473 )
 stream = ExtResource( 17 )
+attenuation_model = 3
 unit_db = 50.0
 autoplay = true
-max_distance = 20.0
+max_distance = 15.0
 out_of_range_mode = 1
 
-[node name="Cloud Wind 2" type="AudioStreamPlayer3D" parent="Level/Audio"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4596, 19.4104, 5.65371 )
+[node name="Cloud Wind 2" type="AudioStreamPlayer3D" parent="Level/Audio/Cloud Winds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4596, 19, 5.65371 )
 stream = ExtResource( 21 )
+attenuation_model = 3
 unit_db = 50.0
 autoplay = true
-max_distance = 20.0
+max_distance = 15.0
 out_of_range_mode = 1
 
-[node name="Cloud Wind 4" type="AudioStreamPlayer3D" parent="Level/Audio"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5467, 19.4104, -8.37024 )
+[node name="Cloud Wind 4" type="AudioStreamPlayer3D" parent="Level/Audio/Cloud Winds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5467, 19, -8.37024 )
 stream = ExtResource( 21 )
+attenuation_model = 3
 unit_db = 50.0
 autoplay = true
-max_distance = 20.0
+max_distance = 15.0
 out_of_range_mode = 1
+
+[node name="Water Shores" type="Node" parent="Level/Audio"]
+
+[node name="Water Shore 1" type="AudioStreamPlayer3D" parent="Level/Audio/Water Shores"]
+transform = Transform( -0.996005, 0, -0.0892942, 0, 1, 0, 0.0892942, 0, -0.996005, -10, -5, 0 )
+stream = ExtResource( 22 )
+attenuation_model = 3
+unit_db = 15.0
+autoplay = true
+max_distance = 15.0
+emission_angle_degrees = 15.0
+
+[node name="Water Shore 2" type="AudioStreamPlayer3D" parent="Level/Audio/Water Shores"]
+transform = Transform( -0.996005, 0, -0.0892942, 0, 1, 0, 0.0892942, 0, -0.996005, 10, -4, 0 )
+stream = ExtResource( 22 )
+attenuation_model = 3
+unit_db = 15.0
+autoplay = true
+max_distance = 15.0
+emission_angle_degrees = 15.0
 
 [node name="end_screen" parent="." instance=ExtResource( 15 )]
 pause_mode = 2

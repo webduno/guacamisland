@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/flap2.wav-19cb07efd7316200639dd1c85e126baf.sample"
+
+[deps]
+
+source_file="res://import/audio/action/flap2.wav"
+dest_files=[ "res://.import/flap2.wav-19cb07efd7316200639dd1c85e126baf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
