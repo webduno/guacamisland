@@ -23,11 +23,11 @@
 [ext_resource path="res://import/audio/ambience/wind/Wind.wav" type="AudioStream" id=21]
 [ext_resource path="res://import/audio/ambience/ambient_mountains_forest_river_waterfall_wind/waves_shore_loop.wav" type="AudioStream" id=22]
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 16 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 resource_name = "Fade Out"
 length = 2.0
 tracks/0/type = "bezier"
@@ -71,7 +71,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.1, 2 )
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=3]
 resource_name = "Invisible"
 length = 0.1
 tracks/0/type = "bezier"
@@ -115,11 +115,11 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 )
 }
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=4]
 size = 24
 font_data = ExtResource( 16 )
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=5]
 length = 6.0
 loop = true
 step = 1.0
@@ -154,13 +154,13 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 3, 6 )
 }
 
-[sub_resource type="Curve3D" id=3]
+[sub_resource type="Curve3D" id=6]
 _data = {
 "points": PoolVector3Array( -2.97401, 2.26498e-06, 0.458479, 2.97401, -2.26498e-06, -0.458479, 3.03935, -0.999998, -0.448397, -1.70648, 2.26498e-06, 0.467096, 1.70648, -2.26498e-06, -0.467096, 9.49804, -1, -0.436802, -1.07817, 0, 0.92248, 1.07817, 0, -0.92248, 14.8347, -1, -3.34896, -0.110485, -2.26498e-06, 3.03547, 0.110485, 2.26498e-06, -3.03547, 20.0185, -0.999998, -12.646, 1.3959, -2.26498e-06, 1.59757, -1.3959, 2.26498e-06, -1.59757, 18.3063, -0.999998, -18.3841, 2.24697, -2.26498e-06, 2.88066, -2.24697, 2.26498e-06, -2.88066, 10.8643, -0.999998, -21.692, 1.32512, -2.26498e-06, 2.24417, -1.32512, 2.26498e-06, -2.24417, 8.01509, -0.999998, -31.0513, 1.6769, -2.26498e-06, -1.13182, -1.6769, 2.26498e-06, 1.13182, 3.12844, -0.999998, -33.9426, -1.29109, -2.26498e-06, -1.12802, 1.29109, 2.26498e-06, 1.12802, 5.11987, -1, -28.9686, -2.85107, -2.26498e-06, -1.42726, 2.85107, 2.26498e-06, 1.42726, 14.9343, -0.999998, -24.7286, -1.14215, -2.26498e-06, -2.12331, 1.14215, 2.26498e-06, 2.12331, 20.864, -0.999998, -21.5769, 0.94569, -2.26498e-06, -2.11481, -0.94569, 2.26498e-06, 2.11481, 20.348, -0.999998, -9.80194, 1.88919, -2.26498e-06, -1.05774, -1.88919, 2.26498e-06, 1.05774, 15.8619, -1, -4.51974, 4.19321, -2.26498e-06, -0.187296, -4.19321, 2.26498e-06, 0.187296, 6.56659, -1, 0.28673, 1.79514, -2.26498e-06, 0.772076, -1.79514, 2.26498e-06, -0.772076, 0.357809, -1, -2.33835, 1.0655, -2.26498e-06, 1.72817, -1.0655, 2.26498e-06, -1.72817, -3.80409, -0.999998, -3.73464, 1.23986, -2.26498e-06, 1.57256, -1.23986, 2.26498e-06, -1.57256, -6.81391, -0.999998, -9.25985, 1.30801, -2.26498e-06, -0.491709, -1.30801, 2.26498e-06, 0.491709, -10.2101, -0.999998, -11.698, -1.59735, -2.26498e-06, -3.13009, 1.59735, 2.26498e-06, 3.13009, -10.1418, -1, -5.74613, -2.20542, -2.26498e-06, -0.372355, 2.20542, 2.26498e-06, 0.372355, -1.54376, -0.999998, -0.374332, 0, 0, 0, 0, 0, 0, 3.03935, -0.999998, -0.448397 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=7]
 length = 150.0
 loop = true
 step = 1.0
@@ -177,13 +177,13 @@ tracks/0/keys = {
 "values": [ 0.0, 20.3471, 21.0, 54.4991, 59.0, 129.957, 140.0, 152.603 ]
 }
 
-[sub_resource type="Curve3D" id=5]
+[sub_resource type="Curve3D" id=8]
 _data = {
 "points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -12.3474, 0, -11.0459, -1.52263, 0, -1.58136, 1.52263, 0, 1.58136, -7.45147, 0, -9.9063, -0.860188, 0, -0.938386, 0.860188, 0, 0.938386, -5.94389, 0, -7.79276, -0.112616, 0, -0.76614, 0.112616, 0, 0.76614, -4.53923, 0, -5.55905, -0.960143, 0, -0.563239, 0.960143, 0, 0.563239, -4.37041, 0, -1.00076, -0.731727, 0, -0.172096, 0.731727, 0, 0.172096, -3.0671, 0, -0.398284, -0.829971, 0, 0.633944, 0.829971, 0, -0.633944, 2.8893, 0, -1.76329, -0.484046, 0, 0.685134, 0.484046, 0, -0.685134, 3.85101, 0, -2.84909, -0.589664, 0, 1.5215, 0.589664, 0, -1.5215, 5.99159, 0, -6.57184, -0.0493383, 0, 2.42444, 0.0493383, 0, -2.42444, 7.52886, 0, -12.5532, 0.897188, 0, 0.578205, -0.897188, 0, -0.578205, 5.57442, 0, -19.037, 0.563074, 0, 0.0894871, -0.563074, 0, -0.0894871, 2.9685, 0, -19.8436, 1.11376, 0, 0.00556755, -1.11376, 0, -0.00556755, -0.319929, 0, -19.9987, 0.929025, 0, -0.139744, -0.929025, 0, 0.139744, -3.08097, 0, -19.7815, 0.75736, 0, -0.217598, -0.75736, 0, 0.217598, -6.52451, 0, -18.9129, 0.675429, 0, -0.436129, -0.675429, 0, 0.436129, -8.91327, 0, -17.6099, 0.537146, 0, -1.28155, -0.537146, 0, 1.28155, -10.7436, 0, -16.2759, -0.360966, 0, -1.88625, 0.360966, 0, 1.88625, -6.17882, 0, -11.4875, 1.08763, 0, -0.814595, -1.08763, 0, 0.814595, -8.87782, 0, -5.62421, 0.677337, 0, -0.0662544, -0.677337, 0, 0.0662544, -13.0349, 0, -3.85591, -1.76777, 0, 2.42155, 1.76777, 0, -2.42155, -16.3854, 0, -8.50934, 0, 0, 0, 0, 0, 0, -12.3474, 0, -11.0459 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=9]
 length = 200.0
 loop = true
 step = 1.0
@@ -274,13 +274,13 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 980.0
 margin_bottom = 78.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 
 [node name="lap_popup_animation" type="AnimationPlayer" parent="Level/Foreground/MarginContainer/HBoxContainer/Control/VBoxContainer"]
 autoplay = "Invisible"
-"anims/Fade Out" = SubResource( 8 )
-anims/Invisible = SubResource( 9 )
+"anims/Fade Out" = SubResource( 2 )
+anims/Invisible = SubResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Level/Foreground/MarginContainer/HBoxContainer"]
 margin_left = 984.0
@@ -290,13 +290,13 @@ size_flags_vertical = 3
 
 [node name="lap_label" type="Label" parent="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer"]
 margin_bottom = 30.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 
 [node name="timer_label" type="Label" parent="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 34.0
 margin_bottom = 64.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 script = ExtResource( 3 )
 __meta__ = {
@@ -484,11 +484,11 @@ transform = Transform( 0.998875, 0, -0.0474197, 0, 1, 0, 0.0474197, 0, 0.998875,
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Detail/Yatchs/yatch_sm"]
 autoplay = "Yatch Idle"
-"anims/Yatch Idle" = SubResource( 2 )
+"anims/Yatch Idle" = SubResource( 5 )
 
 [node name="Path_yatch_sm_2" type="Path" parent="Level/Detail/Yatchs"]
 transform = Transform( 0.40436, 0, 0.9146, 0, 1, 0, -0.9146, 0, 0.40436, 16.582, 3.25, 10.759 )
-curve = SubResource( 3 )
+curve = SubResource( 6 )
 
 [node name="PathFollow" type="PathFollow" parent="Level/Detail/Yatchs/Path_yatch_sm_2"]
 transform = Transform( -0.143615, 8.85617e-07, 0.989517, -1.42109e-14, 1, -8.94788e-07, -0.989633, -1.28521e-07, -0.143598, 3.03935, -0.999998, -0.448397 )
@@ -500,14 +500,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22579, 0 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Detail/Yatchs/Path_yatch_sm_2/PathFollow"]
 autoplay = "Sailling Loop"
 playback_speed = 0.75
-"anims/Sailling Loop" = SubResource( 4 )
+"anims/Sailling Loop" = SubResource( 7 )
 
 [node name="yatch" parent="Level/Detail/Yatchs" instance=ExtResource( 5 )]
 transform = Transform( 0.465923, 0, 0.884825, 0, 1, 0, -0.884825, 0, 0.465923, 0.0368357, 1, -15.7157 )
 
 [node name="Path_yatch_sm_3" type="Path" parent="Level/Detail/Yatchs"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0 )
-curve = SubResource( 5 )
+curve = SubResource( 8 )
 
 [node name="PathFollow" type="PathFollow" parent="Level/Detail/Yatchs/Path_yatch_sm_3"]
 transform = Transform( -0.102662, 0, 0.994561, 0, 1, 0, -0.994716, 0, -0.102646, -12.3474, 0, -11.0459 )
@@ -519,10 +519,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22579, 0 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Detail/Yatchs/Path_yatch_sm_3/PathFollow"]
 autoplay = "Sailling Loop"
 playback_speed = 0.75
-"anims/Sailling Loop" = SubResource( 6 )
+"anims/Sailling Loop" = SubResource( 9 )
 
 [node name="Ferry" parent="Level/Detail" instance=ExtResource( 9 )]
-transform = Transform( -0.720829, 0, -0.693113, 0, 1, 0, 0.693113, 0, -0.720829, -11.6843, 1.59737, 17.8398 )
+transform = Transform( 0.693112, 0, -0.720829, 0, 1, 0, 0.720829, 0, 0.693112, -11.6843, 1.59737, 17.8398 )
 
 [node name="Clouds" type="Spatial" parent="Level/Detail"]
 

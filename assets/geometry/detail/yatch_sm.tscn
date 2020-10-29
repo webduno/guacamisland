@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://import/3d/detail/DefaultMaterial.material" type="Material" id=1]
 [ext_resource path="res://assets/materials/yatch_glass_spatial_shader.tres" type="Material" id=2]
 [ext_resource path="res://assets/materials/yatch_mirror_spatial_shader.tres" type="Material" id=3]
 [ext_resource path="res://assets/materials/yatch_metal_spatial_shader.tres" type="Material" id=4]
+[ext_resource path="res://import/audio/entities/motor sound.wav" type="AudioStream" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 surfaces/0 = {
@@ -102,6 +103,16 @@ surfaces/0 = {
 "vertex_count": 108
 }
 
+[sub_resource type="CapsuleShape" id=10]
+radius = 0.42642
+height = 0.670102
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 0.428877, 0.153481, 0.158747 )
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 0.333623, 0.153481, 0.348057 )
+
 [node name="yatch_sm" type="Spatial"]
 
 [node name="handrails" type="MeshInstance" parent="."]
@@ -133,3 +144,25 @@ material/0 = SubResource( 8 )
 transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0, 0, 0 )
 mesh = SubResource( 9 )
 material/0 = ExtResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.133756, -0.0376535 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.338403, -0.726982 )
+shape = SubResource( 11 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.177549, -0.234727 )
+shape = SubResource( 12 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.593372 )
+stream = ExtResource( 5 )
+attenuation_model = 3
+unit_db = 10.0
+autoplay = true
+max_distance = 8.0
