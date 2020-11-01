@@ -1,8 +1,10 @@
 extends Node
 
+var base_path = "user://"
+var base_saves_path = "user://saves/"
+
 var game_data = {}
 var difficulty = 1
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+	
+func save_current_game():
+	pass

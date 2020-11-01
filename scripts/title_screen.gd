@@ -10,8 +10,6 @@ signal savedgame_row_mouse_entered
 signal savedgame_row_mouse_exited
 signal savedgame_row_clicked
 
-var base_path = "user://"
-var base_saves_path = "user://saves/"
 var gamelist = []
 
 onready var buttons_animation = get_node("container/panel 1/buttons_animation")
@@ -36,10 +34,10 @@ func _ready():
 	
 func read_gamelist():
 	var dir = Directory.new()
-	if !dir.dir_exists(base_saves_path):
-		dir.make_dir(base_saves_path)
+	if !dir.dir_exists(GLOBAL.base_saves_path):
+		dir.make_dir(GLOBAL.base_saves_path)
 		
-	dir.open(base_saves_path)
+	dir.open(GLOBAL.base_saves_path)
 	dir.list_dir_begin()
 
 	while true:
@@ -48,7 +46,7 @@ func read_gamelist():
 			break
 		elif not file.begins_with("."):
 			var fileData = File.new()
-			var error = fileData.open(base_saves_path+file, File.READ)
+			var error = fileData.open(GLOBAL.base_saves_path+file, File.READ)
 			if error == OK:
 				var data = fileData.get_var()
 				var modified = fileData.get_modified_time(fileData.get_path())
@@ -101,8 +99,8 @@ func _on_newgame_open_button_pressed():
 	
 func _on_save_newgame_button_pressed():
 	var dir = Directory.new()
-	if !dir.dir_exists(base_saves_path):
-		dir.make_dir(base_saves_path)
+	if !dir.dir_exists(GLOBAL.base_saves_path):
+		dir.make_dir(GLOBAL.base_saves_path)
 	
 	var file = File.new()
 	var data = {
@@ -115,8 +113,8 @@ func _on_save_newgame_button_pressed():
 			},
 		},
 	}
-	var error = file.open(base_saves_path+newgame_name_input.text+".dat", File.WRITE)
-	print("saving new game ("+base_saves_path+newgame_name_input.text+".dat)...")
+	var error = file.open(GLOBAL.base_saves_path+newgame_name_input.text+".dat", File.WRITE)
+	print("saving new game ("+GLOBAL.base_saves_path+newgame_name_input.text+".dat)...")
 	if error == OK:
 		file.store_var(data)
 		file.close()

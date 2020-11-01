@@ -222,6 +222,6 @@ texture_hover = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="margin/container/margin/results/action_buttons/try_again_button" to="." method="_on_Button_Next_pressed"]
+[connection signal="pressed" from="margin/container/margin/results/action_buttons/try_again_button" to="." method="_on_try_again_button_pressed"]
 [connection signal="pressed" from="margin/container/margin/results/action_buttons/next_button" to="." method="_on_Button_Next_pressed"]
 [connection signal="pressed" from="margin/container/Button_Quit_Main_Menu" to="." method="_on_Button_Quit_Main_Menu_pressed"]

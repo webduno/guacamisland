@@ -36,6 +36,7 @@ func play_sfx(audio_clip : AudioStream, priority : int = 0, volume : int = 0):
 			var priority_player = check_priority_and_find_oldest(dic, priority) #finds player with same/lowest priority and oldest player
 			if priority_player != null:
 				$sfx.get_node(priority_player).stream = audio_clip
+				$sfx.get_node(priority_player).volume_db = volume
 				$sfx.get_node(priority_player).play()
 			else:
 				print("priority player is null")

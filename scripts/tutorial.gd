@@ -2,6 +2,7 @@ extends Spatial
 
 onready var goal_success_sound_clip = load("res://import/audio/action/goal_ring.wav")
 onready var lap_complete_sound_clip = load("res://import/audio/action/lap_complete.wav")
+onready var bg_music = load("res://import/audio/background/jump and run - tropics.wav")
 
 onready var pause_screen = get_node("../pause_screen")
 onready var endscreen = get_node("../end_screen")
@@ -29,9 +30,13 @@ onready var entities_container = get_node("Entities")
 
 func _ready():
 	AUDIO_MANAGER.set_regular_button_sfx()
+	AUDIO_MANAGER.play_music(bg_music, -15)
 	player.level = self
 	player.walk_enabled = false
-	pause_screen.current_scene = "res://scenes/tutorial.tscn"
+	
+	var current_scene = "res://scenes/tutorial.tscn"
+	pause_screen.current_scene = current_scene
+	endscreen.current_scene = current_scene
 	
 	goals.show()
 	for x in goals.get_children():
@@ -51,10 +56,14 @@ func end_speedrun():
 	get_node("Foreground").queue_free()
 	
 	var result_data : Dictionary = {}
+	result_data.level_name = "tutorial"
+	result_data.level_title = "Tutorial"
 	result_data.laps = lap_count
 	result_data.time = level_timer.elapsedTime
 	
-	endscreen.start_endscreen(result_data)	
+	endscreen.start_endscreen({
+		"max_time": 9999999999.0
+	},result_data)	
 		
 		
 func init_lap():
