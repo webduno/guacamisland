@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/speedrun_end_screen.gd" type="Script" id=1]
 [ext_resource path="res://import/2d/speedrun_endscreen/bg_scroll.png" type="Texture" id=2]
-[ext_resource path="res://import/2d/text_sprites/quit_main_menu.png" type="Texture" id=3]
-[ext_resource path="res://import/2d/text_sprites/quit_main_menu-hover.png" type="Texture" id=4]
-[ext_resource path="res://import/audio/background/island_0.wav" type="AudioStream" id=5]
-[ext_resource path="res://import/2d/text_sprites/congratulations.png" type="Texture" id=6]
-[ext_resource path="res://import/2d/text_sprites/next.png" type="Texture" id=7]
-[ext_resource path="res://import/2d/text_sprites/next-hover.png" type="Texture" id=8]
+[ext_resource path="res://import/2d/text_sprites/speedrun_end_screen/go_main_menu-hover.png" type="Texture" id=3]
+[ext_resource path="res://import/2d/text_sprites/speedrun_end_screen/go_main_menu.png" type="Texture" id=4]
+[ext_resource path="res://import/2d/text_sprites/speedrun_end_screen/try_again-hover.png" type="Texture" id=5]
+[ext_resource path="res://import/2d/text_sprites/speedrun_end_screen/congratulations.png" type="Texture" id=6]
+[ext_resource path="res://import/2d/text_sprites/speedrun_end_screen/next-hover.png" type="Texture" id=7]
+[ext_resource path="res://import/2d/text_sprites/speedrun_end_screen/next.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/syne_mono_font.tres" type="DynamicFont" id=9]
+[ext_resource path="res://import/2d/text_sprites/speedrun_end_screen/try_again.png" type="Texture" id=10]
 
 [node name="endscreen" type="Control"]
 anchor_right = 1.0
@@ -18,7 +19,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
+[node name="panel" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.745098 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -26,7 +27,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BG_Scroll" type="TextureRect" parent="."]
+[node name="bg_scroll" type="TextureRect" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -40,7 +41,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="margin" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -52,18 +53,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Container" type="Control" parent="MarginContainer"]
+[node name="container" type="Control" parent="margin"]
 margin_left = 100.0
 margin_top = 60.0
 margin_right = 924.0
 margin_bottom = 540.0
 mouse_filter = 2
 
-[node name="Congratulations!" type="TextureRect" parent="MarginContainer/Container"]
+[node name="congratulations" type="TextureRect" parent="margin/container"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -210.5
-margin_right = 210.5
+margin_left = -210.0
+margin_right = 210.0
 margin_bottom = 52.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -72,7 +73,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Container"]
+[node name="margin" type="MarginContainer" parent="margin/container"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 150
@@ -83,7 +84,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Results" type="VBoxContainer" parent="MarginContainer/Container/MarginContainer"]
+[node name="results" type="VBoxContainer" parent="margin/container/margin"]
 margin_left = 150.0
 margin_top = 120.0
 margin_right = 674.0
@@ -91,11 +92,11 @@ margin_bottom = 360.0
 size_flags_vertical = 3
 custom_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Container/MarginContainer/Results"]
+[node name="level" type="HBoxContainer" parent="margin/container/margin/results"]
 margin_right = 524.0
 margin_bottom = 39.0
 
-[node name="Level_Label2" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer"]
+[node name="level_Label" type="Label" parent="margin/container/margin/results/level"]
 margin_right = 108.0
 margin_bottom = 39.0
 size_flags_horizontal = 0
@@ -104,7 +105,7 @@ custom_colors/font_color = Color( 0, 0, 0, 0.392157 )
 text = "Level:"
 align = 1
 
-[node name="Level_Label" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer"]
+[node name="level_value_label" type="Label" parent="margin/container/margin/results/level"]
 margin_left = 112.0
 margin_right = 112.0
 margin_bottom = 39.0
@@ -113,19 +114,19 @@ custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/Container/MarginContainer/Results"]
+[node name="HSeparator2" type="HSeparator" parent="margin/container/margin/results"]
 modulate = Color( 0, 0, 0, 0.0980392 )
 margin_top = 39.0
 margin_right = 524.0
 margin_bottom = 59.0
 custom_constants/separation = 20
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/Container/MarginContainer/Results"]
+[node name="laps" type="HBoxContainer" parent="margin/container/margin/results"]
 margin_top = 59.0
 margin_right = 524.0
 margin_bottom = 98.0
 
-[node name="Laps_Label2" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer3"]
+[node name="laps_label" type="Label" parent="margin/container/margin/results/laps"]
 margin_right = 90.0
 margin_bottom = 39.0
 size_flags_horizontal = 0
@@ -134,7 +135,7 @@ custom_colors/font_color = Color( 0, 0, 0, 0.392157 )
 text = "Laps:"
 align = 1
 
-[node name="Laps_Label" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer3"]
+[node name="laps_value_label" type="Label" parent="margin/container/margin/results/laps"]
 margin_left = 94.0
 margin_right = 94.0
 margin_bottom = 39.0
@@ -143,12 +144,12 @@ custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/Container/MarginContainer/Results"]
+[node name="time" type="HBoxContainer" parent="margin/container/margin/results"]
 margin_top = 98.0
 margin_right = 524.0
 margin_bottom = 137.0
 
-[node name="Time_Label2" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer2"]
+[node name="time_label" type="Label" parent="margin/container/margin/results/time"]
 margin_right = 90.0
 margin_bottom = 39.0
 size_flags_horizontal = 0
@@ -157,7 +158,7 @@ custom_colors/font_color = Color( 0, 0, 0, 0.392157 )
 text = "Time:"
 align = 1
 
-[node name="Time_Label" type="Label" parent="MarginContainer/Container/MarginContainer/Results/HBoxContainer2"]
+[node name="time_value_label" type="Label" parent="margin/container/margin/results/time"]
 margin_left = 94.0
 margin_right = 94.0
 margin_bottom = 39.0
@@ -166,45 +167,61 @@ custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/Container/MarginContainer/Results"]
+[node name="HSeparator" type="HSeparator" parent="margin/container/margin/results"]
 modulate = Color( 0, 0, 0, 0 )
 margin_top = 137.0
 margin_right = 524.0
-margin_bottom = 207.0
+margin_bottom = 200.0
 size_flags_vertical = 3
 custom_constants/separation = 0
 
-[node name="Button_Next" type="TextureButton" parent="MarginContainer/Container/MarginContainer/Results" groups=[
+[node name="action_buttons" type="HBoxContainer" parent="margin/container/margin/results"]
+margin_top = 200.0
+margin_right = 524.0
+margin_bottom = 240.0
+custom_constants/separation = 100
+alignment = 1
+
+[node name="try_again_button" type="TextureButton" parent="margin/container/margin/results/action_buttons" groups=[
 "regular_button",
 ]]
-margin_left = 225.0
-margin_top = 207.0
-margin_right = 299.0
-margin_bottom = 240.0
+margin_left = 100.0
+margin_right = 251.0
+margin_bottom = 40.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture_normal = ExtResource( 7 )
-texture_hover = ExtResource( 8 )
+texture_normal = ExtResource( 10 )
+texture_hover = ExtResource( 5 )
 
-[node name="Button_Quit_Main_Menu" type="TextureButton" parent="MarginContainer/Container" groups=[
+[node name="next_button" type="TextureButton" parent="margin/container/margin/results/action_buttons" groups=[
+"regular_button",
+]]
+margin_left = 351.0
+margin_top = 3.0
+margin_right = 424.0
+margin_bottom = 36.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 8 )
+texture_hover = ExtResource( 7 )
+
+[node name="Button_Quit_Main_Menu" type="TextureButton" parent="margin/container" groups=[
 "regular_button",
 ]]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -171.5
-margin_top = -44.0
-margin_right = 171.5
+margin_left = -132.0
+margin_top = -31.0
+margin_right = 132.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
-texture_normal = ExtResource( 3 )
-texture_hover = ExtResource( 4 )
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="endscreen_audio_loop" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-[connection signal="pressed" from="MarginContainer/Container/MarginContainer/Results/Button_Next" to="." method="_on_Button_Next_pressed"]
-[connection signal="pressed" from="MarginContainer/Container/Button_Quit_Main_Menu" to="." method="_on_Button_Quit_Main_Menu_pressed"]
+[connection signal="pressed" from="margin/container/margin/results/action_buttons/try_again_button" to="." method="_on_Button_Next_pressed"]
+[connection signal="pressed" from="margin/container/margin/results/action_buttons/next_button" to="." method="_on_Button_Next_pressed"]
+[connection signal="pressed" from="margin/container/Button_Quit_Main_Menu" to="." method="_on_Button_Quit_Main_Menu_pressed"]

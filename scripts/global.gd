@@ -1,6 +1,6 @@
 extends Node
 
-var level_settings
+var game_data = {}
 var difficulty = 1
 
 # Called when the node enters the scene tree for the first time.

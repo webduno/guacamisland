@@ -1,9 +1,8 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://levels/speedrun/margarita.gd" type="Script" id=1]
 [ext_resource path="res://assets/geometry/margarita/island.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/level_timer.gd" type="Script" id=3]
-[ext_resource path="res://import/audio/background/jump and run - tropics.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/geometry/detail/yatch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://import/audio/ticks/loopable-ticking-clock.wav" type="AudioStream" id=7]
@@ -554,11 +553,6 @@ transform = Transform( -0.0292656, -0.249012, 0.726044, -0.348124, 0.910379, 0.1
 [node name="Entities" type="Spatial" parent="Level"]
 
 [node name="Audio" type="Node" parent="Level"]
-
-[node name="Background Theme" type="AudioStreamPlayer" parent="Level/Audio"]
-stream = ExtResource( 4 )
-volume_db = -15.0
-autoplay = true
 
 [node name="Cloud Winds" type="Node" parent="Level/Audio"]
 

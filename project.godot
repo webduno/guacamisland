@@ -28,7 +28,7 @@ AUDIO_MANAGER="*res://scenes/audio_manager.tscn"
 [display]
 
 window/size/resizable=false
-mouse_cursor/custom_image="res://import/2d/cursor.png"
+mouse_cursor/custom_image="res://import/2d/icons/cursor.png"
 
 [input]
 

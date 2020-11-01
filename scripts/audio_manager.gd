@@ -74,7 +74,6 @@ func find_oldest_player():
 			last_child = child
 	
 	return last_child.name
-	pass
 	
 #good for all types of situations, important sound get played most of the time and sounds doesn't get get
 #swallowed up most of the time
@@ -104,7 +103,13 @@ func check_priority_and_find_oldest(_dic, _priority): #1,3,1 == 1
 	#if there is more then 1 player
 	#get the oldest player from the lowest priority players
 
-func play_music(music_clip : AudioStream):
+func play_music(music_clip : AudioStream, volume : int = 0):
+	$music/music_player.volume_db = volume
 	$music/music_player.stream = music_clip
 	$music/music_player.play()
 	pass
+
+func pause_music():
+	$music/music_player.stream_paused = true
+func unpause_music():
+	$music/music_player.stream_paused = false

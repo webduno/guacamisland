@@ -1,12 +1,50 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://import/2d/text_sprites/icons/icon_caret_right.png" type="Texture" id=1]
-[ext_resource path="res://import/2d/text_sprites/icons/icon_caret_right-hover.png" type="Texture" id=2]
+[ext_resource path="res://import/fonts/SyneMono-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scripts/savedgame_row.gd" type="Script" id=4]
+[ext_resource path="res://import/2d/icons/icon_arrow_right.png" type="Texture" id=5]
 
-[node name="savedgame_row" type="MarginContainer"]
-margin_right = 395.0
-margin_bottom = 24.0
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.345098 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 3 )
+
+[node name="savedgame_row" type="Control"]
+anchor_right = 1.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
 size_flags_horizontal = 3
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="margin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -15,24 +53,85 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="margin" type="HBoxContainer" parent="."]
+[node name="Panel" type="Panel" parent="margin"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 385.0
-margin_bottom = 34.0
+margin_right = 1014.0
+margin_bottom = 70.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="game_name_label" type="Label" parent="margin"]
-margin_top = 5.0
-margin_right = 345.0
-margin_bottom = 19.0
+[node name="grid" type="HBoxContainer" parent="margin"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 70.0
+mouse_filter = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="index_selector" type="TextureRect" parent="margin/grid"]
+visible = false
+modulate = Color( 1, 1, 1, 0.490196 )
+margin_top = 16.0
+margin_right = 21.0
+margin_bottom = 43.0
+mouse_filter = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource( 5 )
+
+[node name="VSeparator" type="VSeparator" parent="margin/grid"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 10.0
+margin_bottom = 60.0
+mouse_filter = 2
+custom_constants/separation = 10
+
+[node name="game_info" type="VBoxContainer" parent="margin/grid"]
+margin_left = 14.0
+margin_right = 1004.0
+margin_bottom = 60.0
+mouse_filter = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="game_name_label" type="Label" parent="margin/grid/game_info"]
+margin_top = 6.0
+margin_right = 990.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "New Adventure_1"
 
-[node name="play_button" type="TextureButton" parent="margin" groups=[
-"regular_button",
-]]
-margin_left = 349.0
-margin_right = 375.0
-margin_bottom = 24.0
-texture_normal = ExtResource( 1 )
-texture_hover = ExtResource( 2 )
+[node name="file_info" type="HBoxContainer" parent="margin/grid/game_info"]
+margin_top = 40.0
+margin_right = 990.0
+margin_bottom = 54.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="last_modified_label" type="Label" parent="margin/grid/game_info/file_info"]
+margin_right = 971.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 0.498039 )
+text = "00 00 0000"
+
+[node name="size_label" type="Label" parent="margin/grid/game_info/file_info"]
+margin_left = 975.0
+margin_right = 990.0
+margin_bottom = 14.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 0.498039 )
+text = "kb"
+[connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

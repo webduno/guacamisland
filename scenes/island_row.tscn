@@ -1,0 +1,139 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://import/2d/map_screen/islands/margarita_thumbnail.png" type="Texture" id=1]
+[ext_resource path="res://import/2d/icons/scroll_certificate.png" type="Texture" id=3]
+[ext_resource path="res://scripts/island_row.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.345098 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 0 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.976471, 0.623529, 0.192157, 0.498039 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[node name="island_row" type="Control"]
+margin_right = 270.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="margin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="margin"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 250.0
+margin_bottom = 130.0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="panel" type="Panel" parent="margin"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 250.0
+margin_bottom = 130.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grid" type="HBoxContainer" parent="margin"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 250.0
+margin_bottom = 130.0
+mouse_filter = 2
+
+[node name="island_thumbnail" type="TextureRect" parent="margin/grid"]
+margin_top = 5.0
+margin_right = 100.0
+margin_bottom = 105.0
+mouse_filter = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 1 )
+
+[node name="island_info" type="VBoxContainer" parent="margin/grid"]
+margin_left = 104.0
+margin_right = 230.0
+margin_bottom = 110.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="island_name_label" type="Label" parent="margin/grid/island_info"]
+margin_right = 126.0
+margin_bottom = 14.0
+text = "Margarita"
+align = 1
+
+[node name="items" type="HBoxContainer" parent="margin/grid/island_info"]
+margin_top = 18.0
+margin_right = 126.0
+margin_bottom = 110.0
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="border_panel" type="Panel" parent="margin"]
+visible = false
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 250.0
+margin_bottom = 130.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="certificate" type="TextureRect" parent="."]
+margin_right = 42.0
+margin_bottom = 51.0
+rect_pivot_offset = Vector2( 21, 25 )
+hint_tooltip = "Airworthiness Certificate"
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="margin/Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="mouse_exited" from="margin/Button" to="." method="_on_Button_mouse_exited"]
+[connection signal="pressed" from="margin/Button" to="." method="_on_Button_pressed"]
+[connection signal="mouse_entered" from="certificate" to="." method="_on_certificate_mouse_entered"]

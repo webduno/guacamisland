@@ -5,14 +5,16 @@ onready var endscreen = get_node("../end_screen")
 
 onready var goal_success_sound_clip = load("res://import/audio/action/goal_ring.wav")
 onready var lap_complete_sound_clip = load("res://import/audio/action/lap_complete.wav")
+onready var bg_music = load("res://import/audio/background/jump and run - tropics.wav")
 
 onready var goals = get_node("Goals")
 var current_goal_index = 0
 var goal_list = [
-	"goal_ring 1","goal_ring 2","goal_ring 3","goal_ring 4","goal_ring 5",
-	"goal_ring 6","goal_ring 7","goal_ring 8","goal_ring 9","goal_ring 10",
-	"goal_ring 11","goal_ring 12","goal_ring 13","goal_ring 14","goal_ring 15",
-	"goal_ring 16","goal_ring 17","goal_ring 18","goal_ring 19",
+	"goal_ring 1","goal_ring 2",
+	"goal_ring 3","goal_ring 4","goal_ring 5","goal_ring 6","goal_ring 7",
+	"goal_ring 8","goal_ring 9","goal_ring 10","goal_ring 11","goal_ring 12",
+	"goal_ring 13","goal_ring 14","goal_ring 15","goal_ring 16","goal_ring 17",
+	"goal_ring 18","goal_ring 19",
 ]
 
 var lap_count = GLOBAL.difficulty
@@ -29,6 +31,7 @@ onready var player = get_node("../Spawn/Player")
 onready var player_kine_body = get_node("../Spawn/Player/KineBody")
 
 func _ready():
+	AUDIO_MANAGER.play_music(bg_music, -15)
 	AUDIO_MANAGER.set_regular_button_sfx()
 	player.level = self
 	pause_screen.current_scene = "res://levels/speedrun/margarita.tscn"
@@ -38,7 +41,6 @@ func _ready():
 		x.hide()
 		
 	init_lap()
-	
 	
 func init_speedrun():
 	print("init_speedrun")
@@ -53,7 +55,9 @@ func end_speedrun():
 	result_data.time = level_timer.elapsedTime
 	result_data.level_name = "Margarita Island"
 	
-	endscreen.start_endscreen(result_data)	
+	endscreen.start_endscreen({
+		"max_time": 60.0,
+	},result_data)	
 		
 func init_lap():
 	lap_label.text = "Lap: " + str(lap_count - remaining_laps) + "/" + str(lap_count)
