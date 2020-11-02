@@ -36,7 +36,7 @@ func _ready():
 	AUDIO_MANAGER.set_regular_button_sfx()
 	player.level = self
 	
-	var current_scene = "res://levels/speedrun/margarita.tscn"
+	var current_scene = "res://levels/margarita/margarita.tscn"
 	pause_screen.current_scene = current_scene
 	endscreen.current_scene = current_scene
 	
