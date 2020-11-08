@@ -1,19 +1,18 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://levels/margarita/margarita_hub.gd" type="Script" id=1]
+[ext_resource path="res://levels/margarita/scripts/margarita_hub.gd" type="Script" id=1]
 [ext_resource path="res://assets/geometry/margarita/island.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/level_timer.gd" type="Script" id=3]
+[ext_resource path="res://assets/entities/basket.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/geometry/detail/yatch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://import/audio/ticks/loopable-ticking-clock.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/geometry/detail/yatch_sm.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/geometry/detail/ferry.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/goal_ring.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/geometry/detail/boat.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/pause_screen.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/geometry/detail/umbrella.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/geometry/detail/palmtree.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/speedrun_endscreen.tscn" type="PackedScene" id=15]
 [ext_resource path="res://import/fonts/SyneMono-Regular.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://import/audio/ambience/wind/Wind2.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/materials/clouds_spatial_shader.tres" type="Material" id=18]
@@ -313,65 +312,6 @@ stream = ExtResource( 7 )
 [node name="Margarita Island" parent="Level/Terrain" instance=ExtResource( 2 )]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.3, 0 )
 
-[node name="Goals" type="Spatial" parent="Level"]
-
-[node name="goal_ring 1" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( 0.343138, -0.666901, 2.91511e-08, 0, -3.27835e-08, -0.75, 0.666901, 0.343138, -1.4999e-08, -10.558, 3.65247, 17.1729 )
-
-[node name="goal_ring 2" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( 0.207182, -0.720816, 3.15079e-08, 0, -3.27835e-08, -0.75, 0.720816, 0.207182, -9.05619e-09, -0.37, 2, 15.197 )
-
-[node name="goal_ring 3" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( 0.567019, -0.490907, 2.14582e-08, 0, -3.27835e-08, -0.75, 0.490907, 0.567019, -2.47852e-08, 7.36617, 2.80626, 10.3475 )
-
-[node name="goal_ring 4" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( 0.749302, -0.0323478, 1.41397e-09, 0, -3.27835e-08, -0.75, 0.0323478, 0.749302, -3.2753e-08, 10.7358, 5.96216, -0.27931 )
-
-[node name="goal_ring 5" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( 0.749302, -0.0323478, 1.41397e-09, 0, -3.27835e-08, -0.75, 0.0323478, 0.749302, -3.2753e-08, 10.2126, 2.23814, -8.75981 )
-
-[node name="goal_ring 6" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( 0.46433, 0.58898, -2.57451e-08, 0, -3.27835e-08, -0.75, -0.58898, 0.46433, -2.02965e-08, 2.60411, 1.56792, -15.0997 )
-
-[node name="goal_ring 7" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( 0.206262, 0.72108, -3.15194e-08, 0, -3.27835e-08, -0.75, -0.72108, 0.206262, -9.01599e-09, -5.17267, 4.06089, -15.96 )
-
-[node name="goal_ring 8" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( -0.326695, 0.675108, -2.95099e-08, 0, -3.27835e-08, -0.75, -0.675108, -0.326695, 1.42803e-08, -13.6563, 7.17115, -13.3237 )
-
-[node name="goal_ring 9" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( -0.625538, 0.413767, -1.80863e-08, 0, -3.27835e-08, -0.75, -0.413767, -0.625538, 2.73431e-08, -18.325, 10.7914, -8.52391 )
-
-[node name="goal_ring 10" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( -0.553329, -0.506288, 2.21305e-08, 0, -3.27835e-08, -0.75, 0.506288, -0.553329, 2.41868e-08, -15.7841, 12.5583, -0.658334 )
-
-[node name="goal_ring 11" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( -0.132787, -0.738152, 3.22656e-08, 0, -3.27835e-08, -0.75, 0.738152, -0.132787, 5.8043e-09, -6.58563, 10.3455, 1.58569 )
-
-[node name="goal_ring 12" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( -0.0577867, -0.747771, 3.26861e-08, 0, -3.27835e-08, -0.75, 0.747771, -0.0577867, 2.52593e-09, 3.97661, 13.686, 1.58569 )
-
-[node name="goal_ring 13" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( -0.70571, -0.253919, 1.10991e-08, 0, -3.27835e-08, -0.75, 0.253919, -0.70571, 3.08475e-08, 12.6405, 9.79449, 4.17747 )
-
-[node name="goal_ring 14" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( -0.402059, 0.633127, -2.76748e-08, 0, -3.27835e-08, -0.75, -0.633127, -0.402059, 1.75745e-08, 8.77786, 1.88316, 12.9288 )
-
-[node name="goal_ring 15" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( -0.523792, -0.536789, 2.34637e-08, 0, -3.27835e-08, -0.75, 0.536789, -0.523792, 2.28957e-08, 0.309748, 1.47093, 14.2196 )
-
-[node name="goal_ring 16" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( -0.493977, -0.564346, 2.46684e-08, 0, -3.27835e-08, -0.75, 0.564346, -0.493977, 2.15924e-08, -3.74803, 1.47093, 4.07648 )
-
-[node name="goal_ring 17" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( 0.306715, -0.684416, 2.99168e-08, 0, -3.27835e-08, -0.75, 0.684416, 0.306715, -1.34069e-08, -13.7875, 4.19354, -1.05872 )
-
-[node name="goal_ring 18" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( 0.736764, -0.140278, 6.13173e-09, 0, -3.27835e-08, -0.75, 0.140278, 0.736764, -3.2205e-08, -20.0986, 4.79344, 6.70176 )
-
-[node name="goal_ring 19" parent="Level/Goals" instance=ExtResource( 10 )]
-transform = Transform( 0.643124, 0.385864, -1.68667e-08, 0, -3.27835e-08, -0.75, -0.385864, 0.643124, -2.81119e-08, -19.9053, 4.79344, 16.1196 )
-
 [node name="Detail" type="Spatial" parent="Level"]
 
 [node name="Umbrellas" type="Spatial" parent="Level/Detail"]
@@ -621,9 +561,10 @@ autoplay = true
 max_distance = 15.0
 emission_angle_degrees = 15.0
 
-[node name="end_screen" parent="." instance=ExtResource( 15 )]
-pause_mode = 2
-visible = false
+[node name="Challenges" type="Spatial" parent="Level"]
+
+[node name="restinga" parent="Level/Challenges" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08295, 2.13756, 3.17451 )
 
 [node name="pause_screen" parent="." instance=ExtResource( 12 )]
 visible = false

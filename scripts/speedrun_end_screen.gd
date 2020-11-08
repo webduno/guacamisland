@@ -44,6 +44,7 @@ func win(result_data):
 	GLOBAL.game_data.levels[result_data.level_name].certificate = true
 	AUDIO_MANAGER.play_sfx(full_success_sound_clip, 0)
 	
+	try_again_button.hide()
 	var file = File.new()
 	var error = file.open(GLOBAL.base_saves_path+GLOBAL.game_data.game_name+".dat", File.WRITE)
 	if error == OK:

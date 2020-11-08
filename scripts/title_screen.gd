@@ -129,7 +129,7 @@ func _on_loadgame_open_button_pressed():
 	
 func _on_Button_Close_pressed(): gamelist_panel.hide()
 
-func _on_tutorial_button_pressed():	return get_tree().change_scene("res://scenes/tutorial.tscn")
+func _on_tutorial_button_pressed():	TRANSITION.change_scene("res://scenes/tutorial.tscn")
 
 func _on_exit_button_pressed():	return get_tree().quit()
 

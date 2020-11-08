@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 
 GLOBAL="*res://scripts/global.gd"
 AUDIO_MANAGER="*res://scenes/audio_manager.tscn"
+TRANSITION="*res://scenes/transition.tscn"
 
 [display]
 

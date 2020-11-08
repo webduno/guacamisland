@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://import/3d/terrain/margarita/restinga_geometry.fbx" type="PackedScene" id=1]
-
-[node name="restinga_geometry" instance=ExtResource( 1 )]

@@ -12,6 +12,8 @@ var rotation_speed = .001
 
 func _ready():
 	player_camera.environment = env_clear_day
+	
+	
 #	camera.environment = env_clear_day
 
 

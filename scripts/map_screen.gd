@@ -52,6 +52,6 @@ func _island_row_play_clicked(event):
 	var world = "margarita"
 #	var world = event.island_data.name
 	if !event.island_data.certificate:
-		return get_tree().change_scene("res://levels/"+world+"/"+world+"_certificate.tscn")
+		TRANSITION.change_scene("res://levels/"+world+"/"+world+"_certificate.tscn")
 	else:
-		return get_tree().change_scene("res://levels/"+world+"/"+world+"_hub.tscn")
+		TRANSITION.change_scene("res://levels/"+world+"/"+world+"_hub.tscn")
