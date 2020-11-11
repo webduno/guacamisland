@@ -9,7 +9,8 @@ onready var endscreen = get_node("../end_screen")
 
 onready var goals = get_node("Goals")
 var current_goal_index = 0
-var goal_list = ["goal_ring 0",#	"goal_ring 1",
+var goal_list = [
+	"goal_ring 0",#	"goal_ring 1",
 	"goal_ring 2","goal_ring 3","goal_ring 4","goal_ring 5",
 	"goal_ring 6","goal_ring 7","goal_ring 8","goal_ring 9",
 	"goal_ring 10","goal_ring 11",

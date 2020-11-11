@@ -28,22 +28,12 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.29, 0.3 )
 }
 tracks/2/type = "bezier"
-tracks/2/path = NodePath("Control/Label:modulate:a")
+tracks/2/path = NodePath("Control/TextureRect:modulate:a")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0.29, 0.6 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath("Control/TextureRect:modulate:a")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0.29, 0.6 )
 }
@@ -78,23 +68,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control"]
-visible = false
-modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -29.0
-margin_top = -7.0
-margin_right = 29.0
-margin_bottom = 7.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "loading..."
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="TextureRect" type="TextureRect" parent="Control"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
@@ -105,6 +78,7 @@ margin_left = -50.0
 margin_top = -50.0
 margin_right = 50.0
 margin_bottom = 50.0
+mouse_filter = 2
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

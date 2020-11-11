@@ -31,13 +31,20 @@ onready var level_timer_audioplayer = level_timer.get_node("audioplayer_timer")
 
 onready var player = get_node("../Spawn/Player")
 onready var player_kine_body = get_node("../Spawn/Player/KineBody")
+onready var player_camera = get_node("../Spawn/Player/KineBody/ClippedCamera")
+onready var sun_light = get_node("../Environment/Sun")
+onready var environment = load("res://assets/environments/env_clear_day.tres")
 
 func _ready():
+	player_camera.environment = environment
+	player_camera.environment.background_sky.sun_latitude = sun_light.rotation_degrees.x * -1
+	player_camera.environment.background_sky.sun_longitude = -180 - sun_light.rotation_degrees.y
+	
 	AUDIO_MANAGER.play_music(bg_music, -15)
 	AUDIO_MANAGER.set_regular_button_sfx()
 	player.level = self
 	
-	var current_scene = "res://levels/margarita/margarita.tscn"
+	var current_scene = "res://levels/margarita/margarita_certificate.tscn"
 	pause_screen.current_scene = current_scene
 	endscreen.current_scene = current_scene
 	

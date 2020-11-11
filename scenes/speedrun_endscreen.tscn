@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/speedrun_end_screen.gd" type="Script" id=1]
 [ext_resource path="res://import/2d/speedrun_endscreen/bg_scroll.png" type="Texture" id=2]
@@ -11,6 +11,39 @@
 [ext_resource path="res://assets/fonts/syne_mono_font.tres" type="DynamicFont" id=9]
 [ext_resource path="res://import/2d/text_sprites/speedrun_end_screen/try_again.png" type="Texture" id=10]
 
+[sub_resource type="Animation" id=1]
+resource_name = "Show"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("panel:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.745098, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("margin:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( -600, -0.25, 0, 0.25, 0, 50, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("bg_scroll:rect_position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( -525, -0.25, 0, 0.25, 0, 125, -0.25, 0, 0.25, 0, 75, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
 [node name="endscreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,7 +53,7 @@ __meta__ = {
 }
 
 [node name="panel" type="Panel" parent="."]
-modulate = Color( 1, 1, 1, 0.745098 )
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -33,9 +66,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -425.0
-margin_top = -225.0
+margin_top = -825.0
 margin_right = 425.0
-margin_bottom = 225.0
+margin_bottom = -374.999
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -44,6 +77,8 @@ __meta__ = {
 [node name="margin" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -600.0
+margin_bottom = -600.0
 mouse_filter = 2
 custom_constants/margin_right = 100
 custom_constants/margin_top = 60
@@ -222,6 +257,9 @@ texture_hover = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Show = SubResource( 1 )
 [connection signal="pressed" from="margin/container/margin/results/action_buttons/try_again_button" to="." method="_on_try_again_button_pressed"]
 [connection signal="pressed" from="margin/container/margin/results/action_buttons/next_button" to="." method="_on_Button_Next_pressed"]
 [connection signal="pressed" from="margin/container/Button_Quit_Main_Menu" to="." method="_on_Button_Quit_Main_Menu_pressed"]

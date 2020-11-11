@@ -16,7 +16,7 @@ var mouse_axis := Vector2()
 onready var head: Spatial = get_node("KineBody/Head")
 onready var cam_target: Spatial = get_node("KineBody/Head/CameraTarget")
 #onready var cam_body: Spatial = get_node("CamBody")
-onready var cam_node: Camera = get_node("KineBody/Head/CameraRoot/ClippedCamera")
+onready var cam_node: Camera = get_node("KineBody/ClippedCamera")
 
 # Move
 var velocity := Vector3()
@@ -25,6 +25,7 @@ var move_axis := Vector2()
 var walk_enabled := true
 var sprint_enabled := true
 var sprinting := false
+var friction = 1.0
 # Walk
 const FLOOR_NORMAL := Vector3(0, 1, 0)
 const FLOOR_MAX_ANGLE: float = deg2rad(46.0)
@@ -117,7 +118,7 @@ func walk(delta: float) -> void:
 	
 	# WINGS RETRACTING
 	if Input.is_action_just_pressed("move_jump"):
-		AUDIO_MANAGER.play_sfx(wing_flap_sound_clip, 0, -15)
+		AUDIO_MANAGER.play_sfx(wing_flap_sound_clip, 1, -10)
 		player_animation.clear_queue() 
 		player_animation.stop()
 		player_animation.play("Flap_Wings")
@@ -160,7 +161,7 @@ func walk(delta: float) -> void:
 	# where would the player go
 	var _temp_vel: Vector3 = velocity
 	_temp_vel.y = 0
-	var _target: Vector3 = direction * speed
+	var _target: Vector3 = direction * speed * friction
 	var _temp_accel: float
 	if direction.dot(_temp_vel) > 0:
 		_temp_accel = acceleration

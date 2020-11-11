@@ -1,23 +1,17 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://levels/margarita/scripts/restinga.gd" type="Script" id=1]
-[ext_resource path="res://assets/materials/nature/river_water_shader.tres" type="Material" id=2]
+[ext_resource path="res://import/2d/overlays/river_water_overlay.jpg" type="Texture" id=2]
 [ext_resource path="res://scripts/level_timer.gd" type="Script" id=3]
 [ext_resource path="res://assets/geometry/margarita/restinga.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/geometry/detail/yatch.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://import/audio/ticks/loopable-ticking-clock.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/geometry/detail/yatch_sm.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/geometry/detail/ferry.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/geometry/detail/boat.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/pause_screen.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/geometry/detail/umbrella.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/geometry/detail/palmtree.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/speedrun_endscreen.tscn" type="PackedScene" id=15]
 [ext_resource path="res://import/fonts/SyneMono-Regular.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://assets/materials/clouds_spatial_shader.tres" type="Material" id=18]
 [ext_resource path="res://assets/geometry/detail/clouds.tres" type="ArrayMesh" id=19]
-[ext_resource path="res://scripts/envoirment.gd" type="Script" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -115,115 +109,20 @@ tracks/3/keys = {
 size = 24
 font_data = ExtResource( 16 )
 
-[sub_resource type="PlaneMesh" id=5]
-size = Vector2( 50, 180 )
-subdivide_width = 100
-subdivide_depth = 360
-
-[sub_resource type="Animation" id=6]
-length = 6.0
-loop = true
-step = 1.0
-tracks/0/type = "bezier"
-tracks/0/path = NodePath(".:translation:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 6.72012, -0.25, 0, 0.25, 0, 6.72012, -0.25, 0, 0.25, 0, 6.72012, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 3, 6 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath(".:translation:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 3, 6 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath(".:translation:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 11.5612, -0.25, 0, 0.25, 0, 11.4347, -0.25, 0, 0.25, 0, 11.5612, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 3, 6 )
-}
-
-[sub_resource type="Curve3D" id=7]
-_data = {
-"points": PoolVector3Array( -2.97401, 2.26498e-06, 0.458479, 2.97401, -2.26498e-06, -0.458479, 3.03935, -0.999998, -0.448397, -1.70648, 2.26498e-06, 0.467096, 1.70648, -2.26498e-06, -0.467096, 9.49804, -1, -0.436802, -1.07817, 0, 0.92248, 1.07817, 0, -0.92248, 14.8347, -1, -3.34896, -0.110485, -2.26498e-06, 3.03547, 0.110485, 2.26498e-06, -3.03547, 20.0185, -0.999998, -12.646, 1.3959, -2.26498e-06, 1.59757, -1.3959, 2.26498e-06, -1.59757, 18.3063, -0.999998, -18.3841, 2.24697, -2.26498e-06, 2.88066, -2.24697, 2.26498e-06, -2.88066, 10.8643, -0.999998, -21.692, 1.32512, -2.26498e-06, 2.24417, -1.32512, 2.26498e-06, -2.24417, 8.01509, -0.999998, -31.0513, 1.6769, -2.26498e-06, -1.13182, -1.6769, 2.26498e-06, 1.13182, 3.12844, -0.999998, -33.9426, -1.29109, -2.26498e-06, -1.12802, 1.29109, 2.26498e-06, 1.12802, 5.11987, -1, -28.9686, -2.85107, -2.26498e-06, -1.42726, 2.85107, 2.26498e-06, 1.42726, 14.9343, -0.999998, -24.7286, -1.14215, -2.26498e-06, -2.12331, 1.14215, 2.26498e-06, 2.12331, 20.864, -0.999998, -21.5769, 0.94569, -2.26498e-06, -2.11481, -0.94569, 2.26498e-06, 2.11481, 20.348, -0.999998, -9.80194, 1.88919, -2.26498e-06, -1.05774, -1.88919, 2.26498e-06, 1.05774, 15.8619, -1, -4.51974, 4.19321, -2.26498e-06, -0.187296, -4.19321, 2.26498e-06, 0.187296, 6.56659, -1, 0.28673, 1.79514, -2.26498e-06, 0.772076, -1.79514, 2.26498e-06, -0.772076, 0.357809, -1, -2.33835, 1.0655, -2.26498e-06, 1.72817, -1.0655, 2.26498e-06, -1.72817, -3.80409, -0.999998, -3.73464, 1.23986, -2.26498e-06, 1.57256, -1.23986, 2.26498e-06, -1.57256, -6.81391, -0.999998, -9.25985, 1.30801, -2.26498e-06, -0.491709, -1.30801, 2.26498e-06, 0.491709, -10.2101, -0.999998, -11.698, -1.59735, -2.26498e-06, -3.13009, 1.59735, 2.26498e-06, 3.13009, -10.1418, -1, -5.74613, -2.20542, -2.26498e-06, -0.372355, 2.20542, 2.26498e-06, 0.372355, -1.54376, -0.999998, -0.374332, 0, 0, 0, 0, 0, 0, 3.03935, -0.999998, -0.448397 ),
-"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
-}
-
-[sub_resource type="Animation" id=8]
-length = 150.0
-loop = true
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 15, 25, 55, 61, 102, 125, 150 ),
-"transitions": PoolRealArray( 0.9, 1, 1.2, 1, 1, 0.5, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 20.3471, 21.0, 54.4991, 59.0, 129.957, 140.0, 152.603 ]
-}
-
-[sub_resource type="Curve3D" id=9]
-_data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -12.3474, 0, -11.0459, -1.52263, 0, -1.58136, 1.52263, 0, 1.58136, -7.45147, 0, -9.9063, -0.860188, 0, -0.938386, 0.860188, 0, 0.938386, -5.94389, 0, -7.79276, -0.112616, 0, -0.76614, 0.112616, 0, 0.76614, -4.53923, 0, -5.55905, -0.960143, 0, -0.563239, 0.960143, 0, 0.563239, -4.37041, 0, -1.00076, -0.731727, 0, -0.172096, 0.731727, 0, 0.172096, -3.0671, 0, -0.398284, -0.829971, 0, 0.633944, 0.829971, 0, -0.633944, 2.8893, 0, -1.76329, -0.484046, 0, 0.685134, 0.484046, 0, -0.685134, 3.85101, 0, -2.84909, -0.589664, 0, 1.5215, 0.589664, 0, -1.5215, 5.99159, 0, -6.57184, -0.0493383, 0, 2.42444, 0.0493383, 0, -2.42444, 7.52886, 0, -12.5532, 0.897188, 0, 0.578205, -0.897188, 0, -0.578205, 5.57442, 0, -19.037, 0.563074, 0, 0.0894871, -0.563074, 0, -0.0894871, 2.9685, 0, -19.8436, 1.11376, 0, 0.00556755, -1.11376, 0, -0.00556755, -0.319929, 0, -19.9987, 0.929025, 0, -0.139744, -0.929025, 0, 0.139744, -3.08097, 0, -19.7815, 0.75736, 0, -0.217598, -0.75736, 0, 0.217598, -6.52451, 0, -18.9129, 0.675429, 0, -0.436129, -0.675429, 0, 0.436129, -8.91327, 0, -17.6099, 0.537146, 0, -1.28155, -0.537146, 0, 1.28155, -10.7436, 0, -16.2759, -0.360966, 0, -1.88625, 0.360966, 0, 1.88625, -6.17882, 0, -11.4875, 1.08763, 0, -0.814595, -1.08763, 0, 0.814595, -8.87782, 0, -5.62421, 0.677337, 0, -0.0662544, -0.677337, 0, 0.0662544, -13.0349, 0, -3.85591, -1.76777, 0, 2.42155, 1.76777, 0, -2.42155, -16.3854, 0, -8.50934, 0, 0, 0, 0, 0, 0, -12.3474, 0, -11.0459 ),
-"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
-}
-
-[sub_resource type="Animation" id=10]
-length = 200.0
-loop = true
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 50, 71, 125, 145, 200 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 25.0, 40.0, 60.8704, 73.0, 89.857 ]
-}
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 21.0684, 4, 88.6145 )
 
 [node name="Spatial" type="Spatial"]
 
-[node name="Envoirment" type="Spatial" parent="."]
-script = ExtResource( 20 )
+[node name="Environment" type="Spatial" parent="."]
 
-[node name="DirectionalLight" type="DirectionalLight" parent="Envoirment"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
-visible = false
-light_color = Color( 1, 0.780392, 0.129412, 1 )
-light_energy = 1.5
-shadow_enabled = true
-
-[node name="alt_DirectionalLight" type="DirectionalLight" parent="Envoirment"]
-transform = Transform( -0.413549, 0.221921, -0.883022, -0.24321, 0.907673, 0.34202, 0.877397, 0.356202, -0.321394, 0, 10, 0 )
+[node name="Sun" type="DirectionalLight" parent="Environment"]
+transform = Transform( -0.809017, 0.33714, -0.481485, 0, 0.819152, 0.573576, 0.587785, 0.464033, -0.662708, 0, 10, 0 )
 light_color = Color( 1, 0.866667, 0.470588, 1 )
 light_energy = 1.5
 shadow_enabled = true
 shadow_bias = -0.02
 directional_shadow_split_1 = 0.075
-
-[node name="RemoteClouds" type="RemoteTransform" parent="Envoirment"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 0 )
-remote_path = NodePath("../../Level/Detail/Clouds/CloudsInstance")
 
 [node name="Spawn" type="Spatial" parent="."]
 transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 1.06086, 9.15176 )
@@ -310,178 +209,53 @@ wait_time = 0.1
 [node name="audioplayer_timer" type="AudioStreamPlayer" parent="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer/timer_label"]
 stream = ExtResource( 7 )
 
+[node name="river_water_overlay" type="TextureRect" parent="Level/Foreground"]
+visible = false
+modulate = Color( 1, 1, 1, 0.345098 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -340.0
+margin_right = 512.0
+margin_bottom = 340.0
+texture = ExtResource( 2 )
+
 [node name="Terrain" type="Spatial" parent="Level"]
 
-[node name="water" type="MeshInstance" parent="Level/Terrain"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -66.7977 )
-visible = false
-mesh = SubResource( 5 )
-material/0 = ExtResource( 2 )
+[node name="restinga_geometry" parent="Level/Terrain" instance=ExtResource( 4 )]
 
-[node name="restinga" parent="Level/Terrain" instance=ExtResource( 4 )]
+[node name="water_area" type="Area" parent="Level/Terrain"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Level/Terrain/water_area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54474, -4, -68.5223 )
+shape = SubResource( 5 )
 
 [node name="Goals" type="Spatial" parent="Level"]
 
 [node name="Detail" type="Spatial" parent="Level"]
-visible = false
-
-[node name="Umbrellas" type="Spatial" parent="Level/Detail"]
-
-[node name="West" type="Spatial" parent="Level/Detail/Umbrellas"]
-
-[node name="umbrella1" parent="Level/Detail/Umbrellas/West" instance=ExtResource( 13 )]
-transform = Transform( 0.984288, 0.176569, 0, -0.176569, 0.984288, 0, 0, 0, 1, -17.7102, 1.24859, 1.66532 )
-
-[node name="umbrella2" parent="Level/Detail/Umbrellas/West" instance=ExtResource( 13 )]
-transform = Transform( 0.996327, 0.0844374, -0.0142148, -0.0856256, 0.982502, -0.165402, 0, 0.166012, 0.986124, -7.89977, 1.00497, 5.29193 )
-
-[node name="East" type="Spatial" parent="Level/Detail/Umbrellas"]
-
-[node name="umbrella3" parent="Level/Detail/Umbrellas/East" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 0.923853, -0.382748, 0, 0.382748, 0.923853, 11.5817, 1.00986, 8.26761 )
-
-[node name="umbrella4" parent="Level/Detail/Umbrellas/East" instance=ExtResource( 13 )]
-transform = Transform( 0.802453, -0.596715, 0, 0.596715, 0.802453, 0, 0, 0, 1, 18.1374, 1.01152, 0.921397 )
-
-[node name="umbrella6" parent="Level/Detail/Umbrellas/East" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 0.930565, 0.366128, 0, -0.366128, 0.930565, 13.9994, 1.01712, -9.354 )
-
-[node name="umbrella7" parent="Level/Detail/Umbrellas/East" instance=ExtResource( 13 )]
-transform = Transform( 0.976758, 0.205182, 0.061995, -0.214343, 0.935011, 0.28251, 0, -0.289232, 0.957259, 6.04874, 1.30895, -1.49634 )
-
-[node name="umbrella8" parent="Level/Detail/Umbrellas/East" instance=ExtResource( 13 )]
-transform = Transform( 0.958457, -0.285237, 0, 0.275115, 0.924447, 0.264025, -0.0753095, -0.253056, 0.964516, 2.18965, 1.14502, 7.98864 )
-
-[node name="umbrella9" parent="Level/Detail/Umbrellas/East" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 0.708032, 0.706181, 0, -0.706181, 0.708032, 4.14244, 1.11496, 8.12813 )
-
-[node name="Trees" type="Spatial" parent="Level/Detail"]
-
-[node name="East" type="Spatial" parent="Level/Detail/Trees"]
-
-[node name="palmtree1" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 0.984451, -0.175659, 0, 0.175659, 0.984451, 0.769564, 1.48444, 4.13863 )
-
-[node name="palmtree2" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( 0.0683112, -0.175249, -0.982151, 0.504581, 0.855328, -0.117524, 0.860657, -0.487547, 0.146856, 12.4746, 1.16826, 7.32529 )
-
-[node name="palmtree5" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( -0.848125, 0.516524, 0.11784, 0.504581, 0.855328, -0.117524, -0.161496, -0.0402155, -0.986054, 8.58547, 1.37139, 6.06405 )
-
-[node name="palmtree3" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( -0.598674, -0.140702, -0.788538, 0, 0.984451, -0.175659, 0.800993, -0.105163, -0.589365, 17.4011, 1.41405, 0.0229063 )
-
-[node name="palmtree4" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( 0.596169, -0.285441, 0.750404, 0.119266, 0.95578, 0.268811, -0.793951, -0.0707588, 0.60385, 6.66645, 1.62377, -2.99826 )
-
-[node name="palmtree sm1" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( 0.42996, -0.145684, -0.597002, 0.297379, 0.68695, 0.0465387, 0.537773, -0.263394, 0.451579, -0.815516, 1.23123, 3.42992 )
-
-[node name="palmtree sm2" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( 0.747709, 0.028644, -0.0510988, -0.0234117, 0.745823, 0.0755048, 0.0536973, -0.0736787, 0.744439, 3.33705, 1.39596, 7.60868 )
-
-[node name="palmtree sm3" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( 0.0233568, 0.0405998, -0.748537, 0.297379, 0.68695, 0.0465387, 0.688128, -0.298248, 0.00529465, 6.63119, 1.05575, 8.7495 )
-
-[node name="palmtree sm4" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( -0.615566, 0.28797, -0.317256, 0.297379, 0.68695, 0.0465387, 0.308454, -0.087597, -0.678, 11.8745, 1.0447, 5.81916 )
-
-[node name="palmtree sm5" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( -0.7474, -0.0500709, -0.0372268, -0.0438055, 0.739757, -0.115505, 0.04443, -0.112931, -0.740117, 10.649, 1.06266, 8.60508 )
-
-[node name="palmtree sm6" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( 0.00785347, 0.11615, 0.740911, -0.0438055, 0.739757, -0.115505, -0.748678, -0.0420652, 0.0145308, 16.099, 1.41969, 2.04804 )
-
-[node name="palmtree sm7" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( -0.719681, 0.197917, -0.0734019, 0.206361, 0.714546, -0.0966406, 0.04443, -0.112931, -0.740117, 13.4256, 1.32849, -8.01081 )
-
-[node name="palmtree sm8" parent="Level/Detail/Trees/East" instance=ExtResource( 14 )]
-transform = Transform( -0.614967, -0.101548, -0.417137, -0.0438055, 0.739757, -0.115505, 0.427079, -0.0703453, -0.6125, 5.06004, 1.21758, 0.423295 )
-
-[node name="West" type="Spatial" parent="Level/Detail/Trees"]
-
-[node name="palmtree1" parent="Level/Detail/Trees/West" instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 0.984451, -0.175659, 0, 0.175659, 0.984451, -14.4904, 1.43628, 3.84492 )
-
-[node name="palmtree2" parent="Level/Detail/Trees/West" instance=ExtResource( 14 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1129, 1.42629, 1.84079 )
-
-[node name="palmtree3" parent="Level/Detail/Trees/West" instance=ExtResource( 14 )]
-transform = Transform( 0.109786, 0, -0.993955, 0.552976, 0.830955, 0.0610784, 0.825932, -0.556339, 0.0912274, -13.4651, 1.08556, -2.83786 )
-
-[node name="palmtree4" parent="Level/Detail/Trees/West" instance=ExtResource( 14 )]
-transform = Transform( 0.933717, 0.0820324, -0.348488, -0.107667, 0.992675, -0.0548045, 0.34144, 0.0886925, 0.93571, -6.36362, 1.57757, 3.16141 )
-
-[node name="palmtree sm1" parent="Level/Detail/Trees/West" instance=ExtResource( 14 )]
-transform = Transform( 0.710332, -0.240683, 0, 0.240683, 0.710332, 0, 0, 0, 0.75, -8.51287, 1.01415, 4.4094 )
-
-[node name="palmtree sm2" parent="Level/Detail/Trees/West" instance=ExtResource( 14 )]
-transform = Transform( 0.139546, 0, 0.736904, -0.169862, 0.729803, 0.0321665, -0.717059, -0.172881, 0.135788, -11.9202, 1.09643, 4.4094 )
-
-[node name="palmtree sm3" parent="Level/Detail/Trees/West" instance=ExtResource( 14 )]
-transform = Transform( 0.411333, -0.101543, 0.618865, 0.339837, 0.658113, -0.117892, -0.527082, 0.345075, 0.406949, -17.2861, 1.13854, 3.83404 )
-
-[node name="palmtree sm4" parent="Level/Detail/Trees/West" instance=ExtResource( 14 )]
-transform = Transform( -0.203001, 0, -0.722005, 0.173152, 0.728113, -0.0486839, 0.700934, -0.179866, -0.197077, -7.9889, 1.21732, -2.26076 )
-
-[node name="palmtree sm5" parent="Level/Detail/Trees/West" instance=ExtResource( 14 )]
-transform = Transform( 0.73982, 0.123153, 0, -0.122373, 0.735136, 0.0842651, 0.0138367, -0.0831213, 0.745251, -6.15681, 1.66793, 0.498111 )
-
-[node name="Yatchs" type="Spatial" parent="Level/Detail"]
-
-[node name="yatch_sm" parent="Level/Detail/Yatchs" instance=ExtResource( 8 )]
-transform = Transform( 0.998875, 0, -0.0474197, 0, 1, 0, 0.0474197, 0, 0.998875, 6.72012, 1, 11.5612 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Detail/Yatchs/yatch_sm"]
-autoplay = "Yatch Idle"
-"anims/Yatch Idle" = SubResource( 6 )
-
-[node name="Path_yatch_sm_2" type="Path" parent="Level/Detail/Yatchs"]
-transform = Transform( 0.40436, 0, 0.9146, 0, 1, 0, -0.9146, 0, 0.40436, 16.582, 3.25, 10.759 )
-curve = SubResource( 7 )
-
-[node name="PathFollow" type="PathFollow" parent="Level/Detail/Yatchs/Path_yatch_sm_2"]
-transform = Transform( -0.143615, 8.85617e-07, 0.989517, -1.42109e-14, 1, -8.94788e-07, -0.989633, -1.28521e-07, -0.143598, 3.03935, -0.999998, -0.448397 )
-rotation_mode = 4
-
-[node name="yatch_sm2" parent="Level/Detail/Yatchs/Path_yatch_sm_2/PathFollow" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22579, 0 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Detail/Yatchs/Path_yatch_sm_2/PathFollow"]
-autoplay = "Sailling Loop"
-playback_speed = 0.75
-"anims/Sailling Loop" = SubResource( 8 )
-
-[node name="yatch" parent="Level/Detail/Yatchs" instance=ExtResource( 5 )]
-transform = Transform( 0.465923, 0, 0.884825, 0, 1, 0, -0.884825, 0, 0.465923, 0.0368357, 1, -15.7157 )
-
-[node name="Path_yatch_sm_3" type="Path" parent="Level/Detail/Yatchs"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0 )
-curve = SubResource( 9 )
-
-[node name="PathFollow" type="PathFollow" parent="Level/Detail/Yatchs/Path_yatch_sm_3"]
-transform = Transform( -0.102662, 0, 0.994561, 0, 1, 0, -0.994716, 0, -0.102646, -12.3474, 0, -11.0459 )
-rotation_mode = 4
-
-[node name="yatch_sm2" parent="Level/Detail/Yatchs/Path_yatch_sm_3/PathFollow" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22579, 0 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Level/Detail/Yatchs/Path_yatch_sm_3/PathFollow"]
-autoplay = "Sailling Loop"
-playback_speed = 0.75
-"anims/Sailling Loop" = SubResource( 10 )
-
-[node name="Ferry" parent="Level/Detail" instance=ExtResource( 9 )]
-transform = Transform( 0.693112, 0, -0.720829, 0, 1, 0, 0.720829, 0, 0.693112, -11.6843, 1.59737, 17.8398 )
 
 [node name="Clouds" type="Spatial" parent="Level/Detail"]
+transform = Transform( 0.964755, 0, 0.263149, 0, 1, 0, -0.263149, 0, 0.964755, 29.4488, 0, 6.87138 )
 
 [node name="CloudsInstance" type="MeshInstance" parent="Level/Detail/Clouds"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 0 )
+transform = Transform( 3, 0, 1.19209e-07, 0, 3, 0, -1.19209e-07, 0, 3, 75.5995, 61.8873, 17.6177 )
+mesh = ExtResource( 19 )
+material/0 = ExtResource( 18 )
+
+[node name="CloudsInstance2" type="MeshInstance" parent="Level/Detail/Clouds"]
+transform = Transform( -0.712092, 0, -2.91426, 0, 3, 0, 2.91426, 0, -0.712092, 40.8827, 64.0552, -219.181 )
+mesh = ExtResource( 19 )
+material/0 = ExtResource( 18 )
+
+[node name="CloudsInstance3" type="MeshInstance" parent="Level/Detail/Clouds"]
+transform = Transform( 2.54979, 0, 1.58069, 0, 3, 0, -1.58069, 0, 2.54979, -146.507, 63.5664, -67.4345 )
 mesh = ExtResource( 19 )
 material/0 = ExtResource( 18 )
 
 [node name="Boats" type="Spatial" parent="Level/Detail"]
+visible = false
 
 [node name="boat" parent="Level/Detail/Boats" instance=ExtResource( 11 )]
 transform = Transform( -0.663783, 0, -0.747925, 0, 1, 0, 0.747925, 0, -0.663783, -13.7414, 0.850001, 10.4541 )
@@ -512,3 +286,5 @@ visible = false
 [node name="pause_screen" parent="." instance=ExtResource( 12 )]
 visible = false
 [connection signal="timeout" from="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer/timer_label/general_timer" to="Level/Foreground/MarginContainer/HBoxContainer/VBoxContainer/timer_label" method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Level/Terrain/water_area" to="Level" method="_on_water_area_body_entered"]
+[connection signal="body_exited" from="Level/Terrain/water_area" to="Level" method="_on_water_area_body_exited"]

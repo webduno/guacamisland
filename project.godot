@@ -77,4 +77,4 @@ zoom_out={
 [rendering]
 
 environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
-environment/default_environment="res://assets/env_clear_day.tres"
+environment/default_environment="res://assets/environments/env_clear_day.tres"

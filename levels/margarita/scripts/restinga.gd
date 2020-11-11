@@ -3,9 +3,12 @@ extends Spatial
 onready var pause_screen = get_node("../pause_screen")
 onready var endscreen = get_node("../end_screen")
 
+onready var enter_water_sound_clip = load("res://import/audio/collision/splash2.wav")
+onready var exit_water_sound_clip = load("res://import/audio/collision/splash1.wav")
+
 onready var goal_success_sound_clip = load("res://import/audio/action/goal_ring.wav")
 onready var lap_complete_sound_clip = load("res://import/audio/action/lap_complete.wav")
-onready var bg_music = load("res://import/audio/background/jump and run - tropics.wav")
+onready var bg_music = load("res://import/audio/background/At the Market.wav")
 
 var MAX_TIME = 3.0
 onready var goals = get_node("Goals")
@@ -24,15 +27,24 @@ onready var lap_label = find_node("lap_label")
 onready var lap_popup_label = find_node("lap_popup_label")
 onready var lap_popup_animation = find_node("lap_popup_animation")
 
+onready var river_water_overlay = get_node("Foreground/river_water_overlay")
+
 onready var level_timer = find_node("timer_label")
 onready var level_timer_stopwatch: Timer = level_timer.get_node("general_timer")
 onready var level_timer_audioplayer = level_timer.get_node("audioplayer_timer")
 
 onready var player = get_node("../Spawn/Player")
 onready var player_kine_body = get_node("../Spawn/Player/KineBody")
+onready var player_camera = get_node("../Spawn/Player/KineBody/ClippedCamera")
+onready var sun_light = get_node("../Environment/Sun")
+onready var environment = load("res://assets/environments/env_swamp.tres")
 
 func _ready():
-	AUDIO_MANAGER.play_music(bg_music, -15)
+	player_camera.environment = environment
+	player_camera.environment.background_sky.sun_latitude = sun_light.rotation_degrees.x * -1
+	player_camera.environment.background_sky.sun_longitude = -180 - sun_light.rotation_degrees.y
+	
+	AUDIO_MANAGER.play_music(bg_music, -5)
 	AUDIO_MANAGER.set_regular_button_sfx()
 	player.level = self
 	
@@ -113,3 +125,16 @@ func goal_hit():
 			init_lap()
 		else:
 			end_speedrun()
+
+
+func _on_water_area_body_entered(body):
+	if body.name == "KineBody":
+		AUDIO_MANAGER.play_sfx(enter_water_sound_clip, 0, -10)
+		player.friction = 0.5
+		river_water_overlay.show()
+
+func _on_water_area_body_exited(body):
+	if body.name == "KineBody":
+		AUDIO_MANAGER.play_sfx(exit_water_sound_clip, 0, -10)
+		player.friction = 1
+		river_water_overlay.hide()

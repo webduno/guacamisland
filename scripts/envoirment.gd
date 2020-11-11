@@ -1,10 +1,7 @@
 extends Spatial
 
 onready var env_clear_day = load("res://assets/env_clear_day.tres")
-#onready var camera = get_node("../Spawn/Player/InterpolatedCamera")
-#onready var clipped_camera = get_node("../Spawn/Player/KineCamera/Camera")
 onready var player_camera = get_node("../Spawn/Player/KineBody/Head/CameraRoot/ClippedCamera")
-#onready var player_camera = get_node("../Spawn/Player/KineBody/Camera")
 onready var sun = get_node("alt_DirectionalLight")
 onready var clouds = get_node("RemoteClouds")
 

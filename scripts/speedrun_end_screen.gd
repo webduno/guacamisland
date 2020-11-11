@@ -13,6 +13,8 @@ onready var laps_label = find_node("laps_value_label")
 onready var time_label = find_node("time_value_label")
 onready var level_label = find_node("level_value_label")
 
+onready var animationPlayer = get_node("AnimationPlayer")
+
 var current_scene
 
 func _ready():
@@ -33,12 +35,17 @@ func start_endscreen(expected_data, result_data):
 	laps_label.text = str(result_data.laps)
 	time_label.text = str(str_elapsed)
 	
-	if	result_data.time <= expected_data.max_time:
-		win(result_data)
+	if result_data.level_name == "tutorial":
+		AUDIO_MANAGER.play_sfx(full_success_sound_clip, 0)
+		try_again_button.hide()
 	else:
-		lose(result_data)
+		if	result_data.time <= expected_data.max_time:
+			win(result_data)
+		else:
+			lose(result_data)
 		
 	show()
+	animationPlayer.play("Show")
 	
 func win(result_data):
 	GLOBAL.game_data.levels[result_data.level_name].certificate = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://levels/margarita/scripts/margarita_certificate.gd" type="Script" id=1]
 [ext_resource path="res://assets/geometry/margarita/island.tscn" type="PackedScene" id=2]
@@ -18,7 +18,6 @@
 [ext_resource path="res://import/audio/ambience/wind/Wind2.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/materials/clouds_spatial_shader.tres" type="Material" id=18]
 [ext_resource path="res://assets/geometry/detail/clouds.tres" type="ArrayMesh" id=19]
-[ext_resource path="res://scripts/envoirment.gd" type="Script" id=20]
 [ext_resource path="res://import/audio/ambience/wind/Wind.wav" type="AudioStream" id=21]
 [ext_resource path="res://import/audio/ambience/ambient_mountains_forest_river_waterfall_wind/waves_shore_loop.wav" type="AudioStream" id=22]
 
@@ -201,27 +200,15 @@ tracks/0/keys = {
 
 [node name="Spatial" type="Spatial"]
 
-[node name="Envoirment" type="Spatial" parent="."]
-script = ExtResource( 20 )
+[node name="Environment" type="Spatial" parent="."]
 
-[node name="DirectionalLight" type="DirectionalLight" parent="Envoirment"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
-visible = false
-light_color = Color( 1, 0.780392, 0.129412, 1 )
-light_energy = 1.5
-shadow_enabled = true
-
-[node name="alt_DirectionalLight" type="DirectionalLight" parent="Envoirment"]
+[node name="Sun" type="DirectionalLight" parent="Environment"]
 transform = Transform( -0.413549, 0.221921, -0.883022, -0.24321, 0.907673, 0.34202, 0.877397, 0.356202, -0.321394, 0, 10, 0 )
 light_color = Color( 1, 0.866667, 0.470588, 1 )
 light_energy = 1.5
 shadow_enabled = true
 shadow_bias = -0.02
 directional_shadow_split_1 = 0.075
-
-[node name="RemoteClouds" type="RemoteTransform" parent="Envoirment"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, 0 )
-remote_path = NodePath("../../Level/Detail/Clouds/CloudsInstance")
 
 [node name="Spawn" type="Spatial" parent="."]
 transform = Transform( 0.173648, 0, -0.984807, 0, 1, 0, 0.984807, 0, 0.173648, -20, 10, 20 )
