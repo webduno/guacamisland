@@ -60,7 +60,7 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	cam_node.global_transform = cam_node.global_transform.interpolate_with(cam_target.global_transform, delta * 5)
+	cam_node.global_transform = cam_node.global_transform.interpolate_with(cam_target.global_transform, delta * 2)
 	
 	var lateral_movement = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if	walk_enabled:
