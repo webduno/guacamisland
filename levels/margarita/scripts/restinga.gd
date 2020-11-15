@@ -13,18 +13,20 @@ onready var bg_music = load("res://import/audio/background/At the Market.wav")
 var MAX_TIME = 3.0
 onready var goals = get_node("Goals")
 
-var lap_count = GLOBAL.difficulty
-var remaining_laps = GLOBAL.difficulty
-onready var lap_label = find_node("lap_label")
-onready var lap_popup_label = find_node("lap_popup_label")
-onready var lap_popup_animation = find_node("lap_popup_animation")
+onready var foreground_animations = find_node("foreground_animations")
 
-onready var river_water_overlay = get_node("Foreground/river_water_overlay")
-onready var water_area = get_node("Terrain/water_area")
+onready var title_popup_label = find_node("title_popup_label")
+
+onready var starfish_label = get_node("Foreground/margin/main_grid/counters_grid/item_list/starfish/starfish_value")
+var starfish_count = 0
+onready var snail_label = get_node("Foreground/margin/main_grid/counters_grid/item_list/snail/snail_value")
+var snail_count = 0
 
 onready var level_timer = find_node("timer_label")
 onready var level_timer_stopwatch: Timer = level_timer.get_node("general_timer")
-onready var level_timer_audioplayer = level_timer.get_node("audioplayer_timer")
+
+onready var river_water_overlay = get_node("Foreground/river_water_overlay")
+onready var water_area = get_node("Terrain/water_area")
 
 onready var player = get_node("../Spawn/Player")
 onready var player_kine_body = get_node("../Spawn/Player/KineBody")
@@ -60,7 +62,7 @@ func end_speedrun():
 	get_node("Foreground").queue_free()
 	
 	var result_data : Dictionary = {}
-	result_data.laps = lap_count
+	result_data.laps = 0
 	result_data.time = level_timer.elapsedTime
 	result_data.level_name = "margarita"
 	result_data.level_title = "Margarita Island"
@@ -69,6 +71,18 @@ func end_speedrun():
 		"max_time": MAX_TIME,
 	},result_data)	
 		
+		
+		
+func _add_item_to_player(entity_name):
+	if entity_name == "starfish":
+		starfish_count += 1
+		foreground_animations.play("starfish_add")
+		starfish_label.texture = load("res://import/2d/text_sprites/numbers/num_"+str(starfish_count)+".png")
+	if entity_name == "snail":
+		snail_count += 1
+		foreground_animations.play("snail_add")
+		snail_label.texture = load("res://import/2d/text_sprites/numbers/num_"+str(snail_count)+".png")
+	
 ##func init_lap():
 ##	lap_label.text = "Lap: " + str(lap_count - remaining_laps) + "/" + str(lap_count)
 ##

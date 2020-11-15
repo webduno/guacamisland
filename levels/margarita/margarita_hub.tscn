@@ -210,7 +210,7 @@ shadow_bias = -0.02
 directional_shadow_split_1 = 0.075
 
 [node name="Spawn" type="Spatial" parent="."]
-transform = Transform( 0.173648, 0, -0.984807, 0, 1, 0, 0.984807, 0, 0.173648, -20, 10, 20 )
+transform = Transform( 0.173648, 0, -0.984807, 0, 1, 0, 0.984807, 0, 0.173648, -7.07123, 10, 7.25197 )
 
 [node name="Player" parent="Spawn" instance=ExtResource( 6 )]
 

@@ -17,8 +17,7 @@ func _physics_process(delta):
 	translate(velocity * delta)
 	
 func _on_Spatial_body_entered(body):
-	print("coconut hit something")
-	print(body.name)
+	print(body.name+" HIT ME!")
 	if	body.name == "Player":
 		emit_signal("add_coconut_to_player")
 		
