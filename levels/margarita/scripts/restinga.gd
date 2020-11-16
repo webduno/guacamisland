@@ -88,6 +88,7 @@ func end_speedrun():
 	result_data.item_count = {
 			"starfish": starfish_count,
 			"snail": snail_count,
+			"bottle": 1,
 	}
 	
 	endscreen.start_endscreen({
@@ -95,6 +96,7 @@ func end_speedrun():
 		"item_count": {
 			"starfish": MIN_STARFISH,
 			"snail": MIN_SNAIL,
+			"bottle": 0,
 		},
 	},result_data)	
 		

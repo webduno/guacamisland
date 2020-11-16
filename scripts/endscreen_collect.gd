@@ -74,7 +74,10 @@ func win(expected_data, result_data):
 	else:
 		for x in result_data.item_count.keys():
 #			if result_data.item_count[x] < expected_data.item_count[x]:
-			GLOBAL.game_data.levels[main_level].items_count[x] = result_data.item_count[x] - expected_data.item_count[x]
+			if x in GLOBAL.game_data.levels[main_level].items_count.keys():
+				GLOBAL.game_data.levels[main_level].items_count[x] += result_data.item_count[x] - expected_data.item_count[x]
+			else:
+				GLOBAL.game_data.levels[main_level].items_count[x] = result_data.item_count[x] - expected_data.item_count[x]
 				
 		
 	AUDIO_MANAGER.play_sfx(full_success_sound_clip, 0)

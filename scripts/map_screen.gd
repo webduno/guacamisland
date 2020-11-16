@@ -31,10 +31,19 @@ func fill_island_list():
 	for x in islandlist:
 		var a = island_row.instance()
 		a.get_node("margin/grid/island_info/island_name_label").text = x.capitalize()
-		a.get_node("margin/grid/island_info/items/dump").text = ""
+		
+		var item_list = a.get_node("margin/grid/island_info/items")
+		
 		for item in islandlist[x].items_count.keys():
+			item_list.add_child(a.get_node("margin/grid/island_info/items/dump").duplicate())
+			var new_item = item_list.get_child(item_list.get_child_count()-1)
 			
-			a.get_node("margin/grid/island_info/items/dump").text += item+": "+str(islandlist[x].items_count[item])+""
+			new_item.get_node("value").text = str(islandlist[x].items_count[item])
+			
+			new_item.get_node("icon").texture = load("res://import/2d/icons/"+item+"_sm.png")
+			
+			new_item.show()
+			
 			
 		
 		if islandlist[x].certificate:

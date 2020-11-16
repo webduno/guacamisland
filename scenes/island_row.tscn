@@ -103,19 +103,36 @@ margin_bottom = 14.0
 text = "Margarita"
 align = 1
 
-[node name="items" type="HBoxContainer" parent="margin/grid/island_info"]
+[node name="items" type="VBoxContainer" parent="margin/grid/island_info"]
 margin_top = 18.0
 margin_right = 126.0
 margin_bottom = 110.0
 mouse_filter = 2
 size_flags_vertical = 3
 
-[node name="dump" type="Label" parent="margin/grid/island_info/items"]
-margin_top = 39.0
-margin_right = 37.0
-margin_bottom = 53.0
-text = "dump"
+[node name="dump" type="HBoxContainer" parent="margin/grid/island_info/items"]
+visible = false
+margin_right = 126.0
+margin_bottom = 14.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="value" type="Label" parent="margin/grid/island_info/items/dump"]
+margin_left = 4.0
+margin_right = 20.0
+margin_bottom = 14.0
+size_flags_horizontal = 4
+text = ": 0"
 align = 1
+
+[node name="icon" type="TextureRect" parent="margin/grid/island_info/items/dump"]
+margin_bottom = 14.0
+rect_scale = Vector2( 0.5, 0.5 )
+mouse_filter = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="border_panel" type="Panel" parent="margin"]
 visible = false
