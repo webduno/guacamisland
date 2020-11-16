@@ -5,7 +5,7 @@ var entity_name = "snail"
 
 func _ready():
 	for node in get_tree().get_nodes_in_group("current_level"):
-		connect("add_item_to_player", node, "_add_item_to_player")
+		var _connected_signal = connect("add_item_to_player", node, "_add_item_to_player")
 
 #func _physics_process(delta):
 #	pass

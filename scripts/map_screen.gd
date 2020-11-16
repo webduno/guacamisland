@@ -31,6 +31,12 @@ func fill_island_list():
 	for x in islandlist:
 		var a = island_row.instance()
 		a.get_node("margin/grid/island_info/island_name_label").text = x.capitalize()
+		a.get_node("margin/grid/island_info/items/dump").text = ""
+		for item in islandlist[x].items_count.keys():
+			
+			a.get_node("margin/grid/island_info/items/dump").text += item+": "+str(islandlist[x].items_count[item])+""
+			
+		
 		if islandlist[x].certificate:
 			a.get_node("certificate").show()
 		else:
@@ -47,8 +53,6 @@ func _island_row_mouse_exited(event):
 	event.border_panel.hide()
 	map_location.hide()
 func _island_row_play_clicked(event):
-	var gametype = "speedrun"
-	print(event.island_data)
 	var world = "margarita"
 #	var world = event.island_data.name
 	if !event.island_data.certificate:

@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://import/2d/overlays/river_water_overlay_drowning.jpg" type="Texture" id=2]
+[ext_resource path="res://import/2d/overlays/river_water_overlay.jpg" type="Texture" id=3]
 [ext_resource path="res://assets/characters/guacamaya_redblue.tscn" type="PackedScene" id=4]
+[ext_resource path="res://import/2d/icons/heart.png" type="Texture" id=5]
 
 [sub_resource type="SphereMesh" id=1]
 radius = 0.1
@@ -14,6 +17,47 @@ albedo_color = Color( 0, 1, 0, 0.196078 )
 
 [sub_resource type="SphereShape" id=3]
 radius = 0.08
+
+[sub_resource type="Animation" id=4]
+resource_name = "Drowning"
+length = 6.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Overlays/breath_time_bar:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 500 ), Vector2( -1024, 500 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Overlays/breath_time_bar:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1 )
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "unDrown"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Overlays/breath_time_bar:margin_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -100, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
 
 [node name="Player" type="Spatial"]
 script = ExtResource( 1 )
@@ -43,3 +87,121 @@ shape = SubResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2498 )
 size = 10.0
 margin = 1.0
+
+[node name="Foreground" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Foreground"]
+
+[node name="foreground_animations" type="AnimationPlayer" parent="Foreground"]
+anims/Drowning = SubResource( 4 )
+anims/unDrown = SubResource( 5 )
+
+[node name="Overlays" type="Control" parent="Foreground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="breath_time_bar" type="ColorRect" parent="Foreground/Overlays"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -100.0
+margin_right = 511.999
+rect_min_size = Vector2( 0, 100 )
+mouse_filter = 2
+color = Color( 0.278431, 0.486275, 0.666667, 0.207843 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="underwater" type="TextureRect" parent="Foreground/Overlays"]
+visible = false
+modulate = Color( 1, 1, 1, 0.392157 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -340.0
+margin_right = 512.0
+margin_bottom = 340.0
+mouse_filter = 2
+texture = ExtResource( 3 )
+
+[node name="underwater_drowning" type="TextureRect" parent="Foreground/Overlays"]
+visible = false
+modulate = Color( 1, 1, 1, 0.392157 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -340.0
+margin_right = 512.0
+margin_bottom = 340.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="MarginContainer" parent="Foreground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_bottom = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grid" type="HBoxContainer" parent="Foreground/Stats"]
+margin_right = 1024.0
+margin_bottom = 575.0
+mouse_filter = 2
+custom_constants/separation = 25
+alignment = 1
+
+[node name="health_heart1" type="TextureRect" parent="Foreground/Stats/grid"]
+visible = false
+margin_left = 427.0
+margin_top = 529.0
+margin_right = 467.0
+margin_bottom = 575.0
+mouse_filter = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource( 5 )
+
+[node name="health_heart2" type="TextureRect" parent="Foreground/Stats/grid"]
+visible = false
+margin_left = 459.0
+margin_top = 529.0
+margin_right = 499.0
+margin_bottom = 575.0
+mouse_filter = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource( 5 )
+
+[node name="health_heart3" type="TextureRect" parent="Foreground/Stats/grid"]
+visible = false
+margin_left = 492.0
+margin_top = 529.0
+margin_right = 532.0
+margin_bottom = 575.0
+mouse_filter = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource( 5 )

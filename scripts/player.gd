@@ -1,6 +1,7 @@
 extends Spatial
 
 onready var wing_flap_sound_clip = load("res://import/audio/action/flap1.wav")
+onready var hurt_sound_clip = load("res://import/audio/action/gulp2.wav")
 
 var level;
 
@@ -52,12 +53,90 @@ var fly_speed = 3
 var fly_accel = 1
 var flying := false
 
-##################################################
+var drowning := false
+var breath_time := 6
 
-func _ready() -> void:
+var lives = 3
+
+onready var overlay_underwater = get_node("Foreground/Overlays/underwater")
+onready var overlay_underwater_drowning = get_node("Foreground/Overlays/underwater_drowning")
+onready var breath_time_bar = get_node("Foreground/Overlays/breath_time_bar")
+onready var health_hearts = get_node("Foreground/Stats/grid").get_children()
+
+
+##################################################
+onready var timer = get_node("Foreground/Timer");
+onready var foreground_animations = get_node("Foreground/foreground_animations");
+
+var current_timer_callback = ""
+
+func _ready():
 	cam_node.fov = FOV
 	cam_node.add_exception(kine_body)
 	
+	
+func show_health():
+	for heart in health_hearts:
+		heart.show()
+func hide_health():
+	for heart in health_hearts:
+		heart.hide()
+		
+	
+func set_timer(wait_time, timer_callback):
+	timer.set_wait_time(wait_time)
+	
+	if current_timer_callback != timer_callback:
+		if current_timer_callback != "":
+			timer.disconnect("timeout", self, current_timer_callback)
+		current_timer_callback = timer_callback
+		timer.connect("timeout", self, timer_callback)
+		
+	timer.start()
+	
+func enter_underwater():
+	overlay_underwater_drowning.hide()
+	overlay_underwater.show()
+	
+	foreground_animations.play("Drowning")
+	
+	if !drowning:
+		drowning = true
+		set_timer(breath_time, "_drown")
+	
+func _drown():
+	if drowning:
+		AUDIO_MANAGER.play_sfx(hurt_sound_clip, 0)
+		enter_underwater_danger()
+		substract_live()
+		set_timer(breath_time, "_drown")
+	
+func exit_underwater():
+	foreground_animations.play("unDrown")
+	drowning = false
+	
+	overlay_underwater_drowning.hide()
+	overlay_underwater.hide()
+	
+func enter_underwater_danger():
+	overlay_underwater_drowning.show()
+	
+func die():
+	drowning = false
+	for node in get_tree().get_nodes_in_group("current_level"):
+		node.game_over()
+		
+func add_live():
+	print("+1 live")
+	lives += 1
+func substract_live():
+	print("-1 live")
+	if lives - 1 == 0:
+		die()
+	else:
+		get_node("Foreground/Stats/grid/health_heart"+str(lives)).hide()
+		lives -= 1
+
 
 func _process(delta: float) -> void:
 	cam_node.global_transform = cam_node.global_transform.interpolate_with(cam_target.global_transform, delta * 2)

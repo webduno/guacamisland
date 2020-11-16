@@ -109,6 +109,7 @@ func _on_save_newgame_button_pressed():
 			"margarita": {
 				"certificate": false,
 				"time": 0.0,
+				"items_count": {},
 				"sublevels": {},
 			},
 		},
