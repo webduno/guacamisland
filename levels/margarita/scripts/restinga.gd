@@ -8,9 +8,11 @@ onready var exit_water_sound_clip = load("res://import/audio/collision/splash1.w
 
 onready var snail_sound_clip = load("res://import/audio/action/appear-online.wav")
 onready var starfish_sound_clip = load("res://import/audio/action/bird_poo.wav")
+onready var bottle_sound_clip = load("res://import/audio/collision/Bottle Break.wav")
+
 onready var bg_music = load("res://import/audio/background/At the Market.wav")
 
-var MAX_TIME = 20.0
+var MAX_TIME = 120.0
 var MIN_STARFISH = 1
 var MIN_SNAIL = 1
 onready var goals = get_node("Goals")
@@ -23,6 +25,8 @@ onready var starfish_label = get_node("Foreground/margin/main_grid/counters_grid
 var starfish_count = 0
 onready var snail_label = get_node("Foreground/margin/main_grid/counters_grid/item_list/snail/snail_value")
 var snail_count = 0
+onready var bottle_label = get_node("Foreground/margin/main_grid/counters_grid/item_list/bottle/bottle_value")
+var bottle_count = 0
 
 onready var level_timer = find_node("timer_label")
 onready var level_timer_stopwatch: Timer = level_timer.get_node("general_timer")
@@ -51,6 +55,12 @@ func _ready():
 	pause_screen.current_scene = current_scene
 	endscreen.current_scene = current_scene
 	endscreen.main_level = "margarita"
+	
+	if "bottle" in GLOBAL.game_data.levels[endscreen.main_level].items_count.keys():
+		if GLOBAL.game_data.levels[endscreen.main_level].items_count["bottle"] > 0:
+			goals.find_node("Bottle").queue_free()
+			bottle_label.get_parent().queue_free()
+		
 	
 	
 #	for x in goals.get_children():
@@ -88,17 +98,19 @@ func end_speedrun():
 	result_data.item_count = {
 			"starfish": starfish_count,
 			"snail": snail_count,
-			"bottle": 1,
+			"bottle": bottle_count,
 	}
 	
-	endscreen.start_endscreen({
+	var expected_data = {
 		"max_time": MAX_TIME,
 		"item_count": {
 			"starfish": MIN_STARFISH,
 			"snail": MIN_SNAIL,
-			"bottle": 0,
+			"bottle": 1,
 		},
-	},result_data)	
+	}
+	
+	endscreen.start_endscreen(expected_data,result_data)	
 		
 		
 		
@@ -115,6 +127,12 @@ func _add_item_to_player(entity_name):
 		AUDIO_MANAGER.play_sfx(snail_sound_clip, 0)
 		foreground_animations.play("snail_add")
 		snail_label.texture = load("res://import/2d/text_sprites/numbers/num_"+str(snail_count)+".png")
+	if entity_name == "bottle":
+		bottle_count += 1
+		
+		AUDIO_MANAGER.play_sfx(bottle_sound_clip, 0)
+		foreground_animations.play("bottle_add")
+		bottle_label.texture = load("res://import/2d/text_sprites/numbers/num_"+str(bottle_count)+".png")
 
 
 func _on_water_area_body_entered(body):

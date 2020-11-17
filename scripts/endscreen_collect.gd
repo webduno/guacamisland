@@ -41,6 +41,11 @@ func start_endscreen(expected_data, result_data):
 		try_again_button.hide()
 	else:
 		for x in result_data.item_count.keys():
+			if x == "bottle":
+				if "bottle" in GLOBAL.game_data.levels[main_level].items_count.keys():
+					if GLOBAL.game_data.levels[main_level].items_count["bottle"] == 1:
+						continue
+						
 			print(x+":"+str(result_data.item_count[x])+"/"+str(expected_data.item_count[x] ))
 			item_list.add_child(item_template.duplicate())
 			
@@ -53,6 +58,18 @@ func start_endscreen(expected_data, result_data):
 			var losing = false
 			
 			for x in result_data.item_count.keys():
+				if x == "bottle":
+					if "bottle" in GLOBAL.game_data.levels[main_level].items_count.keys():
+						if GLOBAL.game_data.levels[main_level].items_count["bottle"] == 1:
+							result_data.item_count["bottle"] = 1
+					else:
+						GLOBAL.game_data.levels[main_level].items_count["bottle"] = 0
+						if result_data.item_count["bottle"] == 0:
+							lose(result_data)
+						else: 
+							result_data.item_count["bottle"] = 2
+				
+				
 				if result_data.item_count[x] < expected_data.item_count[x]:
 					losing = true
 					lose(result_data)
