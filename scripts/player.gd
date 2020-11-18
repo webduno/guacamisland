@@ -37,7 +37,7 @@ var gravity = HOVER_GRAVITY_CONSTANT
 export(int) var WALK_SPEED_CONTSTANT = 1
 export(int) var SPRINT_WALK_SPEED_CONTSTANT = 2
 export(int) var FLY_SPEED_CONTSTANT = 4
-export(int) var SPRINT_FLY_SPEED_CONTSTANT = 5
+export(int) var SPRINT_FLY_SPEED_CONTSTANT = 15
 var speed: int
 
 export(int) var acceleration = 5
@@ -57,6 +57,7 @@ var drowning := false
 var breath_time := 6
 
 var lives = 3
+var damage_hit = false
 
 onready var overlay_underwater = get_node("Foreground/Overlays/underwater")
 onready var overlay_underwater_drowning = get_node("Foreground/Overlays/underwater_drowning")
@@ -81,7 +82,6 @@ func show_health():
 func hide_health():
 	for heart in health_hearts:
 		heart.hide()
-		
 	
 func set_timer(wait_time, timer_callback):
 	timer.set_wait_time(wait_time)
@@ -136,7 +136,13 @@ func substract_live():
 	else:
 		get_node("Foreground/Stats/grid/health_heart"+str(lives)).hide()
 		lives -= 1
-
+		
+func take_damage_hit():
+	var a = InputEventKey.new()
+	a.scancode = KEY_SPACE
+	a.pressed = true # change to false to simulate a key release
+	print("trying to press SPACE")
+	Input.parse_input_event(a)
 
 func _process(delta: float) -> void:
 	cam_node.global_transform = cam_node.global_transform.interpolate_with(cam_target.global_transform, delta * 2)
@@ -196,7 +202,8 @@ func walk(delta: float) -> void:
 	_snap = Vector3(0, -1, 0)
 	
 	# WINGS RETRACTING
-	if Input.is_action_just_pressed("move_jump"):
+	if Input.is_action_just_pressed("move_jump") or damage_hit:
+		damage_hit = false
 		AUDIO_MANAGER.play_sfx(wing_flap_sound_clip, 1, -10)
 		player_animation.clear_queue() 
 		player_animation.stop()
@@ -215,7 +222,7 @@ func walk(delta: float) -> void:
 		player_animation.animation_set_next("Flap_Wings", "Hover_State")
 		gravity = HOVER_GRAVITY_CONSTANT;
 		
-	
+		
 	# Apply Gravity
 	velocity.y -= gravity * delta
 	
@@ -266,6 +273,9 @@ func walk(delta: float) -> void:
 		velocity = moving
 	else:
 		velocity.y = moving.y
+		if damage_hit:
+			damage_hit = false
+			velocity.y += JUMP_HEIGHT_CONSTANT
 
 
 func fly(delta: float) -> void:
