@@ -65,11 +65,11 @@ func lose(result_data):
 
 func _on_Button_Quit_Main_Menu_pressed():
 	get_tree().paused = false
-	return get_tree().change_scene("res://scenes/title_screen.tscn")
+	return get_tree().change_scene(GLOBAL.tittle_screen)
 
 func _on_Button_Next_pressed():
 	get_tree().paused = false
-	return get_tree().change_scene("res://scenes/map_screen.tscn")
+	return get_tree().change_scene(GLOBAL.map_screen)
 
 func _on_try_again_button_pressed():
 	get_tree().paused = false

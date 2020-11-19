@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/geometry/detail/yatch_sm.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/geometry/detail/ferry.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/geometry/detail/boat.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/pause_screen.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/screen_pause.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/geometry/detail/umbrella.tscn" type="PackedScene" id=13]
 [ext_resource path="res://assets/geometry/detail/palmtree.tscn" type="PackedScene" id=14]
 [ext_resource path="res://import/fonts/SyneMono-Regular.ttf" type="DynamicFontData" id=16]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/geometry/detail/clouds.tres" type="ArrayMesh" id=19]
 [ext_resource path="res://import/audio/ambience/wind/Wind.wav" type="AudioStream" id=21]
 [ext_resource path="res://import/audio/ambience/ambient_mountains_forest_river_waterfall_wind/waves_shore_loop.wav" type="AudioStream" id=22]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 64

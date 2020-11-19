@@ -16,15 +16,15 @@ _global_script_class_icons={
 [application]
 
 config/name="guacamisland"
-run/main_scene="res://scenes/title_screen.tscn"
+run/main_scene="res://scenes/screen_title.tscn"
 config/use_custom_user_dir=true
 config/icon="res://icon.png"
 
 [autoload]
 
-GLOBAL="*res://scripts/global.gd"
-AUDIO_MANAGER="*res://scenes/audio_manager.tscn"
-TRANSITION="*res://scenes/transition.tscn"
+GLOBAL="*res://scripts/global/global.gd"
+AUDIO_MANAGER="*res://scenes/global/audio_manager.tscn"
+TRANSITION="*res://scenes/global/transition.tscn"
 
 [display]
 

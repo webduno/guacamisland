@@ -5,7 +5,13 @@ onready var button_click = load("res://import/audio/interface/click4.wav")
 
 var dic : Dictionary = {}
 
+var local_sound_volume = 0
+
 func _ready():
+	GLOBAL.settings = {
+		"sound_volume": 0,
+		"sfx_volume": 0,
+	}
 	set_regular_button_sfx()
 	
 func set_regular_button_sfx():
@@ -25,7 +31,7 @@ func play_sfx(audio_clip : AudioStream, priority : int = 0, volume : int = 0):
 	for child in $sfx.get_children():
 		if child.playing == false:
 			child.stream = audio_clip
-			child.volume_db = volume
+			child.volume_db = GLOBAL.settings.sfx_volume + volume
 			child.play()
 			dic[child.name] = priority
 			break
@@ -36,7 +42,7 @@ func play_sfx(audio_clip : AudioStream, priority : int = 0, volume : int = 0):
 			var priority_player = check_priority_and_find_oldest(dic, priority) #finds player with same/lowest priority and oldest player
 			if priority_player != null:
 				$sfx.get_node(priority_player).stream = audio_clip
-				$sfx.get_node(priority_player).volume_db = volume
+				$sfx.get_node(priority_player).volume_db = GLOBAL.settings.sfx_volume + volume
 				$sfx.get_node(priority_player).play()
 			else:
 				print("priority player is null")
@@ -105,7 +111,16 @@ func check_priority_and_find_oldest(_dic, _priority): #1,3,1 == 1
 	#get the oldest player from the lowest priority players
 
 func play_music(music_clip : AudioStream, volume : int = 0):
-	$music/music_player.volume_db = volume
+	if volume != 0:
+		print("PLAY MUSIC:")
+		print("GLOBAL.settings.sound_volume: "+str(GLOBAL.settings.sound_volume))
+		print("volume: "+str(volume))
+	$music/music_player.volume_db = GLOBAL.settings.sound_volume + volume
+	if volume != 0:
+		print("new_volume:")
+		print($music/music_player.volume_db)
+		
+	local_sound_volume = volume
 	$music/music_player.stream = music_clip
 	$music/music_player.play()
 	pass
@@ -114,3 +129,10 @@ func pause_music():
 	$music/music_player.stream_paused = true
 func unpause_music():
 	$music/music_player.stream_paused = false
+	
+func change_volume(new_volume):
+	print(local_sound_volume)
+	print(GLOBAL.settings.sound_volume)
+	print(local_sound_volume - GLOBAL.settings.sound_volume)
+	print(new_volume)
+	$music/music_player.volume_db = (local_sound_volume - GLOBAL.settings.sound_volume) + new_volume

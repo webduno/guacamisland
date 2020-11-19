@@ -29,7 +29,7 @@ func _on_button_reset_level_pressed():
 
 func _on_button_quit_to_menu_pressed():
 	unpause()
-	return get_tree().change_scene("res://scenes/title_screen.tscn")
+	return get_tree().change_scene(GLOBAL.title_screen)
 
 func pause():
 	get_tree().paused = true

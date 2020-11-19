@@ -1,0 +1,202 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://import/2d/text_sprites/settings_screen/save.png" type="Texture" id=1]
+[ext_resource path="res://import/2d/settings_screen/bg_gradient.jpg" type="Texture" id=2]
+[ext_resource path="res://import/2d/text_sprites/settings_screen/save-hover.png" type="Texture" id=3]
+[ext_resource path="res://scripts/screen_settings.gd" type="Script" id=4]
+[ext_resource path="res://import/2d/text_sprites/settings_screen/dont_save-hover.png" type="Texture" id=5]
+[ext_resource path="res://import/2d/text_sprites/settings_screen/dont_save.png" type="Texture" id=6]
+
+[node name="Settings Screen" type="Control" groups=[
+"current_level",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BgGradient" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -640.0
+margin_right = 640.0
+margin_bottom = 640.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="container" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="panel 1" type="MarginContainer" parent="container"]
+margin_right = 510.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+
+[node name="grid" type="VBoxContainer" parent="container/panel 1"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 460.0
+margin_bottom = 550.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="settings_grid" type="VBoxContainer" parent="container/panel 1/grid"]
+margin_right = 410.0
+margin_bottom = 500.0
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="sound_volume_row" type="HBoxContainer" parent="container/panel 1/grid/settings_grid"]
+margin_right = 410.0
+margin_bottom = 16.0
+
+[node name="sound_volume_label" type="Label" parent="container/panel 1/grid/settings_grid/sound_volume_row"]
+margin_top = 1.0
+margin_right = 203.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "Sound Volume (Dcb Gain)"
+
+[node name="sound_volume_value" type="HSlider" parent="container/panel 1/grid/settings_grid/sound_volume_row"]
+margin_left = 207.0
+margin_right = 410.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+min_value = -50.0
+max_value = 10.0
+
+[node name="sfx_volume_row" type="HBoxContainer" parent="container/panel 1/grid/settings_grid"]
+margin_top = 36.0
+margin_right = 410.0
+margin_bottom = 52.0
+
+[node name="sfx_volume_label" type="Label" parent="container/panel 1/grid/settings_grid/sfx_volume_row"]
+margin_top = 1.0
+margin_right = 203.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "SFX  Volume (Dcb Gain)"
+
+[node name="sfx_volume_value" type="HSlider" parent="container/panel 1/grid/settings_grid/sfx_volume_row"]
+margin_left = 207.0
+margin_right = 410.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+min_value = -50.0
+max_value = 50.0
+
+[node name="buttons_animation" type="AnimationPlayer" parent="container/panel 1"]
+
+[node name="panel 2" type="MarginContainer" parent="container"]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+
+[node name="grid" type="VBoxContainer" parent="container/panel 2"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 460.0
+margin_bottom = 550.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="settings_grid" type="VBoxContainer" parent="container/panel 2/grid"]
+margin_right = 410.0
+margin_bottom = 500.0
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="row" type="HBoxContainer" parent="container/panel 2/grid/settings_grid"]
+margin_right = 410.0
+margin_bottom = 16.0
+
+[node name="sound_volume_label" type="Label" parent="container/panel 2/grid/settings_grid/row"]
+margin_top = 1.0
+margin_right = 306.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+text = "Sound Volume (Dcb Gain)"
+
+[node name="sound_volume_value" type="HSlider" parent="container/panel 2/grid/settings_grid/row"]
+margin_left = 310.0
+margin_right = 410.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="buttons_animation" type="AnimationPlayer" parent="container/panel 2"]
+
+[node name="margin" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -171.0
+margin_top = -83.0
+margin_right = 171.0
+custom_constants/margin_bottom = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="container" type="HBoxContainer" parent="margin"]
+margin_right = 342.0
+margin_bottom = 33.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 100
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dont_save_button" type="TextureButton" parent="margin/container" groups=[
+"regular_button",
+]]
+margin_right = 164.0
+margin_bottom = 33.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
+
+[node name="save_button" type="TextureButton" parent="margin/container" groups=[
+"regular_button",
+]]
+margin_left = 264.0
+margin_top = 2.0
+margin_right = 342.0
+margin_bottom = 30.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 3 )
+[connection signal="value_changed" from="container/panel 1/grid/settings_grid/sound_volume_row/sound_volume_value" to="." method="_on_sound_volume_value_value_changed"]
+[connection signal="value_changed" from="container/panel 1/grid/settings_grid/sfx_volume_row/sfx_volume_value" to="." method="_on_sfx_volume_value_value_changed"]
+[connection signal="pressed" from="margin/container/dont_save_button" to="." method="_on_dont_save_button_pressed"]
+[connection signal="pressed" from="margin/container/save_button" to="." method="_on_save_button_pressed"]

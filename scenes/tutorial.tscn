@@ -6,9 +6,10 @@
 [ext_resource path="res://entities/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://import/audio/ticks/loopable-ticking-clock.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/goal_ring.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/pause_screen.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/screen_pause.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/endscreen_speedrun.tscn" type="PackedScene" id=15]
 [ext_resource path="res://import/fonts/SyneMono-Regular.ttf" type="DynamicFontData" id=16]
+
 
 
 [sub_resource type="DynamicFont" id=1]

@@ -7,7 +7,7 @@ signal island_row_mouse_entered
 signal island_row_mouse_exited
 signal island_row_play_clicked
 
-export (PackedScene) var island_row = load("res://scenes/island_row.tscn")
+export (PackedScene) var island_row = load("res://scenes/partials/island_row.tscn")
 
 onready var islandlist_list = get_node("container/panel 2/islandlist_panel/margin/islandlist_container/control/islandlist_list")
 onready var map_location = get_node("container/map/map_location")
@@ -21,7 +21,7 @@ func _ready():
 	fill_island_list()
 
 func _on_go_main_menu_button_pressed():
-	return get_tree().change_scene("res://scenes/title_screen.tscn")
+	return get_tree().change_scene(GLOBAL.title_screen)
 
 func fill_island_list():	
 	var _conx = connect("island_row_mouse_entered", self, "_island_row_mouse_entered")

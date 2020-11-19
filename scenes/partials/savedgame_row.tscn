@@ -1,8 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://import/fonts/SyneMono-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://scripts/savedgame_row.gd" type="Script" id=4]
+[ext_resource path="res://scripts/partials/savedgame_row.gd" type="Script" id=4]
 [ext_resource path="res://import/2d/icons/icon_arrow_right.png" type="Texture" id=5]
+
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.345098 )

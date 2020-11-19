@@ -4,7 +4,11 @@ onready var bg_music = load("res://import/audio/background/story time.wav")
 onready var input_change = load("res://import/audio/ticks/ticking clock - tick4.wav")
 onready var button_hover = load("res://import/audio/interface/Menu Selection Click.wav")
 
-export (PackedScene) var savedgame_row = load("res://scenes/savedgame_row.tscn")
+
+#export (PackedScene) var settings_screen = load(GLOBAL.settings_screen)
+export (PackedScene) var savedgame_row = load("res://scenes/partials/savedgame_row.tscn")
+
+onready var settings_screen = get_node("Settings Screen")
 
 signal savedgame_row_mouse_entered
 signal savedgame_row_mouse_exited
@@ -26,6 +30,7 @@ var difficulty = 1
 onready var label_difficulty = find_node("label_difficulty")
 
 func _ready():
+	settings_screen.fix_settings_values()
 	read_gamelist()
 	AUDIO_MANAGER.set_regular_button_sfx()
 	AUDIO_MANAGER.play_music(bg_music, -15)
@@ -88,7 +93,7 @@ func _savedgame_row_mouse_exited(event):
 	event.index_selector.hide()
 func _savedgame_row_mouse_clicked(event):
 	GLOBAL.game_data = event.game_data
-	return get_tree().change_scene("res://scenes/map_screen.tscn")
+	return get_tree().change_scene(GLOBAL.map_screen)
 	
 func _on_newgame_open_button_pressed():
 	gamelist_panel.show()
@@ -122,7 +127,7 @@ func _on_save_newgame_button_pressed():
 		print("saved game.")
 		
 		GLOBAL.game_data = data
-		return get_tree().change_scene("res://scenes/map_screen.tscn")
+		return get_tree().change_scene(GLOBAL.map_screen)
 	
 func _on_loadgame_open_button_pressed():
 	gamelist_panel.show()
@@ -130,11 +135,18 @@ func _on_loadgame_open_button_pressed():
 	
 func _on_Button_Close_pressed(): gamelist_panel.hide()
 
-func _on_tutorial_button_pressed():	TRANSITION.change_scene("res://scenes/tutorial.tscn")
+func _on_tutorial_button_pressed():	TRANSITION.change_scene(GLOBAL.tutorial)
 
 func _on_exit_button_pressed():	return get_tree().quit()
 
+func _on_settings_button_pressed():
+	print(settings_screen)
+	settings_screen.start_settings_screen();
 
 
+func _on_dont_save_button_pressed():
+	pass # Replace with function body.
 
 
+func _on_save_button_pressed():
+	pass # Replace with function body.
