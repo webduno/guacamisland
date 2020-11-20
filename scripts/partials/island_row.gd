@@ -6,6 +6,7 @@ onready var certificate_sound_clip = load("res://import/audio/action/pageturn1.w
 var island_data
 
 func _ready():
+	$AnimationPlayer.play("Certificate_Appear")
 	pass
 
 func _on_Button_mouse_entered():

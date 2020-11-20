@@ -21,7 +21,6 @@
 [ext_resource path="res://import/audio/ambience/wind/Wind.wav" type="AudioStream" id=21]
 [ext_resource path="res://import/audio/ambience/ambient_mountains_forest_river_waterfall_wind/waves_shore_loop.wav" type="AudioStream" id=22]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 16 )

@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://import/2d/map_screen/islands/margarita_thumbnail.png" type="Texture" id=1]
 [ext_resource path="res://import/2d/icons/scroll_certificate.png" type="Texture" id=3]
 [ext_resource path="res://scripts/partials/island_row.gd" type="Script" id=5]
-
-
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.345098 )
@@ -32,6 +30,40 @@ expand_margin_left = 5.0
 expand_margin_right = 5.0
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "Certificate_Appear"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("certificate:rect_scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("certificate:rect_scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1e-05, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("certificate:rect_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 180, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
 
 [node name="island_row" type="Control"]
 margin_right = 270.0
@@ -151,7 +183,7 @@ __meta__ = {
 [node name="certificate" type="TextureRect" parent="."]
 margin_right = 42.0
 margin_bottom = 51.0
-rect_pivot_offset = Vector2( 21, 25 )
+rect_pivot_offset = Vector2( 42, 51 )
 hint_tooltip = "Airworthiness Certificate"
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -159,6 +191,9 @@ texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Certificate_Appear = SubResource( 3 )
 [connection signal="mouse_entered" from="margin/Button" to="." method="_on_Button_mouse_entered"]
 [connection signal="mouse_exited" from="margin/Button" to="." method="_on_Button_mouse_exited"]
 [connection signal="pressed" from="margin/Button" to="." method="_on_Button_pressed"]

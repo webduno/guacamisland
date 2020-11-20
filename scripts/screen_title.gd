@@ -10,9 +10,6 @@ export (PackedScene) var savedgame_row = load("res://scenes/partials/savedgame_r
 
 onready var settings_screen = get_node("Settings Screen")
 
-signal savedgame_row_mouse_entered
-signal savedgame_row_mouse_exited
-signal savedgame_row_clicked
 
 var gamelist = []
 
@@ -74,10 +71,6 @@ func read_gamelist():
 	fill_gamelist_list()
 			
 func fill_gamelist_list():	
-	var _conx = connect("savedgame_row_mouse_entered", self, "_savedgame_row_mouse_entered")
-	_conx = connect("savedgame_row_mouse_exited", self, "_savedgame_row_mouse_exited")
-	_conx = connect("savedgame_row_clicked", self, "_savedgame_row_mouse_clicked")
-	
 	for x in gamelist:
 		var a = savedgame_row.instance()
 		a.get_node("margin/grid/game_info/game_name_label").text = x.name
@@ -85,6 +78,7 @@ func fill_gamelist_list():
 		a.get_node("margin/grid/game_info/file_info/size_label").text = str(x.size)
 		a.game_data = x.data
 		gamelist_list.add_child(a)
+		
 
 func _savedgame_row_mouse_entered(event):
 	AUDIO_MANAGER.play_sfx(input_change, 0, -15)

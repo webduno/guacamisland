@@ -9,7 +9,10 @@ export (PackedScene) var savedgame_row = load("res://scenes/partials/savedgame_r
 
 var gamelist = []
 
+onready var sound_volume_label = get_node("container/panel 1/grid/settings_grid/sound_volume_row/sound_volume_label")
 onready var sound_volume_value = get_node("container/panel 1/grid/settings_grid/sound_volume_row/sound_volume_value")
+onready var sfx_volume_label = get_node("container/panel 1/grid/settings_grid/sfx_volume_row/sfx_volume_label")
+onready var sfx_volume_value = get_node("container/panel 1/grid/settings_grid/sfx_volume_row/sfx_volume_value")
 
 onready var buttons_animation = get_node("container/panel 1/buttons_animation")
 
@@ -63,7 +66,9 @@ func fix_settings_values():
 	updateOrCreateSettingsFile()
 	var current_volume = GLOBAL.settings["sound_volume"]
 	AUDIO_MANAGER.change_volume(current_volume)
-	sound_volume_value.value = current_volume
+	sound_volume_label.text= "Sound Volume (Dcb Gain): "+str(current_volume)	
+	var current_ssfx_volume = GLOBAL.settings["sfx_volume"]
+	sfx_volume_label.text= "Sound Volume (Dcb Gain): "+str(current_ssfx_volume)	
 	
 	
 func _on_dont_save_button_pressed():
@@ -82,15 +87,20 @@ func _on_save_button_pressed():
 
 func _on_sound_volume_value_value_changed(value):
 	print("changed to"+str(value))
-	var current_volume = GLOBAL.settings.sound_volume
+	sound_volume_label.text = "Sound Volume (Dcb Gain): "+str(value)	
+#	var current_volume = GLOBAL.settings.sound_volume
 	var new_volume = value
 	GLOBAL.settings.sound_volume = new_volume
 	AUDIO_MANAGER.change_volume(new_volume)
 
 
 func _on_sfx_volume_value_value_changed(value):
-	GLOBAL.settings["sfx_volume"] = value
-	pass # Replace with function body.
+	print("changed to"+str(value))
+	sfx_volume_label.text = "Sfx Volume (Dcb Gain): "+str(value)	
+#	var current_volume = GLOBAL.settings.sfx_volume
+	var new_volume = value
+	GLOBAL.settings.sfx_volume = new_volume
+	AUDIO_MANAGER.change_sfx_volume(new_volume)
 
 func __ready():
 	read_gamelist()

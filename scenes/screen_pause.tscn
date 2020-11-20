@@ -8,8 +8,6 @@
 [ext_resource path="res://import/2d/text_sprites/pause_screen/resume.png" type="Texture" id=6]
 [ext_resource path="res://import/2d/text_sprites/pause_screen/reset_level-hover.png" type="Texture" id=7]
 
-
-
 [node name="pause_screen" type="Control"]
 pause_mode = 2
 anchor_right = 1.0

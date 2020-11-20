@@ -32,6 +32,7 @@ func _on_button_quit_to_menu_pressed():
 	return get_tree().change_scene(GLOBAL.title_screen)
 
 func pause():
+	print("pausing")
 	get_tree().paused = true
 	AUDIO_MANAGER.play_sfx(pause_sound_clip, 0)
 	AUDIO_MANAGER.pause_music()

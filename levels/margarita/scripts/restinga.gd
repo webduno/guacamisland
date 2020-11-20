@@ -12,9 +12,9 @@ onready var letter_sound_clip = load("res://import/audio/action/pageturn1.wav")
 
 onready var bg_music = load("res://import/audio/background/At the Market.wav")
 
-var MAX_TIME = 120.0
-var MIN_STARFISH = 1
-var MIN_SNAIL = 1
+var MAX_TIME = 240.0
+var MIN_STARFISH = 10
+var MIN_SNAIL = 7
 onready var goals = get_node("Goals")
 
 onready var foreground_animations = find_node("foreground_animations")
@@ -60,6 +60,7 @@ func _ready():
 		if GLOBAL.game_data.levels[endscreen.main_level].items_count["letter"] > 0:
 			goals.find_node("Letter").queue_free()
 			letter_label.get_parent().queue_free()
+			pause_screen.get_node("../pause_screen/margin2/main_grid/titles/grid/bottle_pausescreen_info").hide()
 		
 	
 	
@@ -67,6 +68,10 @@ func _ready():
 #		x.hide()
 		
 	init_speedrun()
+	pause_screen.show()
+	pause_screen.pause()
+			
+			
 	
 func init_speedrun():
 	print("init_speedrun")
@@ -74,12 +79,10 @@ func init_speedrun():
 	level_timer_stopwatch.start()
 	
 func _on_Area_body_entered(body):
-	print("cheking resources")
 	if body.name == "KineBody":
 		end_speedrun()
 	
 func _goal_reached():
-	print("cheking resources")
 	end_speedrun()
 	
 func game_over():

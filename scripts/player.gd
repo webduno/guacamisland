@@ -37,7 +37,7 @@ var gravity = HOVER_GRAVITY_CONSTANT
 export(int) var WALK_SPEED_CONTSTANT = 1
 export(int) var SPRINT_WALK_SPEED_CONTSTANT = 2
 export(int) var FLY_SPEED_CONTSTANT = 4
-export(int) var SPRINT_FLY_SPEED_CONTSTANT = 15
+export(int) var SPRINT_FLY_SPEED_CONTSTANT = 5
 var speed: int
 
 export(int) var acceleration = 5

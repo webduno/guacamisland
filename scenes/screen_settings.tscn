@@ -82,7 +82,7 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 min_value = -50.0
-max_value = 10.0
+max_value = 15.0
 
 [node name="sfx_volume_row" type="HBoxContainer" parent="container/panel 1/grid/settings_grid"]
 margin_top = 36.0
@@ -103,7 +103,7 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 min_value = -50.0
-max_value = 50.0
+max_value = 15.0
 
 [node name="buttons_animation" type="AnimationPlayer" parent="container/panel 1"]
 
@@ -133,6 +133,7 @@ size_flags_vertical = 3
 custom_constants/separation = 20
 
 [node name="row" type="HBoxContainer" parent="container/panel 2/grid/settings_grid"]
+visible = false
 margin_right = 410.0
 margin_bottom = 16.0
 
